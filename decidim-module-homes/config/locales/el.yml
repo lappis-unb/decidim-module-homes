@@ -1,0 +1,36 @@
+---
+el:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Σελίδα
+        other: Σελίδες
+  decidim:
+    admin_log:
+      home:
+        update: "Ο χρήστης %{user_name} ενημέρωσε τη σελίδα %{resource_name} στον χώρο %{space_name}"
+    components:
+      homes:
+        name: Σελίδα
+        settings:
+          global:
+            announcement: Ανακοίνωση
+          step:
+            announcement: Ανακοίνωση
+    homes:
+      admin:
+        models:
+          components:
+            body: Σώμα
+        homes:
+          edit:
+            save: Ενημέρωση
+            title: Επεξεργασία σελίδας
+          update:
+            invalid: Υπήρξε ένα πρόβλημα κατά την αποθήκευση της σελίδας.
+            success: Η σελίδα αποθηκεύτηκε με επιτυχία.
+      home:
+        hero:
+          participate_title: Συμμετάσχετε στις διαδικασίες της πλατφόρμας
+        sub_hero:
+          register_title: Εγγραφείτε για να δημιουργήσετε ένα λογαριασμό

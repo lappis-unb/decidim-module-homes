@@ -1,0 +1,34 @@
+---
+"no":
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Side
+        other: Sider
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} oppdaterte %{resource_name} siden i %{space_name}"
+    components:
+      homes:
+        name: Side
+        settings:
+          global:
+            announcement: Kunngjøring
+          step:
+            announcement: Kunngjøring
+    homes:
+      admin:
+        models:
+          components:
+            body: Tekst
+        homes:
+          edit:
+            save: Oppdater
+            title: Rediger side
+          update:
+            invalid: Det oppsto et problem med å lagre denne siden.
+            success: Siden ble lagret.
+      home:
+        sub_hero:
+          register_title: Registrer deg for å opprette en konto

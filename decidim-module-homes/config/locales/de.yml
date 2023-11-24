@@ -1,0 +1,36 @@
+---
+de:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Seite
+        other: Seiten
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} hat die Seite %{resource_name} in %{space_name} aktualisiert"
+    components:
+      homes:
+        name: Seite
+        settings:
+          global:
+            announcement: Ankündigung
+          step:
+            announcement: Ankündigung
+    homes:
+      admin:
+        models:
+          components:
+            body: Haupttext
+        homes:
+          edit:
+            save: Aktualisieren
+            title: Seite bearbeiten
+          update:
+            invalid: Beim Speichern der Seite sind Fehler aufgetreten.
+            success: Seite erfolgreich gespeichert
+      home:
+        hero:
+          participate_title: Beteiligen Sie sich an den Prozessen auf dieser Plattform
+        sub_hero:
+          register_title: Registrieren

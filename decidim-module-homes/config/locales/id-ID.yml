@@ -1,0 +1,30 @@
+---
+id:
+  activerecord:
+    models:
+      decidim/homes/home:
+        other: Halaman
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} memperbarui %{resource_name} halaman menjadi %{space_name}"
+    components:
+      homes:
+        name: Halaman
+        settings:
+          global:
+            announcement: Pengumuman
+          step:
+            announcement: Pengumuman
+    homes:
+      admin:
+        models:
+          components:
+            body: Tubuh
+        homes:
+          edit:
+            save: Memperbarui
+            title: Edit halaman
+          update:
+            invalid: Terjadi masalah saat menyimpan halaman.
+            success: Halaman berhasil disimpan.

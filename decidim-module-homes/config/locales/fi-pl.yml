@@ -1,0 +1,30 @@
+fi-pl:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Sivu
+        other: Sivut
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} päivitti %{resource_name} sivun kohdassa %{space_name}"
+    components:
+      homes:
+        name: Sivu
+        settings:
+          global:
+            announcement: Ilmoitus
+          step:
+            announcement: Ilmoitus
+    homes:
+      admin:
+        models:
+          components:
+            body: Sisältöteksti
+        homes:
+          edit:
+            save: Päivitä
+            title: Muokkaa sivua
+          update:
+            invalid: Sivun tallennuksessa tapahtui virheitä.
+            success: Sivu tallennettu onnistuneesti.

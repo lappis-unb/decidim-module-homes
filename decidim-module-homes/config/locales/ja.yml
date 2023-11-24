@@ -1,0 +1,35 @@
+---
+ja:
+  activerecord:
+    models:
+      decidim/homes/home:
+        other: ページ
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} が %{resource_name} の %{space_name} ページを更新しました"
+    components:
+      homes:
+        name: ページ
+        settings:
+          global:
+            announcement: お知らせ
+          step:
+            announcement: お知らせ
+    homes:
+      admin:
+        models:
+          components:
+            body: 本文
+        homes:
+          edit:
+            save: 更新
+            title: ページを編集
+          update:
+            invalid: ページの保存中に問題が発生しました。
+            success: ページを保存しました。
+      home:
+        hero:
+          participate_title: プラットフォームのプロセスに参加する
+        sub_hero:
+          register_title: サインアップしてアカウントを作成

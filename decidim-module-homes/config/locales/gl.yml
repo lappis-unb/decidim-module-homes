@@ -1,0 +1,34 @@
+---
+gl:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Páxina
+        other: Páxinas
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} actualizou a páxina %{resource_name} en %{space_name}"
+    components:
+      homes:
+        name: Páxina
+        settings:
+          global:
+            announcement: Anuncio
+          step:
+            announcement: Anuncio
+    homes:
+      admin:
+        models:
+          components:
+            body: Corpo
+        homes:
+          edit:
+            save: Actualización
+            title: Editar páxina
+          update:
+            invalid: Produciuse un erro ao gardar a páxina.
+            success: A páxina gardouse correctamente.
+      home:
+        sub_hero:
+          register_title: Rexistrarse para crear unha conta

@@ -1,0 +1,33 @@
+---
+uk:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Сторінка
+        few: Сторінки
+        many: Сторінок
+        other: Сторінок
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} оновив сторінку %{resource_name} у %{space_name}"
+    components:
+      homes:
+        name: Сторінка
+        settings:
+          global:
+            announcement: Оголошення
+          step:
+            announcement: Оголошення
+    homes:
+      admin:
+        models:
+          components:
+            body: Основний текст
+        homes:
+          edit:
+            save: Оновити
+            title: Редагувати сторінку
+          update:
+            invalid: При спробі збереження цієї сторінки сталися помилки.
+            success: Сторінку успішно збережено.

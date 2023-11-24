@@ -1,0 +1,34 @@
+---
+sv:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Sida
+        other: Sidor
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} uppdaterade sidan %{resource_name} i %{space_name}"
+    components:
+      homes:
+        name: Sida
+        settings:
+          global:
+            announcement: Meddelande
+          step:
+            announcement: Meddelande
+    homes:
+      admin:
+        models:
+          components:
+            body: Innehåll
+        homes:
+          edit:
+            save: Uppdatera
+            title: Redigera sida
+          update:
+            invalid: Det gick inte att spara sidan.
+            success: Sidan sparades framgångsrikt.
+      home:
+        sub_hero:
+          register_title: Skapa ett konto

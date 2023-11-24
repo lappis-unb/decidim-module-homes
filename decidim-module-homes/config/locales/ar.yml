@@ -1,0 +1,40 @@
+---
+ar:
+  activerecord:
+    models:
+      decidim/homes/home:
+        zero: صفحات
+        one: صفحة
+        two: صفحات
+        few: صفحات
+        many: صفحات
+        other: صفحات
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} تحديث الصفحة %{resource_name} في %{space_name}"
+    components:
+      homes:
+        name: صفحة
+        settings:
+          global:
+            announcement: إعلان
+          step:
+            announcement: إعلان
+    homes:
+      admin:
+        models:
+          components:
+            body: الجسم
+        homes:
+          edit:
+            save: تحديث
+            title: تعديل الصفحة
+          update:
+            invalid: حدثت مشكلة أثناء حفظ الصفحة.
+            success: تم حفظ الصفحة بنجاح.
+      home:
+        hero:
+          participate_title: المشاركة في مسارات المنصة
+        sub_hero:
+          register_title: قم بالتسجيل لإنشاء حساب

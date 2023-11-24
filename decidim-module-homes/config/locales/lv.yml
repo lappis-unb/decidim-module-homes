@@ -1,0 +1,32 @@
+---
+lv:
+  activerecord:
+    models:
+      decidim/homes/home:
+        zero: Lapas
+        one: Lapa
+        other: Lapas
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} atjaunināja %{resource_name} lapu telpā %{space_name}"
+    components:
+      homes:
+        name: Lapa
+        settings:
+          global:
+            announcement: Paziņojums
+          step:
+            announcement: Paziņojums
+    homes:
+      admin:
+        models:
+          components:
+            body: Pamatteksts
+        homes:
+          edit:
+            save: Atjaunināt
+            title: Rediģēt lapu
+          update:
+            invalid: Saglabājot lapu, radās problēma.
+            success: Lapa ir veiksmīgi saglabāta

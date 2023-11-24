@@ -1,0 +1,38 @@
+---
+cs:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Stránka
+        few: Stránky
+        many: Stránky
+        other: Stránky
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} aktualizovala %{resource_name} stránku v %{space_name}"
+    components:
+      homes:
+        name: Stránka
+        settings:
+          global:
+            announcement: Oznámení
+          step:
+            announcement: Oznámení
+    homes:
+      admin:
+        models:
+          components:
+            body: Tělo
+        homes:
+          edit:
+            save: Aktualizace
+            title: Upravit stránku
+          update:
+            invalid: Při ukládání stránky došlo k chybám.
+            success: Stránka byla úspěšně uložena.
+      home:
+        hero:
+          participate_title: Účast na procesech platformy
+        sub_hero:
+          register_title: Zaregistrujte se pro vytvoření účtu

@@ -1,0 +1,36 @@
+---
+es-MX:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Página
+        other: Páginas
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} actualizó la página %{resource_name} en %{space_name}"
+    components:
+      homes:
+        name: Página
+        settings:
+          global:
+            announcement: Aviso
+          step:
+            announcement: Aviso
+    homes:
+      admin:
+        models:
+          components:
+            body: Cuerpo
+        homes:
+          edit:
+            save: Actualizar
+            title: Editar página
+          update:
+            invalid: Ha habido errores al guardar la página.
+            success: Página guardada correctamente.
+      home:
+        hero:
+          participate_title: Participa en los procesos de la plataforma
+        sub_hero:
+          register_title: Regístrate para tener una cuenta

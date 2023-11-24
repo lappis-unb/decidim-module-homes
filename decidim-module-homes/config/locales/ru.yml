@@ -1,0 +1,33 @@
+---
+ru:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Страница
+        few: Страницы
+        many: Страниц
+        other: Страниц
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} обновил страницу %{resource_name} в %{space_name}"
+    components:
+      homes:
+        name: Страница
+        settings:
+          global:
+            announcement: Объявление
+          step:
+            announcement: Объявление
+    homes:
+      admin:
+        models:
+          components:
+            body: Основной текст
+        homes:
+          edit:
+            save: Обновить
+            title: Редактировать страницу
+          update:
+            invalid: При попытке сохранить страницу произошли ошибки.
+            success: Страница сохранена успешно.

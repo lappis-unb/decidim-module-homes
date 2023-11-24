@@ -1,0 +1,36 @@
+---
+hu:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Oldal
+        other: Oldalak
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} frissítette a(z) %{resource_name} oldalt itt: %{space_name}"
+    components:
+      homes:
+        name: Oldal
+        settings:
+          global:
+            announcement: Közlemény
+          step:
+            announcement: Közlemény
+    homes:
+      admin:
+        models:
+          components:
+            body: Szöveg
+        homes:
+          edit:
+            save: Frissítés
+            title: Oldal szerkesztése
+          update:
+            invalid: Hiba történt az oldal mentése során.
+            success: Oldal mentése sikeres.
+      home:
+        hero:
+          participate_title: Részvétel a platform folyamataiban
+        sub_hero:
+          register_title: A fiók létrehozásához iratkozz fel

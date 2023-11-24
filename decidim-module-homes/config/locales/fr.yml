@@ -1,0 +1,36 @@
+---
+fr:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Home
+        other: Homes
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} a mis à jour la home %{resource_name} dans %{space_name}"
+    components:
+      homes:
+        name: Home
+        settings:
+          global:
+            announcement: Message d'annonce
+          step:
+            announcement: Message d'annonce
+    homes:
+      admin:
+        models:
+          components:
+            body: Corps du texte
+        homes:
+          edit:
+            save: Mettre à jour
+            title: Modifier la home
+          update:
+            invalid: Erreurs lors de la sauvegarde de la home.
+            success: Home enregistrée avec succès.
+      home:
+        hero:
+          participate_title: Participer aux concertations de la plateforme
+        sub_hero:
+          register_title: Inscrivez-vous pour créer un compte

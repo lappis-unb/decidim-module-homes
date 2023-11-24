@@ -1,0 +1,32 @@
+sk:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Stránka
+        few: Stránky
+        many: Stránky
+        other: Stránky
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} aktualizoval stránku %{resource_name} v priestore %{space_name}"
+    components:
+      homes:
+        name: Stránka
+        settings:
+          global:
+            announcement: Oznámenie
+          step:
+            announcement: Oznámenie
+    homes:
+      admin:
+        models:
+          components:
+            body: Telo
+        homes:
+          edit:
+            save: Aktualizovať
+            title: Upraviť stránku
+          update:
+            invalid: Vyskytol sa problém s ukladaním stránky.
+            success: Stránka úspešne uložená.

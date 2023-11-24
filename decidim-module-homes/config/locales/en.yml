@@ -1,0 +1,44 @@
+---
+en:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Home
+        other: Homes
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} updated the %{resource_name} home in %{space_name}"
+    components:
+      homes:
+        name: Home
+        settings:
+          global:
+            announcement: Announcement
+          step:
+            announcement: Announcement
+    homes:
+      admin:
+        models:
+          components:
+            body: Body
+            banner: Banner
+            statistics: Statistics
+            news: News
+            news_id: News id
+            organizers: Organizers
+        homes:
+          edit:
+            save: Update
+            title: Edit home
+          update:
+            invalid: There was a problem saving the home.
+            success: Home successfully saved.
+        errors:
+          messages:
+            invalid_image_format: Image format incorrect
+      home:
+        hero:
+          participate_title: Participate in the platform's processes
+        sub_hero:
+          register_title: Sign up to create an account

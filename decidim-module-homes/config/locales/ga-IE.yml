@@ -1,0 +1,14 @@
+---
+ga:
+  decidim:
+    components:
+      homes:
+        name: Leathanach
+    homes:
+      admin:
+        models:
+          components:
+            body: Corp
+        homes:
+          edit:
+            save: Nuashonraigh

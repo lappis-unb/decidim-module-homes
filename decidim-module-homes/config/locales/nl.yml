@@ -1,0 +1,34 @@
+---
+nl:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Pagina
+        other: Homes
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} heeft de %{resource_name} pagina in %{space_name} bijgewerkt"
+    components:
+      homes:
+        name: Pagina
+        settings:
+          global:
+            announcement: Aankondiging
+          step:
+            announcement: Aankondiging
+    homes:
+      admin:
+        models:
+          components:
+            body: Body
+        homes:
+          edit:
+            save: Bijwerken
+            title: Pagina bewerken
+          update:
+            invalid: Er zijn fouten opgetreden bij het opslaan van de pagina.
+            success: Pagina is succesvol opgeslagen.
+      home:
+        sub_hero:
+          register_title: Meld je aan voor een account

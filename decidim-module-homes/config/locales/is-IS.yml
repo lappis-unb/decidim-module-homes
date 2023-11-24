@@ -1,0 +1,23 @@
+---
+is:
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} uppfært %{resource_name} síðu í %{space_name}"
+    components:
+      homes:
+        name: Síða
+        settings:
+          global:
+            announcement: Tilkynning
+          step:
+            announcement: Tilkynning
+    homes:
+      admin:
+        models:
+          components:
+            body: Meginmál
+        homes:
+          edit:
+            save: Uppfæra
+            title: Breyta síðu

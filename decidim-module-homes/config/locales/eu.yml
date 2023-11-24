@@ -1,0 +1,34 @@
+---
+eu:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Orria
+        other: Orriak
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} %{resource_name} orrialdea %{space_name} eguneratu du"
+    components:
+      homes:
+        name: Orria
+        settings:
+          global:
+            announcement: Oharra
+          step:
+            announcement: Oharra
+    homes:
+      admin:
+        models:
+          components:
+            body: Testua
+        homes:
+          edit:
+            save: Eguneratu
+            title: Editatu orria
+          update:
+            invalid: Erroreak gertatu dira orria gordetzean.
+            success: Orria zuzen gorde da.
+      home:
+        sub_hero:
+          register_title: Erregistratu kontu bat edukitzeko

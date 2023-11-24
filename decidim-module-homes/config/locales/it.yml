@@ -1,0 +1,34 @@
+---
+it:
+  activerecord:
+    models:
+      decidim/homes/home:
+        one: Pagina
+        other: pagine
+  decidim:
+    admin_log:
+      home:
+        update: "%{user_name} ha aggiornato la pagina %{resource_name} in %{space_name}"
+    components:
+      homes:
+        name: Pagina
+        settings:
+          global:
+            announcement: Avviso
+          step:
+            announcement: Avviso
+    homes:
+      admin:
+        models:
+          components:
+            body: Corpo del testo
+        homes:
+          edit:
+            save: Aggiorna
+            title: Modifica la pagina
+          update:
+            invalid: C'è stato un errore durante il salvataggio della pagina.
+            success: La pagina è stata salvata correttamente.
+      home:
+        sub_hero:
+          register_title: Registrati e crea un account
