@@ -16,11 +16,11 @@ module Decidim
           homes.each do |home|
             Decidim::Homes::Home.create!(
               component: @context[:new_component],
-              banner: home.banner,                 # Add this line for the banner attribute
-              statistics: home.statistics,         # Add this line for the statistics attribute
-              news: home.news,                     # Add this line for the news attribute
-              news_id: home.news_id,               # Add this line for the news_id attribute
-              organizers: home.organizers          # Add this line for the organizers attribute
+              banner: home.banner,                 
+              statistics: home.statistics,         
+              news: home.news,                     
+              news_id: home.news_id,               
+              organizers: home.organizers          
             )
           end
         end
