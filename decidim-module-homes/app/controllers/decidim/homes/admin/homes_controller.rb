@@ -11,10 +11,7 @@ module Decidim
           @form = form(Admin::HomeForm).from_model(home)
         end
 
-        def update
-          Rails.logger.debug("========================================")
-          Rails.logger.debug(params[:organizers].class)
-
+        def update          
           enforce_permission_to :update, :home
 
           @form = form(Admin::HomeForm).from_params(params)

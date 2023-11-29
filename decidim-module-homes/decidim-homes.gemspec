@@ -21,6 +21,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]
 
   s.add_dependency "decidim-core", Decidim::Homes.version
+  s.add_development_dependency 'activestorage', '~> 6.0'
 
   s.add_development_dependency "decidim-dev", Decidim::Homes.version
   s.add_development_dependency "decidim-participatory_processes", Decidim::Homes.version

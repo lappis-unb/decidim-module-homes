@@ -31,12 +31,11 @@ module Decidim
           Decidim.traceability.update!(
             @home,
             @form.current_user,
-            body: @form.body,
-            banner: @form.banner,             # Add this line for the banner attribute
-            statistics: @form.statistics,     # Add this line for the statistics attribute
-            news: @form.news,                 # Add this line for the news attribute
-            news_id: @form.news_id,           # Add this line for the news_id attribute
-            organizers: @form.organizers      # Add this line for the organizers attribute
+            statistics: @form.statistics,
+            news: @form.news,
+            news_id: @form.news_id,
+            banner: @form.banner,
+            organizers: @form.organizers
           )
         end
       end

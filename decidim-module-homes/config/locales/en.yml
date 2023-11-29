@@ -21,7 +21,6 @@ en:
       admin:
         models:
           components:
-            body: Body
             banner: Banner
             statistics: Statistics
             news: News
@@ -34,6 +33,7 @@ en:
           update:
             invalid: There was a problem saving the home.
             success: Home successfully saved.
+            not_found: Not found
         errors:
           messages:
             invalid_image_format: Image format incorrect

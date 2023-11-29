@@ -4,14 +4,33 @@
   </div>
   <div class="card-section">
     <div class="row column">
-      <%= form.translated :editor, :body, lines: 30, label: t("models.components.body", scope: "decidim.homes.admin") %>
+      <%= image_tag @home.banner.url if @home.banner.present? %>
+      <%= form.file_field :banner, label: t("models.components.banner", scope: "decidim.homes.admin") %>
 
-      <!-- Novos campos adicionados -->
-      <%= form.file_field :banner, accept: 'image/*', label: t("models.components.banner", scope: "decidim.homes.admin") %>
       <%= form.check_box :statistics, label: t("models.components.statistics", scope: "decidim.homes.admin") %>
+
       <%= form.check_box :news, label: t("models.components.news", scope: "decidim.homes.admin") %>
-      <%= form.number_field :news_id, label: t("models.components.news_id", scope: "decidim.homes.admin") %>
-      <%= form.file_field :organizers, multiple: true, accept: 'image/*', label: t("models.components.organizers", scope: "decidim.homes.admin")%>
+
+      <!-- Display the news_id field only when the news checkbox is checked -->
+      <div id="news-id-field" style="<%= 'display: none;' unless @home.news %>">
+        <%= form.number_field :news_id, label: t("models.components.news_id", scope: "decidim.homes.admin") %>
+      </div>
+
+      <% @home.organizers.each do |organizer| %>
+        <%= link_to image_tag(organizer.thumb.url), organizer.url if organizer.present? %>
+        <!-- Render the file field for updating each organizer image -->        
+      <% end %>
+      <%= form.file_field :organizers, multiple: true %>
     </div>
   </div>
 </div>
+
+<script>
+  // Add an event listener to toggle the visibility of the news_id field
+  $(document).on("change", "#home_news", function() {
+    var newsIdField = $("#news-id-field");
+
+    // Use jQuery to toggle the visibility of the news_id field
+    newsIdField.toggle($(this).is(":checked"));
+  });
+</script>

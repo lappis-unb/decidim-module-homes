@@ -15,19 +15,19 @@ module Decidim
 
       component_manifest_name "homes"
 
-      # Adicione os novos campos ao modelo
-      # Campos adicionados: banner, statistics, news, news_id, organizers
-      attribute :banner, :string
       attribute :statistics, :boolean, default: false
       attribute :news, :boolean, default: false
       attribute :news_id, :integer
-      has_many_attached :organizers
+
+      mount_uploader :banner, ImageUploader
+      mount_uploaders :organizers, ImageUploader
+
+      belongs_to :blogs, class_name: "Decidim::Blogs", foreign_key: "news_id", optional: true
 
       def self.log_presenter_class_for(_log)
         Decidim::Homes::AdminLog::HomePresenter
       end
 
-      # Public: Homes doesn't have title so we assign the component one to it.
       def title
         component.name
       end
