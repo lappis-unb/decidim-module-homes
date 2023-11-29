@@ -14,7 +14,6 @@ module Decidim
         home = Home.find_by(component: resource)
 
         {
-          body: home&.body || empty_translatable,
           banner: home&.banner,
           statistics: home&.statistics || false,
           news: home&.news || false,

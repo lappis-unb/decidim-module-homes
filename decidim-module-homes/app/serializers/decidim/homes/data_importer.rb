@@ -19,7 +19,6 @@ module Decidim
 
         Home.create!(
           component: @component,
-          body: serialized["body"],
           banner: serialized["banner"],
           statistics: serialized["statistics"] || false,
           news: serialized["news"] || false,
