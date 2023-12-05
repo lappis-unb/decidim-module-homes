@@ -8,18 +8,27 @@ module Decidim
     # Note that it inherits from `Decidim::Components::Basecontroller`, which
     # override its layout and provide all kinds of useful methods.
     class ApplicationController < Decidim::Components::BaseController
-      helper_method :posts, :post
-      
-      def show
+      before_action :set_home, only: [:show]
+      before_action :set_news, only: [:show]
+
+      def show; end
+
+      private
+
+      def set_home
         @home = Home.find_by(component: current_component)
       end
 
-      def post
-        @post ||= posts.find(params[:news_id])
-      end
+      def set_news
+        return unless @home.news
 
-      def posts
-        @posts ||= Post.where(component: news_id)
+        @home.news_posts ||= []
+        Decidim::Blogs::Post.where(component: @home.news_id)
+                            .order(created_at: :desc)
+                            .limit(3)
+                            .each do |post|
+          @home.news_posts << post
+        end
       end
     end
   end
