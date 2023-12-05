@@ -5,29 +5,71 @@
   <div class="card-section">
     <div class="row column">
       <%= image_tag @home.banner.url if @home.banner.present? %>
-      <%= form.file_field :banner, label: t("models.components.banner", scope: "decidim.homes.admin") %>
+      <%= form.file_field :banner, label: t("models.components.banner", scope: "decidim.homes.admin"), class: "file-input" %>
+
+      <%= form.text_field :digital_stage, label: t("models.components.digital_stage", scope: "decidim.homes.admin") %>
+
+      <%= form.text_field :organize_stage, label: t("models.components.organize_stage", scope: "decidim.homes.admin") %>
+
+      <%= form.text_field :schedule, label: t("models.components.schedule", scope: "decidim.homes.admin") %>
+
+      <%= form.text_field :common_questions, label: t("models.components.common_questions", scope: "decidim.homes.admin") %>
+
+      <%= form.text_field :support_material, label: t("models.components.support_material", scope: "decidim.homes.admin") %>
 
       <%= form.check_box :statistics, label: t("models.components.statistics", scope: "decidim.homes.admin") %>
 
       <%= form.check_box :news, label: t("models.components.news", scope: "decidim.homes.admin") %>
-
       <!-- Display the news_id field only when the news checkbox is checked -->
       <div id="news-id-field" style="<%= 'display: none;' unless @home.news %>">
         <%= form.number_field :news_id, label: t("models.components.news_id", scope: "decidim.homes.admin") %>
       </div>
 
       <% @home.organizers.each do |organizer| %>
-        <%= link_to image_tag(organizer.thumb.url), organizer.url if organizer.present? %>
-        <!-- Render the file field for updating each organizer image -->        
+        <div class="organizer-image">
+          <%= link_to image_tag(organizer.thumb.url), organizer.url if organizer.present? %>
+        </div>
       <% end %>
-      <%= form.file_field :organizers, multiple: true %>
+      <%= form.file_field :organizers, multiple: true, class: "file-input" %>
+
+      <% @home.supporters.each do |supporter| %>
+        <div class="supporter-image">
+          <%= link_to image_tag(supporter.thumb.url), supporter.url if supporter.present? %>
+        </div>
+      <% end %>
+      <%= form.file_field :supporters, multiple: true, class: "file-input" %>
+
     </div>
   </div>
 </div>
 
 <script>
+  // Function to handle file input change
+  function handleFileInputChange(input, imageContainer) {
+    var files = input.files;
+    if (files && files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $(imageContainer).html('<img src="' + e.target.result + '" alt="Uploaded Image">');
+      };
+      reader.readAsDataURL(files[0]);
+    }
+  }
+
+  // Add event listener for file input change
+  $(".file-input").on("change", function () {
+    var imageContainer;
+    // Determine the appropriate image container based on the class of the input
+    if ($(this).hasClass("file-input")) {
+      imageContainer = $(this).prev('.organizer-image');
+    } else {
+      imageContainer = $(this).prev('.supporter-image');
+    }
+    handleFileInputChange(this, imageContainer);
+  });
+
   // Add an event listener to toggle the visibility of the news_id field
-  $(document).on("change", "#home_news", function() {
+  $(document).on("change", "#home_news", function () {
     var newsIdField = $("#news-id-field");
 
     // Use jQuery to toggle the visibility of the news_id field
