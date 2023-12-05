@@ -31,11 +31,17 @@ module Decidim
           Decidim.traceability.update!(
             @home,
             @form.current_user,
+            banner: @form.banner,
+            digital_stage: @form.digital_stage,
+            organize_stage: @form.organize_stage,
+            schedule: @form.schedule,
+            common_questions: @form.common_questions,
+            support_material: @form.support_material,
             statistics: @form.statistics,
             news: @form.news,
             news_id: @form.news_id,
-            banner: @form.banner,
-            organizers: @form.organizers
+            organizers: @form.organizers,
+            supporters: @form.supporters
           )
         end
       end

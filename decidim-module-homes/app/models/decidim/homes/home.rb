@@ -16,13 +16,18 @@ module Decidim
       component_manifest_name "homes"
 
       attribute :statistics, :boolean, default: false
+      attribute :digital_stage, :string, default: '/'
+      attribute :organize_stage, :string, default: '/'
+      attribute :schedule, :string, default: '/'
+      attribute :common_questions, :string, default: '/'
+      attribute :support_material, :string, default: '/'
       attribute :news, :boolean, default: false
       attribute :news_id, :integer
+      attribute :news_posts, :jsonb, default: []
 
       mount_uploader :banner, ImageUploader
       mount_uploaders :organizers, ImageUploader
-
-      belongs_to :blogs, class_name: "Decidim::Blogs", foreign_key: "news_id", optional: true
+      mount_uploaders :supporters, ImageUploader
 
       def self.log_presenter_class_for(_log)
         Decidim::Homes::AdminLog::HomePresenter

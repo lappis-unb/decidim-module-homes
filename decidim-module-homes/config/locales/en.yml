@@ -22,6 +22,11 @@ en:
         models:
           components:
             banner: Banner
+            digital_stage: href digital stage
+            organize_stage: href organize a stage
+            schedule: href schedule
+            common_questions: href common questions
+            support_material: href support material
             statistics: Statistics
             news: News
             news_id: News id

@@ -8,10 +8,16 @@ module Decidim
         include TranslatableAttributes
 
         attribute :statistics, Boolean, default: false
+        attribute :digital_stage, String, default: '/'
+        attribute :organize_stage, String, default: '/'
+        attribute :schedule, String, default: '/'
+        attribute :common_questions, String, default: '/'
+        attribute :support_material, String, default: '/'
         attribute :news, Boolean, default: false
         attribute :news_id, Integer
         attribute :banner, Homes::ImageUploader
         attribute :organizers, Homes::ImageUploader
+        attribute :supporters, Homes::ImageUploader
       end
     end
   end
