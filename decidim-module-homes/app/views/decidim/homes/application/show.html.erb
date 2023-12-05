@@ -1,56 +1,5 @@
 <%= render partial: "decidim/shared/component_announcement" %>
 
-<div class="row column">
-  <div class="row">
-    <div class="columns medium-7 mediumlarge-8">
-
-      <div class="section">
-        <h1>BANNER</h1>
-        <%= image_tag @home.banner.url if @home.banner.present? %>
-      </div>
-
-      <div class="section">
-        <h1>ORGANIZERS</h1>
-        <% @home.organizers.each do |organizer| %>
-          <%= link_to image_tag(organizer.thumb.url), organizer.url if organizer.present? %>
-        <% end %>
-      </div>
-
-      <div class="section">
-        <h1>SUPPORTERS</h1>
-        <% @home.supporters.each do |support| %>
-          <%= link_to image_tag(support.thumb.url), support.url if support.present? %>
-        <% end %>
-      </div>
-
-      <div class="section">
-        <h1>LATEST POSTS (with post)</h1>
-        <% if @home.news_posts %>
-          <% latest_posts = @home.news_posts %>
-          <% if latest_posts.any? %>
-            <% latest_posts.each do |post| %>
-              <div class="card card--post">
-                <% if post.photo.present? %>
-                  <%= image_tag post.photo.url, class: "card__image" %>
-                <% end %>
-                <div class="card__content">
-                  <div class="card__header">
-                    <h2 class="card__title">
-                      <% current_url = URI(request.original_url) %>
-                      <% modified_url = current_url.to_s.sub(/\/f\/\d+\//, '/') %>
-                      <%= link_to translated_attribute(post.title), "#{modified_url}f/#{@home.news_id}/posts/#{post.id}"  %>
-                    </h2>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
 <section class="carousel-container">
     <%= image_tag @home.banner.url, class: "carousel-container" if @home.banner.present? %>
 </section>
