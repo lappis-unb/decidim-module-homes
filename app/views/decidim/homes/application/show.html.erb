@@ -12,30 +12,38 @@
 </section>
 
 <section class="actions-section br-container">
-  <a class="action-container" href=<% @home.organize_stage %>>
-    <div class="action-icon-background">
-      <i class="fa-solid fa-bullhorn fa-2xl"></i>
-    </div>
-    <p class="action-text">Organize uma etapa</p>
-  </a>
-  <a class="action-container" href=<% @home.schedule %>>
-    <div class="action-icon-background">
-      <i class="fa-solid fa-file-alt fa-2xl"></i>
-    </div>
-    <p class="action-text">Agenda</p>
-  </a>
-  <a class="action-container" href=<% @home.common_questions %>>
-    <div class="action-icon-background">
-      <i class="fa-solid fa-question fa-2xl"></i>
-    </div>
-    <p class="action-text">Perguntas frequentes</p>
-  </a>
-  <a class="action-container" href=<% @home.support_material %>>
-    <div class="action-icon-background">
-      <i class="fa-solid fa-check-circle fa-2xl"></i>
-    </div>
-    <p class="action-text">Material de apoio</p>
-  </a>
+  <% if @home.organize_stage != '/' %>
+    <a class="action-container" href=<% @home.organize_stage %>>
+      <div class="action-icon-background">
+        <i class="fa-solid fa-bullhorn fa-2xl"></i>
+      </div>
+      <p class="action-text">Organize uma etapa</p>
+    </a>
+  <% end %>
+  <% if @home.schedule != '/' %>
+    <a class="action-container" href=<% @home.schedule %>>
+      <div class="action-icon-background">
+        <i class="fa-solid fa-file-alt fa-2xl"></i>
+      </div>
+      <p class="action-text">Agenda</p>
+    </a>
+  <% end %>
+  <% if @home.common_questions!= '/' %>
+    <a class="action-container" href=<% @home.common_questions %>>
+      <div class="action-icon-background">
+        <i class="fa-solid fa-question fa-2xl"></i>
+      </div>
+      <p class="action-text">Perguntas frequentes</p>
+    </a>
+  <% end %>
+  <% if @home.support_material!= '/' %>
+    <a class="action-container" href=<% @home.support_material %>>
+      <div class="action-icon-background">
+        <i class="fa-solid fa-check-circle fa-2xl"></i>
+      </div>
+      <p class="action-text">Material de apoio</p>
+    </a>
+  <% end %>
 </section>
 
 <section id="news-home-section" class="home-sections-container br-container-lg">
