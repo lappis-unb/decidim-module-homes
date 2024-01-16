@@ -13,9 +13,9 @@ module Decidim
         attribute :support_material, String, default: '/'
         attribute :news, Boolean, default: false
         attribute :news_id, Integer
-        attribute :banner, Homes::ImageUploader
-        attribute :organizers, Homes::ImageUploader
-        attribute :supporters, Homes::ImageUploader
+        attribute :banner, ImageUploader, default: ''
+        attribute :organizers, ImageUploader, default: ''
+        attribute :supporters, ImageUploader, default: ''
       end
     end
   end

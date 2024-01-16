@@ -22,9 +22,9 @@ module Decidim
       attribute :news_id, :integer
       attribute :news_posts, :jsonb, default: []
 
-      mount_uploader :banner, ImageUploader
-      mount_uploaders :organizers, ImageUploader
-      mount_uploaders :supporters, ImageUploader
+      mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
+      mount_uploaders :organizers, Decidim::Homes::ImageUploader, default: ''
+      mount_uploaders :supporters, Decidim::Homes::ImageUploader, default: ''
 
       def self.log_presenter_class_for(_log)
         Decidim::Homes::AdminLog::HomePresenter
