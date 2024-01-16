@@ -1,12 +1,39 @@
 <div class="card">
   <div class="card-divider">
-    <h2 class="card-title"><%= title %></h2>
+    <h2 class="card-title">
+      Imagens
+    </h2>
   </div>
   <div class="card-section">
     <div class="row column">
-      <%= image_tag @home.banner.url if @home.banner.present? %>
-      <%= form.file_field :banner, label: t("models.components.banner", scope: "decidim.homes.admin"), class: "file-input" %>
+      <div class="banner-container">
+        <!-- Aqui será exibido o banner -->
+        <h3>Banner</h3>
+        <div class="preview-image">
 
+        </div>
+        <input type="file" id="home-banner" name="banner" accept="image/*" />
+      </div>
+
+      <div class="organizers-container">
+        <!-- Aqui serão exibidas as imagens dos organizadores -->
+        <h3>Organizadores</h3>
+      </div>
+
+      <div class="supporters-container">
+        <!-- Aqui serão exibidas as imagens dos apoiadores -->
+        <h3>Apoiadores</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Configurações Avançadas
+    </h2>
+  </div>
+  <div class="card-section settings-section">
+    <div class="row column">
       <%= form.text_field :digital_stage, label: t("models.components.digital_stage", scope: "decidim.homes.admin") %>
 
       <%= form.text_field :organize_stage, label: t("models.components.organize_stage", scope: "decidim.homes.admin") %>
@@ -24,55 +51,130 @@
       <div id="news-id-field" style="<%= 'display: none;' unless @home.news %>">
         <%= form.number_field :news_id, label: t("models.components.news_id", scope: "decidim.homes.admin") %>
       </div>
-
-      <% @home.organizers.each do |organizer| %>
-        <div class="organizer-image">
-          <%= link_to image_tag(organizer.thumb.url), organizer.url if organizer.present? %>
-        </div>
-      <% end %>
-      <%= form.file_field :organizers, multiple: true, class: "file-input" %>
-
-      <% @home.supporters.each do |supporter| %>
-        <div class="supporter-image">
-          <%= link_to image_tag(supporter.thumb.url), supporter.url if supporter.present? %>
-        </div>
-      <% end %>
-      <%= form.file_field :supporters, multiple: true, class: "file-input" %>
-
     </div>
   </div>
 </div>
 
+<div style="display: none">
+  <%= form.file_field :banner, style: 'display: none;', id: 'banner-image-input' %>
+  <%= form.file_field :organizers, multiple: true, style: 'display: none;', id: 'organizers-image-input' %>
+  <%= form.file_field :supporters, multiple: true, style: 'display: none;', id: 'supporters-image-input' %>
+</div>
+
 <script>
-  // Function to handle file input change
-  function handleFileInputChange(input, imageContainer) {
-    var files = input.files;
-    if (files && files[0]) {
+  $(document).ready(function() {
+    $(".settings-section").hide();
+
+    $(".toggle-settings").on("click", function() {
+      $(".settings-section").slideToggle();
+    });
+
+    // Add an event listener to toggle the visibility of the news_id field
+    $(document).on("change", "#home_news", function () {
+      var newsIdField = $("#news-id-field");
+
+      // Use jQuery to toggle the visibility of the news_id field
+      newsIdField.toggle($(this).is(":checked"));
+    });
+
+    $("#home_banner").on("change", function(e) {
+      showImagePreview(e.target.files[0], $(".banner-container"));
+    });
+
+    $("#home_organizers").on("change", function(e) {
+      showImagePreviews(e.target.files, $(".organizers-container"));
+    });
+
+    $("#home_supporters").on("change", function(e) {
+      showImagePreviews(e.target.files, $(".supporters-container"));
+    });
+
+    function showImagePreview(file, container) {
       var reader = new FileReader();
-      reader.onload = function (e) {
-        $(imageContainer).html('<img src="' + e.target.result + '" alt="Uploaded Image">');
+      reader.onload = function(e) {
+        console.log(e.target);
+        container.html('<img class="banner-image" src="' + e.target.result + '" alt="Imagem"/>');
       };
-      reader.readAsDataURL(files[0]);
+      reader.readAsDataURL(file);
     }
-  }
 
-  // Add event listener for file input change
-  $(".file-input").on("change", function () {
-    var imageContainer;
-    // Determine the appropriate image container based on the class of the input
-    if ($(this).hasClass("file-input")) {
-      imageContainer = $(this).prev('.organizer-image');
-    } else {
-      imageContainer = $(this).prev('.supporter-image');
+    function showImagePreviews(files, container) {
+      container.html("");
+      for (var i = 0; i < files.length; i++) {
+        showImagePreview(files[i], container);
+      }
     }
-    handleFileInputChange(this, imageContainer);
-  });
 
-  // Add an event listener to toggle the visibility of the news_id field
-  $(document).on("change", "#home_news", function () {
-    var newsIdField = $("#news-id-field");
+    // Adicione um evento de mudança para o campo de arquivo dos organizadores
+    $("#home_organizers").on("change", function(e) {
+      showAndStoreImages(e.target.files, $(".organizers-container"));
+    });
 
-    // Use jQuery to toggle the visibility of the news_id field
-    newsIdField.toggle($(this).is(":checked"));
+    // Adicione um evento de mudança para o campo de arquivo dos apoiadores
+    $("#home_supporters").on("change", function(e) {
+      showAndStoreImages(e.target.files, $(".supporters-container"));
+    });
+
+    // Função para exibir e armazenar imagens no campo de entrada de arquivo oculto
+    function showAndStoreImages(files, container) {
+      container.html(""); // Limpa o contêiner antes de adicionar novas imagens
+
+      var uploadedImagesInput = $("#uploaded-images-input");
+      var existingImages = uploadedImagesInput.data("existing-images") || [];
+
+      for (var i = 0; i < files.length; i++) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          container.append('<div class="image-preview"><img src="' + e.target.result + '" alt="Imagem"/><button class="remove-image">Remover</button></div>');
+        };
+        reader.readAsDataURL(files[i]);
+
+        existingImages.push(null); // Adiciona uma entrada nula para imagens recém-adicionadas
+      }
+
+      // Atualiza os dados do campo de entrada de arquivo oculto
+      uploadedImagesInput.val("");
+      uploadedImagesInput.data("existing-images", existingImages);
+    }
+
+    // Adiciona um evento de clique para remover imagens
+    $(document).on("click", ".remove-image", function() {
+      var index = $(this).parent().index();
+      var uploadedImagesInput = $("#uploaded-images-input");
+      var existingImages = uploadedImagesInput.data("existing-images");
+
+      if (index < existingImages.length) {
+        existingImages.splice(index, 1); // Remove a entrada correspondente
+        uploadedImagesInput.data("existing-images", existingImages);
+      }
+
+      $(this).parent().remove();
+    });
+
+    // Adiciona um evento de envio do formulário para atualizar o campo de entrada de arquivo
+    $("form").on("submit", function() {
+      updateUploadedImagesInput();
+    });
+
+    // Função para atualizar o campo de entrada de arquivo com as imagens existentes
+    function updateUploadedImagesInput() {
+      var uploadedImagesInput = $("#uploaded-images-input");
+      var existingImages = uploadedImagesInput.data("existing-images") || [];
+
+      // Atualiza o valor do campo de entrada de arquivo com as imagens existentes
+      uploadedImagesInput.val(existingImages.filter(Boolean).join(","));
+    }
   });
 </script>
+
+<style>
+  .banner-container,
+  .supporters-container,
+  .organizers-container{
+    margin: 5px;
+  }
+
+  .form h3{
+    margin: 1rem;
+  }
+</style>
