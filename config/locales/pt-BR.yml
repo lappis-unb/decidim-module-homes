@@ -3,15 +3,15 @@ pt-BR:
   activerecord:
     models:
       decidim/homes/home:
-        one: Página
-        other: Páginas
+        one: Página Inicial
+        other: Páginas Iniciais
   decidim:
     admin_log:
       home:
         update: "%{user_name} atualizou a página %{resource_name} em %{space_name}"
     components:
       homes:
-        name: Página
+        name: Página Inicial
         settings:
           global:
             announcement: Anúncio
@@ -25,10 +25,10 @@ pt-BR:
         homes:
           edit:
             save: Atualizar
-            title: Editar página
+            title: Editar página inicial
           update:
-            invalid: Ocorreu erros ao salvar a página.
-            success: Página salva com sucesso.
+            invalid: Ocorram erros ao salvar a página inicial.
+            success: Página inicial salva com sucesso.
       home:
         sub_hero:
           register_title: Cadastre-se para criar uma conta
