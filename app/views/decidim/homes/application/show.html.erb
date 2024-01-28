@@ -79,7 +79,7 @@
   <div class="organization-container">
     <% organizers.each do |organizer| %>
       <a class="logo-items" href="<%= organizer.link %>" target="_blank">
-        <%= image_tag(main_app.url_for(organizer.logo), alt: organizer.name) if organizer.logo.attached? %>
+        <%= image_tag(organizer.attached_uploader(:logo).path, alt: organizer.name) if organizer.logo.attached? %>
       </a>
     <% end %>
   </div>
@@ -90,7 +90,7 @@
   <div class="supporters-container">
     <% supporters.each do |support| %>
       <a class="logo-items" href="<%= support.link %>" target="_blank">
-        <%= image_tag(main_app.url_for(support.logo), alt: support.name) if support.logo.attached? %>
+        <%= image_tag(support.attached_uploader(:logo).path, alt: support.name) if support.logo.attached? %>
       </a>
     <% end %>
   </div>
