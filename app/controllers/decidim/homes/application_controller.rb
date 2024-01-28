@@ -11,6 +11,9 @@ module Decidim
       before_action :set_home, only: [:show]
       before_action :set_news, only: [:show]
 
+      helper_method :organizers
+      helper_method :supporters
+
       def show; end
 
       private
@@ -29,6 +32,18 @@ module Decidim
                             .each do |post|
           @home.news_posts << post
         end
+      end
+
+      def participatory_space
+        current_participatory_space
+      end
+
+      def supporters
+        participatory_space.try(:supporters) || []
+      end
+
+      def organizers
+        participatory_space.try(:organizers) || []
       end
     end
   end

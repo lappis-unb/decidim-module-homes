@@ -77,9 +77,9 @@
 <section class="br-container-lg">
   <h1>Organizadores</h1>
   <div class="organization-container">
-    <% @home.organizers.each do |organizer| %>
-      <a class="logo-items" href="#">
-        <%= image_tag organizer.url if organizer.present? %>
+    <% organizers.each do |organizer| %>
+      <a class="logo-items" href="<%= organizer.link %>" target="_blank">
+        <%= image_tag(main_app.url_for(organizer.logo)) if organizer.present? %>
       </a>
     <% end %>
   </div>
@@ -88,9 +88,9 @@
 <section class="br-container-lg">
   <h1>Apoiadores</h1>
   <div class="supporters-container">
-    <% @home.supporters.each do |support| %>
-      <a class="logo-items" href="#">
-        <%= image_tag support.url if support.present? %>
+    <% supporters.each do |support| %>
+      <a class="logo-items" href="<%= support.link %>" target="_blank">
+        <%= image_tag(main_app.url_for(support.logo)) if support.present? %>
       </a>
     <% end %>
   </div>
