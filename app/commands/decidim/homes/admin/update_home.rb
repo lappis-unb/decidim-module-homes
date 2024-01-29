@@ -39,10 +39,16 @@ module Decidim
             support_material: @form.support_material,
             statistics: @form.statistics,
             news: @form.news,
-            news_id: @form.news_id,
+            news_id: @form.news_id || decidim_blogs_placeholder,
             organizers: @form.organizers,
             supporters: @form.supporters
           )
+        end
+
+        # Returns a sample decidim blog that belongs to the current participatory space
+        #
+        def decidim_blogs_placeholder
+          Decidim::Component.where(participatory_space: @form.current_participatory_space, manifest_name: "blogs").first&.id
         end
       end
     end

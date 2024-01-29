@@ -11,7 +11,7 @@ module Decidim
           @form = form(Admin::HomeForm).from_model(home)
         end
 
-        def update          
+        def update
           enforce_permission_to :update, :home
 
           @form = form(Admin::HomeForm).from_params(params)

@@ -33,6 +33,10 @@ module Decidim
       def title
         component.name
       end
+
+      def news_section_enabled?
+        news
+      end
     end
   end
 end
