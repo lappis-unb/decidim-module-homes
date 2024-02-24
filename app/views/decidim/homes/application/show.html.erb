@@ -52,6 +52,7 @@
     <div class="news-container">
       <% current_url = URI(request.original_url) %>
       <% modified_url = current_url.to_s.sub(/\/f\/\d+\//, '/') %>
+      <% modified_url << "/" unless modified_url.ends_with?("/") %>
       <% if @home.news_section_enabled? %>
         <% @latest_posts.each do |post| %>
           <a href=<%= "#{modified_url}f/#{@home.news_id}/posts/#{post.id}" %> class="news-card">
