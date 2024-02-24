@@ -14,6 +14,9 @@ module Decidim
 
       def show
         @home = Home.find_by(component: current_component)
+        @supporters = supporters
+        @organizers = organizers
+        @latest_posts = latest_posts
       end
 
       private

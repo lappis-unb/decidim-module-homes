@@ -53,7 +53,7 @@
       <% current_url = URI(request.original_url) %>
       <% modified_url = current_url.to_s.sub(/\/f\/\d+\//, '/') %>
       <% if @home.news_section_enabled? %>
-        <% latest_posts.each do |post| %>
+        <% @latest_posts.each do |post| %>
           <a href=<%= "#{modified_url}f/#{@home.news_id}/posts/#{post.id}" %> class="news-card">
             <% if post.photo.present? %>
               <%= image_tag post.photo.url, class: "news-img", alt: "" %>
@@ -74,7 +74,7 @@
 <section class="br-container-lg">
   <h1>Organizadores</h1>
   <div class="organization-container">
-    <% organizers.each do |organizer| %>
+    <% @organizers.each do |organizer| %>
       <a class="logo-items" href="<%= organizer.link %>" target="_blank">
         <%= image_tag(organizer.attached_uploader(:logo).path, alt: organizer.name) if organizer.logo.attached? %>
       </a>
@@ -85,7 +85,7 @@
 <section class="br-container-lg">
   <h1>Apoiadores</h1>
   <div class="supporters-container">
-    <% supporters.each do |support| %>
+    <% @supporters.each do |support| %>
       <a class="logo-items" href="<%= support.link %>" target="_blank">
         <%= image_tag(support.attached_uploader(:logo).path, alt: support.name) if support.logo.attached? %>
       </a>
