@@ -1,0 +1,122 @@
+<style>
+  .news-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    text-align:center;
+  }
+  .news-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    border-radius: 10px;
+    align-items: flex-start;
+    height: auto;
+    padding: 0.5rem 1rem;
+  }
+  .news-img {
+    width: 160px;
+    height: 120px;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+  .news-card .news-title {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 0.5rem 0;
+    max-height: 120px;
+    max-height: 110px;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--blue-warm-vivid-80);
+  }
+
+  .news-card .news-title:hover {
+    color: var(---blue-warm-vivid-70);
+  }
+
+  .news-tag {
+    background-color: #077835;
+    border-radius: 10px;
+    padding: 4px 16px;
+    font-size: 14px;
+    color: var(--pure-0);
+    text-transform: uppercase;
+    margin-top: auto;
+    width: 150px;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .news-container {
+      display: flex;
+      gap: 40px;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
+    }
+    .news-card {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      border-radius: 10px;
+      align-items: center;
+      height: 280px;
+    }
+    .news-img {
+      width: 100%;
+      height: 150px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+    .news-card .news-title {
+      font-weight: 600;
+      padding: 0 16px;
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+  #news-custom-home-section {
+    text-align: center;
+    padding: 0;
+  }
+</style>
+
+
+<% current_url = URI(request.original_url) %>
+<% modified_url = current_url.to_s.sub(/\/f\/\d+\//, '/') %>
+<% if @home.news_section_enabled? %>
+  <section id="news-custom-home-section" class="home-sections-container br-container-lg">
+    <h2>Notícias</h2>
+    <div class="home-sections-content">
+      <div class="news-container">
+          <% latest_posts.each do |post| %>
+            <a href=<%= "/#{modified_url}" %> class="news-card">
+              <% if post.photo.present? %>
+                <%= image_tag post.photo.url, class: "news-img", alt: "" %>
+              <% end %>
+              <span class="news-title">
+                <%= translated_attribute(post.title) %>
+              </span>
+            </a>
+          <% end %>
+      </div>
+      <div class="centered-content">
+        <a
+          href="<% "#{modified_url}f/#{@home.news_id}/" %>"
+          class="br-button secondary"
+          type="button"
+        >
+          Mais Notícias
+        </a>
+      </div>
+    </div>
+  </section>
+<% end %>
