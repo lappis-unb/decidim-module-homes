@@ -9,5 +9,9 @@ FactoryBot.define do
     participatory_space { create(:participatory_process, :with_steps) }
   end
 
+  factory :home, class: "Decidim::Homes::Home" do
+    title { generate_localized_title }
+    component { build(:component, manifest_name: "homes") }
+  end
   # Add engine factories here
 end
