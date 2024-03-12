@@ -1,0 +1,25 @@
+.organizers__container a img {
+  width: 160px;
+}
+.organizers__container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media (min-width: 768px) {
+  .organizers__container a img {
+    width: 160px;
+  }
+  .organizers__container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 40px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}

@@ -22,6 +22,16 @@ pt:
         models:
           components:
             body: Corpo
+            banner: Banner
+            digital_stage: Link do componente da Etapa Digital
+            organize_stage: Link para cadastrar uma nova Conferência
+            schedule: Link do componente Conferências
+            common_questions: Link para a página Sobre
+            support_material: href support material
+            statistics: Statistics
+            news: Possui componente Notícias?
+            news_id: ID do componente Notícias
+            organizers: Organizadores
         homes:
           edit:
             save: Atualizar

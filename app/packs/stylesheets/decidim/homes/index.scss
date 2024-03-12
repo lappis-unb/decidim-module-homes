@@ -1,0 +1,121 @@
+/* css for decidim_homes */
+// Import here all other necessary scss files
+
+@import "news";
+@import "organizers";
+@import "basic_logos";
+
+.section-card-title {
+  color: var(--blue-warm-vivid-80);
+  text-align: center;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+}
+.section-card {
+  display: flex;
+  width: 154px;
+  height: 109px;
+  padding: 8px;
+  gap: 4px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  background-color: var(--pure-0);
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.16);
+}
+
+.section-card i {
+  font-size: 46px;
+  color: var(--blue-warm-vivid-80);
+}
+.section-card:hover {
+  background: var(--blue-10);
+}
+@media (min-width: 768px) {
+  .section-card {
+    display: flex;
+    width: 190px;
+    height: 170px;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .section-card i {
+    font-size: 64px;
+  }
+
+  .section-card-title {
+    font-size: 1.125rem;
+  }
+}
+
+.home-sections-container {
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-sections-container {
+  background-color: var(--pure-0);
+}
+
+.home-sections-container .home-sections-content {
+  margin: 0 auto;
+  width: auto;
+}
+
+#service-channels-home-section {
+  background-color: var(--blue-warm-vivid-80);
+}
+
+.participatory-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .participatory-items {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+
+  .home-sections-container {
+    padding: 3.5rem 0;
+    gap: 2.5rem;
+  }
+
+  .home-sections-container h2 {
+    font-size: 2rem !important;
+    margin: 0;
+  }
+
+  .home-sections-container .home-sections-content {
+    margin: 0 auto;
+  }
+  .participatory-items {
+    flex-direction: row;
+    max-width: 900px !important;
+  }
+}
+
+#participatory-process-section {
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.home-sections-container:first-child {
+  padding-top: 0;
+}

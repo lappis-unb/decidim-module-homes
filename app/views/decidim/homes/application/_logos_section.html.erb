@@ -1,0 +1,41 @@
+<section class="home-sections-container">
+  <h2>Organizadores</h2>
+  <div class="home-sections-content">
+    <div class="organizers__container">
+      <% if supporters.size > 0 %>
+        <% organizers.each do |organizer| %>
+          <a class="logo-items" href="<%= organizer.link %>" target="_blank">
+            <%= image_tag(organizer.attached_uploader(:logo).path, alt: organizer.name) if organizer.logo.attached? %>
+          </a>
+        <% end %>
+      <% else %>
+        <div class="br-message danger">
+          <div class="icon">
+            <i class="fas fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+          </div>
+          <div class="content"
+            aria-label="Não há notícias" role="alert">
+            <span class="message-body">
+              Não há organizadores registrados
+            </span>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<% if supporters.size > 0 %>
+  <section class="home-sections-container">
+    <h2>Apoiadores</h2>
+    <div class="home-sections-content">
+      <div class="organizers__container">
+        <% supporters.each do |support| %>
+          <a class="logo-items" href="<%= support.link %>" target="_blank">
+            <%= image_tag(support.attached_uploader(:logo).path, alt: support.name) if support.logo.attached? %>
+          </a>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>
