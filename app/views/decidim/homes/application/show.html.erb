@@ -4,7 +4,7 @@
   <section id="participatory-process-section" class="home-sections-container">
     <div class="home-sections-content participatory-items">
       <% if @home.digital_stage != '/' %>
-        <a class="section-card" href=<% @home.digital_stage %>>
+        <a class="section-card" href="<%= @home.digital_stage %>">
           <svg xmlns="http://www.w3.org/2000/svg" width="63" height="48" viewBox="0 0 63 48" fill="none">
             <mask id="mask0_5034_5831" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="41" y="22" width="22" height="26">
               <path d="M41.002 22.8787H62.7213V47.3887H41.002V22.8787Z" fill="white"/>
@@ -29,7 +29,7 @@
         </a>
       <% end %>
       <% if @home.schedule != '/' %>
-        <a class="section-card" href=<% @home.schedule %>>
+        <a class="section-card" href="<%= @home.schedule %>">
           <svg xmlns="http://www.w3.org/2000/svg" width="63" height="48" viewBox="0 0 63 48" fill="none">
             <mask id="mask0_5034_5831" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="41" y="22" width="22" height="26">
               <path d="M41.002 22.8787H62.7213V47.3887H41.002V22.8787Z" fill="white"/>
@@ -54,7 +54,7 @@
         </a>
       <% end %>
       <% if @home.organize_stage != '/' %>
-        <a class="section-card" href=<% @home.organize_stage %>>
+        <a class="section-card" href="<%= @home.organize_stage %>">
           <svg xmlns="http://www.w3.org/2000/svg" width="63" height="48" viewBox="0 0 63 48" fill="none">
             <mask id="mask0_5034_5831" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="41" y="22" width="22" height="26">
               <path d="M41.002 22.8787H62.7213V47.3887H41.002V22.8787Z" fill="white"/>
@@ -79,7 +79,7 @@
         </a>
       <% end %>
       <% if @home.common_questions != '/' %>
-        <a class="section-card" href=<% @home.common_questions %>>
+        <a class="section-card" href="<%= @home.common_questions %>">
           <svg xmlns="http://www.w3.org/2000/svg" width="63" height="48" viewBox="0 0 63 48" fill="none">
             <mask id="mask0_5034_5831" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="41" y="22" width="22" height="26">
               <path d="M41.002 22.8787H62.7213V47.3887H41.002V22.8787Z" fill="white"/>
