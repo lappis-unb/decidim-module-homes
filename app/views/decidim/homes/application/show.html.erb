@@ -109,7 +109,7 @@
   <% current_url = URI(request.original_url) %>
   <% modified_url = current_url.to_s.sub(/\/f\/\d+\//, '/') %>
 
-  <% if true %>
+  <% if @home.meetings_map %>
 
     <div class="meeting-map-header">
   <span id="meetings-map-title" class="meeting-map-title"><%= t("decidim.participatory_processes.participatory_processes.region_meetings.meeting_map_title")%></span>
