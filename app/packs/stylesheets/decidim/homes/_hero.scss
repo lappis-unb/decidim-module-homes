@@ -1,0 +1,30 @@
+.home-hero-br {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  @media (min-width: 768px) {
+    gap: 1.25rem;
+  }
+}
+
+.home-hero-br .hero-title-br {
+  color: var(--blue-warm-vivid-80);
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  font-size: 1.75rem !important;
+  margin: 0;
+  @media (min-width: 768px) {
+    font-size: 2.625rem;
+  }
+}
+
+.home-hero-br .hero-text-br {
+  color: var(--gray-60);
+  text-align: center;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-scale-up-01);
+  margin: 0;
+  @media (min-width: 768px) {
+    font-size: var(--font-size-scale-up-02) !important;
+  }
+}
