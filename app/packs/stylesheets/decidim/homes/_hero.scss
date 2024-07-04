@@ -3,7 +3,7 @@
   flex-direction: column;
   gap: 1rem;
   @media (min-width: 768px) {
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
 }
 
@@ -14,7 +14,7 @@
   font-size: 1.75rem !important;
   margin: 0;
   @media (min-width: 768px) {
-    font-size: 2.625rem;
+    font-size: 2.625rem !important;
   }
 }
 
@@ -22,7 +22,7 @@
   color: var(--gray-60);
   text-align: center;
   font-weight: var(--font-weight-regular);
-  font-size: var(--font-size-scale-up-01);
+  font-size: var(--font-size-scale-up-01) !important;
   margin: 0;
   @media (min-width: 768px) {
     font-size: var(--font-size-scale-up-02) !important;
