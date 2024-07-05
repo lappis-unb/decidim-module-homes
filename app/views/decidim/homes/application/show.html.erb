@@ -140,23 +140,7 @@
     </section>
   <% end %>
 
-
-  <section class="home-sections-container">
-    <h2>Organizadores</h2>
-    <div class="home-sections-content">
-      <div class="organizers__container">
-        <% if @organizers.size > 0 %>
-          <% @organizers.each do |organizer| %>
-            <a class="logo-items" href="<%= organizer.link %>" target="_blank">
-              <%= image_tag(organizer.attached_uploader(:logo).path, alt: organizer.name) if organizer.logo.attached? %>
-            </a>
-          <% end %>
-        <% else %>
-          <p>Não há organizadores registrados</p>
-        <% end %>
-      </div>
-    </div>
-  </section>
+  <%= render partial: 'organizers'%>
 
   <% if @supporters.size > 0 %>
     <section class="home-sections-container">
