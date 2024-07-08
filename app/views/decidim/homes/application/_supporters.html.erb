@@ -1,14 +1,16 @@
-<% if @supporters.size > 0 %>
-  <section class="home-sections-container logos-section">
-    <h2>Apoiadores</h2>
-    <div class="home-sections-content">
-      <div class="organizers__container">
+<section class="home-sections-container logos-section">
+  <h2>Apoiadores</h2>
+  <div class="home-sections-content">
+    <div class="organizers__container">
+      <% if @supporters.size > 0 %>
         <% @supporters.each do |support| %>
           <a class="logo-items" href="<%= support.link %>" target="_blank">
             <%= image_tag(support.attached_uploader(:logo).path, alt: support.name) if support.logo.attached? %>
           </a>
         <% end %>
-      </div>
+      <% else %>
+        <p>Não há organizadores registrados</p>
+      <% end %>
     </div>
-  </section>
-<% end %>
+  </div>
+</section>
