@@ -119,3 +119,12 @@
 .home-sections-container:first-child {
   padding-top: 0;
 }
+
+.home-sections-container.logos-section {
+  padding: 2rem 0;
+  gap: 2rem;
+}
+
+.logos-section h2 {
+  padding-bottom: 0.75rem;
+}
