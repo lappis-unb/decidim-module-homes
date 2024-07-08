@@ -1,6 +1,7 @@
 .organizers__container a img {
   width: 160px;
 }
+
 .organizers__container {
   display: flex;
   flex-direction: column;
@@ -10,10 +11,21 @@
   padding-bottom: 2rem;
 }
 
+.logos-section h2 {
+  font-size: 2.25rem;
+  font-weight: var(--font-weight-bold);
+  padding-bottom: 0;
+  margin: 0;
+}  
+
 @media (min-width: 768px) {
   .organizers__container a img {
     width: 160px;
   }
+  .logos-section h2 {
+    padding-bottom: 0.75rem;
+    font-weight: var(--font-weight-semi-bold);
+  }  
   .organizers__container {
     display: flex;
     flex-direction: row;
