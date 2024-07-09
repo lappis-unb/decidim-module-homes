@@ -1,32 +1,73 @@
 <div class="card">
   <div class="card-divider">
     <h2 class="card-title toggle-settings">
-      Configurações Avançadas
+      Header
     </h2>
   </div>
-  <div class="card-section settings-section">
-    <div class="row column">
-      <%= form.text_field :digital_stage, label: t("models.components.digital_stage", scope: "decidim.homes.admin") %>
-
-      <%= form.text_field :organize_stage, label: t("models.components.organize_stage", scope: "decidim.homes.admin") %>
-
-      <%= form.text_field :schedule, label: t("models.components.schedule", scope: "decidim.homes.admin") %>
-
-      <%= form.text_field :common_questions, label: t("models.components.common_questions", scope: "decidim.homes.admin") %>
-
-      <%= form.check_box :news, label: t("models.components.news", scope: "decidim.homes.admin") %>
-      <!-- Display the news_id field only when the news checkbox is checked -->
-      <div id="news-id-field" style="<%= 'display: none;' unless @home.news %>">
-        <%= form.number_field :news_id, label: t("models.components.news_id", scope: "decidim.homes.admin") %>
-      </div>
-    </div>
+  <div class="card-section">
+    <%= form.text_field :header_title, label: "Header Title" %>
+    <%= form.text_field :header_subtitle, label: "Header Subtitle" %>
   </div>
-</div>
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Etapas
+    </h2>
+  </div>
+  <div class="card-section">
+    <%= form.text_field :steps_title, label: "Steps Title" %>
+    <%= form.text_field :steps_subtitle, label: "Steps Subtitle" %>
+  </div>
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Destaque
+    </h2>
+  </div>
+  <div class="card-section">
+    <%= form.text_field :emphasis_title, label: "Emphasis Title" %>
+    <%= form.text_field :emphasis_subtitle, label: "Emphasis Subtitle" %>
+    <%= form.text_field :emphasis_button_text, label: "Emphasis Button Text" %>
+  </div>
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Participação
+    </h2>
+  </div>
+  <div class="card-section">
+    <%= form.text_field :participation_title, label: "Participation Title" %>
+    <%= form.text_field :participation_title, label: "Participation Subtitle" %>
+  </div>
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Mapa
+    </h2>
+  </div>
+  <div class="card-section">
+    <%= form.check_box :map_able, label: "Mapa Able" %>
+  </div>
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Noticia
+    </h2>
+  </div>
+  <div class="card-section">
+    <%= form.check_box :news, label: "News Able" %>
+  </div>
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Organizadores
+    </h2>
+  </div>
+  <div class="card-section">
 
-<div style="display: none">
-  <%= form.file_field :banner, style: 'display: none;', id: 'banner-image-input' %>
-  <%= form.file_field :organizers, multiple: true, style: 'display: none;', id: 'organizers-image-input' %>
-  <%= form.file_field :supporters, multiple: true, style: 'display: none;', id: 'supporters-image-input' %>
+  </div>
+  <div class="card-divider">
+    <h2 class="card-title toggle-settings">
+      Patrocinadores
+    </h2>
+  </div>
+  <div class="card-section">
+
+  </div>
 </div>
 
 <script>
