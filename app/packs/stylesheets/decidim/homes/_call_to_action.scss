@@ -43,8 +43,9 @@
 }
 
 .action_text {
+  text-align: justify;
   color: var(--gray-60);
-  font-size: var(--font-size-scale-up-02);
+  font-size: var(--font-size-scale-up-02) !important;
   font-weight: var(--font-weight-regular);
   margin: 0;
 }
