@@ -1,6 +1,8 @@
 .call_to_action-container {
   display: flex;
+  flex-direction: row;
   gap: 1.5rem;
+  padding: 4rem 0;
 }
 
 .action_img-container {
@@ -45,4 +47,18 @@
   font-size: var(--font-size-scale-up-02);
   font-weight: var(--font-weight-regular);
   margin: 0;
+}
+
+@media (max-width: 768px) {
+  .call_to_action-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1.5rem 0rem;
+  }
+  .action_img-container,
+  .action_content-container,
+  .action_content-container .action_link {
+    width: 100%;
+  }
 }
