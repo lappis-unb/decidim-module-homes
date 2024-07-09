@@ -1,4 +1,4 @@
 <div>
-  <%= render partial: 'organizers' %>
-  <%= render partial: 'supporters' %>
+  <%= render partial: 'organizers', locals: { organizers: true } %>
+  <%= render partial: 'organizers', locals: { organizers: false } %>
 </div>
