@@ -1,0 +1,21 @@
+.steps_main-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.steps_title {
+  color: var(--blue-warm-vivid-80);
+  font-weight: var(--font-weight-bold);
+  font-size: 2rem !important;
+  padding: 0;
+  margin: 0;
+}
+
+.steps_main_text {
+  text-align: justify;
+  color: var(--gray-60);
+  font-size: var(--font-size-scale-up-02) !important;
+  font-weight: var(--font-weight-regular);
+  margin: 0;
+}

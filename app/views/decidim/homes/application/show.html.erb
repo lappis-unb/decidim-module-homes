@@ -106,6 +106,8 @@
     </div>
   </section>
 
+  <%= render partial: 'steps' %>
+
   <% current_url = URI(request.original_url) %>
   <% modified_url = current_url.to_s.sub(/\/f\/\d+\//, '/') %>
 
