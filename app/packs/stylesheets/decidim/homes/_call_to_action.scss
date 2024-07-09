@@ -1,8 +1,10 @@
 .call_to_action-container {
   display: flex;
+  gap: 1.5rem;
 }
 
 .action_img-container {
+  border-radius: 0.5rem;
   width: 50%;
   height: auto;
 }
@@ -18,9 +20,10 @@
 .action_content-container .action_link {
   width: fit-content;
   color: var(--pure-0);
-  text-align: center;
-  font-size: var(--font-size-scale-up-01);
+  background-color: var(--blue-warm-vivid-80) !important;
+  font-size: var(--font-size-scale-up-01) !important;
   font-weight: var(--font-weight-semi-bold);
+  text-align: center;
 }
 
 .action_content-text {
