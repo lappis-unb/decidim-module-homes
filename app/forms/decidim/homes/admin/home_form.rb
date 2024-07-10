@@ -12,6 +12,7 @@ module Decidim
         attribute :emphasis_title, String
         attribute :emphasis_subtitle, String
         attribute :emphasis_button_text, String
+        attribute :emphasis_link, String
         attribute :participation_title, String
         attribute :participation_subtitle, String
         attribute :map_able, Boolean, default: false

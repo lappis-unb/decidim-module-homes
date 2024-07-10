@@ -41,7 +41,18 @@ module Decidim
             news: @form.news,
             news_id: @form.news_id || decidim_blogs_placeholder,
             organizers: @form.organizers,
-            supporters: @form.supporters
+            supporters: @form.supporters,
+            header_title: @form.header_title,
+            header_subtitle: @form.header_subtitle,
+            steps_title: @form.steps_title,
+            steps_subtitle: @form.steps_subtitle,
+            emphasis_title: @form.emphasis_title,
+            emphasis_subtitle: @form.emphasis_subtitle,
+            emphasis_link: @form.emphasis_link,
+            emphasis_button_text: @form.emphasis_button_text,
+            participation_title: @form.participation_title,
+            participation_subtitle: @form.participation_subtitle,
+            map_able: @form.map_able
           )
         end
 

@@ -21,6 +21,18 @@ module Decidim
       attribute :news, :boolean, default: false
       attribute :news_id, :integer
       attribute :news_posts, :jsonb, default: []
+      attribute :header_title, :string
+      attribute :header_subtitle, :string
+      attribute :steps_title, :string
+      attribute :steps_subtitle, :string
+      attribute :emphasis_title, :string
+      attribute :emphasis_subtitle, :string
+      attribute :emphasis_link, :string
+      attribute :emphasis_button_text, :string
+      attribute :emphasis_link, :string
+      attribute :participation_title, :string
+      attribute :participation_subtitle, :string
+      attribute :map_able, :boolean, default: false
 
       mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
       mount_uploaders :organizers, Decidim::Homes::ImageUploader, default: ''

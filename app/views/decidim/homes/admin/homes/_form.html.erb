@@ -24,8 +24,10 @@
   </div>
   <div class="card-section">
     <%= form.text_field :emphasis_title, label: "Emphasis Title" %>
+    <%= form.file_field :banner, id: 'banner-image-input' %>
     <%= form.text_field :emphasis_subtitle, label: "Emphasis Subtitle" %>
     <%= form.text_field :emphasis_button_text, label: "Emphasis Button Text" %>
+    <%= form.text_field :emphasis_link, label: "Emphasis Link" %>
   </div>
   <div class="card-divider">
     <h2 class="card-title toggle-settings">
@@ -58,7 +60,6 @@
     </h2>
   </div>
   <div class="card-section">
-
   </div>
   <div class="card-divider">
     <h2 class="card-title toggle-settings">
@@ -66,10 +67,8 @@
     </h2>
   </div>
   <div class="card-section">
-
   </div>
 </div>
-
 <script>
   $(document).ready(function() {
     $(".settings-section").hide();
@@ -175,7 +174,6 @@
     }
   });
 </script>
-
 <style>
   .banner-container,
   .supporters-container,
