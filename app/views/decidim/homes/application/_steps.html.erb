@@ -1,5 +1,6 @@
 <% steps_text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at congue nunc. Nulla facilisi. Nullam aliquet, lacus et ullamcorper lacinia, mi augue facilisis tortor, quis interdum erat nisi non ipsum. Phasellus lobortis, velit sed porttitor tincidunt, dolor justo euismod ex, et commodo eros sem eu orci. Morbi tempor viverra metus, sed pharetra quam rhoncus eu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque cursus ante eget auctor fringilla. Maecenas aliquet nulla ut varius volutpat.'%>
 <% before_active = true %>
+<% circle_class = '' %>
 
 <div class="home_steps-container">
   <div class="steps_main-container">
@@ -8,8 +9,18 @@
   </div>
   <div class="steps_side-container">
     <% @steps.each_with_index do |step, index| %>
+      <% if step.active %>
+        <% before_active = false %>
+        <% circle_class = 'blue-index'%>
+      <% else %>
+        <% before_active ? circle_class = 'gray-index' : circle_class = 'write-index'%>
+      <% end %>
       <div class="step_info-container">
-        <div class="step_index"><%= index + 1 %></div>
+        <div class="step_index">
+          <div class="step_index-circle <%= circle_class %>">
+            <%= index + 1 %>
+          </div>
+        </div>
         <div><%= translated_attribute step.title %></div>
       </div>
     <% end %>
