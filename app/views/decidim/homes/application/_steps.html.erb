@@ -7,6 +7,7 @@
     <h2 class="steps_title">Etapas da Conferência</h2>
     <p class="steps_main_text"><%= steps_text %></p>
   </div>
+
   <div class="steps_side-container">
     <% @steps.each_with_index do |step, index| %>
       <% if step.active %>
@@ -15,6 +16,7 @@
       <% else %>
         <% before_active ? circle_class = 'gray-index' : circle_class = 'write-index'%>
       <% end %>
+
       <div class="step_info-container">
         <div class="step_index">
           <% unless index == 0 %>
@@ -22,16 +24,22 @@
           <% else %>
             <div class="hollow-index-line"></div>
           <% end %>
+
           <div class="step_index-circle <%= circle_class %>">
             <%= index + 1 %>
           </div>
+
           <% unless index == (@steps.size - 1) %>
             <div class="index-line"></div>
           <% else %>
             <div class="hollow-index-line"></div>
           <% end %>
         </div>
-        <div><%= translated_attribute step.title %></div>
+
+        <div>
+          <h2><%= translated_attribute step.title %></h2>
+          <%== translated_attribute step.description %>
+        </div>
       </div>
     <% end %>
   </div>
