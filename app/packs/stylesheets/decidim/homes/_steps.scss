@@ -1,7 +1,19 @@
+.home_steps-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
 .steps_main-container {
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
+  width: 50%;
+}
+
+.steps_side-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 
 .steps_title {

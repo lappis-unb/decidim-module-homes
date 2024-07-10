@@ -1,10 +1,17 @@
 <% steps_text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at congue nunc. Nulla facilisi. Nullam aliquet, lacus et ullamcorper lacinia, mi augue facilisis tortor, quis interdum erat nisi non ipsum. Phasellus lobortis, velit sed porttitor tincidunt, dolor justo euismod ex, et commodo eros sem eu orci. Morbi tempor viverra metus, sed pharetra quam rhoncus eu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque cursus ante eget auctor fringilla. Maecenas aliquet nulla ut varius volutpat.'%>
+<% before_active = true %>
 
-<div>
+<div class="home_steps-container">
   <div class="steps_main-container">
     <h2 class="steps_title">Etapas da Conferência</h2>
     <p class="steps_main_text"><%= steps_text %></p>
   </div>
-  <div class="steps">
+  <div class="steps_side-container">
+    <% @steps.each_with_index do |step, index| %>
+      <div class="step_info-container">
+        <div class="step_index"><%= index + 1 %></div>
+        <div><%= translated_attribute step.title %></div>
+      </div>
+    <% end %>
   </div>
 </div>
