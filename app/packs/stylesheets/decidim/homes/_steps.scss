@@ -35,7 +35,6 @@
 .step_info-container {
   display: flex;
   align-items: center;
-  width: 50%;
 }
 
 .step_index {
@@ -44,6 +43,8 @@
   align-items: center;
   height: auto;
   text-align: center;
+  min-height: 100px;
+  min-width: 81px;
 }
 
 .step_index-circle {
@@ -73,4 +74,16 @@
   color: var(--gray-80);
   border: 1px solid var(--gray-80);
   background: var(--pure-0);
+}
+
+.index-line {
+  width: 2px;
+  background-color: var(--gray-70);
+  flex-grow: 1;
+}
+
+.hollow-index-line {
+  width: 2px;
+  background-color: var(--pure-0);
+  flex-grow: 1;
 }

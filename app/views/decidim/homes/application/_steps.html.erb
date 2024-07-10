@@ -17,9 +17,19 @@
       <% end %>
       <div class="step_info-container">
         <div class="step_index">
+          <% unless index == 0 %>
+            <div class="index-line"></div>
+          <% else %>
+            <div class="hollow-index-line"></div>
+          <% end %>
           <div class="step_index-circle <%= circle_class %>">
             <%= index + 1 %>
           </div>
+          <% unless index == (@steps.size - 1) %>
+            <div class="index-line"></div>
+          <% else %>
+            <div class="hollow-index-line"></div>
+          <% end %>
         </div>
         <div><%= translated_attribute step.title %></div>
       </div>
