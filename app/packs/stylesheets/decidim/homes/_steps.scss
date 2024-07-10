@@ -1,12 +1,14 @@
 .home_steps-container {
   display: flex;
+  padding: 4rem 0;
+  background-color: var(--gray-1);
   gap: 1.5rem;
 }
 
 .steps_main-container {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 1.5rem;
   width: 50%;
 }
 
@@ -16,10 +18,10 @@
   width: 50%;
 }
 
-.steps_title {
+.steps_main-container .steps_title {
   color: var(--blue-warm-vivid-80);
   font-weight: var(--font-weight-bold);
-  font-size: 2rem !important;
+  font-size: 2rem;
   padding: 0;
   margin: 0;
 }
@@ -124,4 +126,25 @@
 
 .step_info-text.write-step p {
   color: var(--gray-90);
+}
+
+.steps_side-container .steps_title {
+  display: none;
+}
+
+@media(max-width: 768px) {
+  .steps_side-container .steps_title {
+    display: inline;
+    text-align: center;
+    font-size: 1.5rem !important;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
+    padding: 0;
+  }
+  .steps_main-container {
+    display: none;
+  }
+  .steps_side-container {
+    width: 100%;
+  }
 }
