@@ -7,7 +7,7 @@ module Decidim
     describe Home do
       subject { home }
 
-      let(:home) { create(:home) }
+      let(:home) { create(:home, meetings_map: true) }
 
       include_examples "has component"
       include_examples "resourceable"
@@ -29,6 +29,18 @@ module Decidim
 
       it "has an associated component" do
         expect(home.component).to be_a(Decidim::Component)
+      end
+
+      it "has meetings_map set to true" do
+        expect(home.meetings_map).to be true
+      end
+
+      context "when meetings_map is false" do
+        let(:home) { create(:home, meetings_map: false) }
+
+        it "has meetings_map set to false" do
+          expect(home.meetings_map).to be false
+        end
       end
     end
   end

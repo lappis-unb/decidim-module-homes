@@ -10,10 +10,11 @@ module Decidim
         let(:user) { create(:user, organization: current_organization) }
         let(:participatory_process) { create(:participatory_process, organization: current_organization) }
         let(:component) { create(:component, manifest_name: "homes", participatory_space: participatory_process) }
-        let(:home) { create(:home, component: component) }
+        let(:home) { create(:home, component: component, meetings_map: false) }
         let(:form_params) do
           {
-            "body" => { "en" => "My new body" }
+            "body" => { "en" => "My new body" },
+            "meetings_map" => true
           }
         end
         let(:form) do
@@ -46,15 +47,18 @@ module Decidim
             expect { command.call }.to broadcast(:ok)
           end
 
-          it "creates a new home with the same name as the component" do
-            expect(home).to receive(:update!)
+          it "updates the home with the new attributes" do
+            expect(home).to receive(:update!).with(
+              body: form.body,
+              meetings_map: form.meetings_map
+            )
             command.call
           end
 
-          it "traces tyhe action", versioning: true do
+          it "traces the action", versioning: true do
             expect(Decidim.traceability)
               .to receive(:update!)
-              .with(home, user, body: form.body)
+              .with(home, user, body: form.body, meetings_map: form.meetings_map)
               .and_call_original
 
             expect { command.call }.to change(Decidim::ActionLog, :count)

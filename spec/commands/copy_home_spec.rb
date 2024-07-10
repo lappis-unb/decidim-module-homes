@@ -7,7 +7,7 @@ module Decidim
     describe CopyHome do
       describe "call" do
         let(:component) { create(:component, manifest_name: "homes") }
-        let!(:home) { create(:home, component: component) }
+        let!(:home) { create(:home, component: component, meetings_map: true) }
         let(:new_component) { create(:component, manifest_name: "homes") }
         let(:context) { { new_component: new_component, old_component: component } }
         let(:command) { described_class.new(context) }
@@ -34,7 +34,11 @@ module Decidim
           end
 
           it "duplicates the home and its values" do
-            expect(Home).to receive(:create!).with(component: new_component, body: home.body).and_call_original
+            expect(Home).to receive(:create!).with(
+              component: new_component,
+              body: home.body,
+              meetings_map: home.meetings_map
+            ).and_call_original
 
             expect do
               command.call

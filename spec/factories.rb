@@ -13,5 +13,6 @@ FactoryBot.define do
   factory :home, class: "Decidim::Homes::Home" do
     body { Decidim::Faker::Localized.wrapped("<p>", "</p>") { generate_localized_title } }
     component { build(:component, manifest_name: "homes") }
+    meetings_map { false }
   end
 end
