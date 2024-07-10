@@ -31,6 +31,7 @@ en:
             news: News
             news_id: News id
             organizers: Organizers
+            meetings_map: Meetings map
         homes:
           edit:
             save: Update

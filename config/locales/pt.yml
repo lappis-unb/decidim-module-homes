@@ -32,6 +32,7 @@ pt:
             news: Possui componente Notícias?
             news_id: ID do componente Notícias
             organizers: Organizadores
+            meetings_map: Mapa de reuniões
         homes:
           edit:
             save: Atualizar
