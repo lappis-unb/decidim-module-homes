@@ -1,5 +1,5 @@
 .participatory_cards-container {
-  background-color: var(--blue-warm-vivid-60);
+  background-color: var(--blue-warm-60);
 }
 
 .participatory_cards-info {
@@ -15,5 +15,49 @@
   font-size: 2.25rem !important;
   font-weight: var(--font-weight-bold);
   padding: 0;
+  margin: 0;
+}
+
+.cards_icon-container {
+  display: flex;
+  width: 61px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 4px;
+  background: var(--pure-0);
+}
+
+.cards_icon-container .fa-solid {
+  color: var(--blue-warm-60);
+  font-size: 1.5rem;
+}
+
+.cards_info-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cards_info-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cards_info-content h3 {
+  color: var(--pure-0);
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-medium);
+  padding: 0;
+  margin: 0;
+}
+
+.cards_info-content p {
+  color: var(--pure-0);
+  font-size: 1.5rem;
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-regular);
   margin: 0;
 }
