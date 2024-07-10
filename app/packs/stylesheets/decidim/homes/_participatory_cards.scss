@@ -77,3 +77,15 @@
   font-weight: var(--font-weight-regular);
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .cards_info-container {
+    padding: 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-self: center;
+    flex-wrap: nowrap;
+    gap: 3.375rem;
+  }
+}
