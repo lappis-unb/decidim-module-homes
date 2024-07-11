@@ -25,8 +25,8 @@ module Decidim
         attribute :news, Boolean, default: false
         attribute :news_id, Integer
         attribute :banner, ImageUploader, default: ''
-        attribute :organizers, ImageUploader, default: ''
-        attribute :supporters, ImageUploader, default: ''
+        attribute :organizers, ImageUploader, default: []
+        attribute :supporters, ImageUploader, default: []
       end
     end
   end

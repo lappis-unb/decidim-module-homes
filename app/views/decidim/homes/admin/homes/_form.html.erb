@@ -60,6 +60,9 @@
     </h2>
   </div>
   <div class="card-section">
+    <%= form.file_field :organizers, id: 'organizers-image-input', multiple: true, name: 'home[organizers][]' , direct_upload: true %>
+  </div>
+  <div class="card-section">
   </div>
   <div class="card-divider">
     <h2 class="card-title toggle-settings">
@@ -67,6 +70,7 @@
     </h2>
   </div>
   <div class="card-section">
+    <%= form.file_field :supporters, id: 'supporters-image-input', multiple: true, name: 'home[supporters][]' %>
   </div>
 </div>
 <script>
