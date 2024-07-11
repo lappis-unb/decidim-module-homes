@@ -5,7 +5,7 @@ module Decidim
     # Custom helpers, scoped to the homes engine.
     #
     module ApplicationHelper
-      def carousel
+      def home_carousel
         [
           {
             link: '',
