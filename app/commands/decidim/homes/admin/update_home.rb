@@ -41,7 +41,8 @@ module Decidim
             news: @form.news,
             news_id: @form.news_id || decidim_blogs_placeholder,
             organizers: @form.organizers,
-            supporters: @form.supporters
+            supporters: @form.supporters,
+            meetings_map: @form.meetings_map
           )
         end
 

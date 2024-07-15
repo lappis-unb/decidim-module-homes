@@ -111,6 +111,38 @@
   <% current_url = URI(request.original_url) %>
   <% modified_url = current_url.to_s.sub(/\/f\/\d+\//, '/') %>
 
+  <% if @home.meetings_map %>
+
+    <div class="meeting-map-header">
+  <span id="meetings-map-title" class="meeting-map-title"><%= t("decidim.participatory_processes.participatory_processes.region_meetings.meeting_map_title")%></span>
+</div>
+<div id="region-meetings-map-container" class="region-meetings" data-process=<%= current_participatory_space.slug%> data-meetings-path="<%= main_app.get_all_meetings_of_a_participatory_process_path(slug: current_participatory_space.slug) %>">
+  <div id="regions" class="regions-map">
+    <div id="br_mine"></div>
+  </div>
+    <span class="meetings-map-subtitle meeting-select-title">Selecione a região onde deseja procurar reuniões</span>
+
+    <select class="region-select" id="region-select">
+      <option>Selecione...</option>
+    </select>
+  <div class="meetings-list-section meetings-not-visible" id="meetings-list-section">
+    <span id="meetings-list-title" class="meetings-map-subtitle"></span>
+    <div class="br-input input-highlight region-search">
+      <input type="search" class="input-group-field" placeholder="Qual reunião você procura?" aria-label="Buscar" id="searchMeetings" name="filter[search_text_cont]">
+
+      <button class="br-button" type="submit" aria-label="Buscar">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div id="meetings-list" class="meetings-list"></div>
+
+  </div>
+</div>
+<span id="meetings-map-subtitle" class="meetings-map-subtitle web-title"><%=t("decidim.participatory_processes.participatory_processes.region_meetings.meeting_map_subtitle")%></span>
+
+  <% end %>
+
+
   <% if @home.news_section_enabled? %>
     <section id="news-custom-home-section" class="home-sections-container br-container-lg">
       <h2>Notícias</h2>
@@ -543,3 +575,6 @@
     </div>
   </section>
 </div>
+
+<%= render partial: 'carrosel'%>
+<%= render partial: 'participatory-cards' %>

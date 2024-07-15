@@ -1,0 +1,77 @@
+<% @carousel_items = home_carousel %>
+
+<section>
+  <div class="br-container-lg br-carousel-container">
+    <div class="br-col-sm-12">
+      <div class="br-carousel show-mobile" data-circular="true" data-stage="hibw" data-mobile-nav="">
+        <div class="carousel-button">
+          <button class="br-button carousel-btn-prev terciary circle" type="button" aria-label="Anterior">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="carousel-stage">
+          <% @carousel_items.each do |item| %>
+            <a href="<%= item[:link] %>">
+              <div class="carousel-page" <%= 'active="active"' if item[:active] %>>
+                <div class="carousel-content">
+                  <img src="<%= item[:image_url] %>" alt="<%= item[:alt_text] %>"/>
+                </div>
+              </div>
+            </a>
+          <% end %>
+        </div>
+        <div class="carousel-button">
+          <button class="br-button carousel-btn-next terciary circle" type="button" aria-label="Próximo">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="carousel-step">
+          <div class="br-step" data-initial="1" data-type="simple">
+            <div class="step-progress">
+              <% @carousel_items.each do |item| %>
+                <button class="step-progress-btn" type="button">
+                  <span class="step-info"><%= item[:step_info] %></span>
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Repita o mesmo para o carrossel desktop -->
+      <div class="br-carousel show-desktop" data-circular="true">
+        <div class="carousel-button">
+          <button class="br-button carousel-btn-prev terciary circle" type="button" aria-label="Anterior">
+            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="carousel-stage">
+          <% @carousel_items.each do |item| %>
+            <a href="<%= item[:link] %>">
+              <div class="carousel-page" <%= 'active="active"' if item[:active] %>>
+                <div class="carousel-content">
+                  <img src="<%= item[:desktop_image_url] %>" alt="<%= item[:alt_text] %>"/>
+                </div>
+              </div>
+            </a>
+          <% end %>
+        </div>
+        <div class="carousel-button">
+          <button class="br-button carousel-btn-next terciary circle" type="button" aria-label="Próximo">
+            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="carousel-step">
+          <div class="br-step" data-initial="1" data-type="simple">
+            <div class="step-progress">
+              <% @carousel_items.each do |item| %>
+                <button class="step-progress-btn" type="button">
+                  <span class="step-info"><%= item[:step_info] %></span>
+                </button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
