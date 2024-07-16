@@ -1,8 +1,8 @@
-.organizers__container a img {
+.logos__list-container a img {
   width: 160px;
 }
 
-.organizers__container {
+.logos__list-container {
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -19,19 +19,18 @@
 }  
 
 @media (min-width: 768px) {
-  .organizers__container a img {
+  .logos__list-container a img {
     width: 160px;
   }
   .logos-section h2 {
     padding-bottom: 0.75rem;
     font-weight: var(--font-weight-semi-bold);
   }  
-  .organizers__container {
+  .logos__list-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     gap: 40px;
     align-items: center;
-    justify-content: flex-start;
   }
 }
