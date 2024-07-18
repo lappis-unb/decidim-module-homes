@@ -1,0 +1,16 @@
+<section class="home-sections-container logos-section">
+  <h2><%= title %></h2>
+  <div class="home-sections-content">
+    <div class="logos__list-container">
+      <% if list.size > 0 %>
+        <% list.each do |logo| %>
+          <a class="logo-items" href="<%= logo.link %>" target="_blank">
+            <%= image_tag(logo.attached_uploader(:logo).path, alt: logo.name) if logo.logo.attached? %>
+          </a>
+        <% end %>
+      <% else %>
+        <p>Não há <%= title %> registrados</p>
+      <% end %>
+    </div>
+  </div>
+</section>
