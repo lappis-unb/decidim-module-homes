@@ -23,6 +23,8 @@ module Decidim
         attribute :common_questions, String, default: '/'
         attribute :support_material, String, default: '/'
         attribute :news, Boolean, default: false
+        attribute :meetings_map, Boolean, default: false
+        attribute :orders, Array[String], default: []
         attribute :news_id, Integer
         attribute :banner, ImageUploader, default: ''
         attribute :organizers, ImageUploader, default: []
