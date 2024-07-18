@@ -16,6 +16,10 @@ module Decidim
 
           @form = form(Admin::HomeForm).from_params(params)
 
+          if params[:home][:field_orders].is_a?(String)
+            @form.field_orders = params[:home][:field_orders].split(',')
+          end
+
           Admin::UpdateHome.call(@form, home) do
             on(:ok) do
               flash[:notice] = I18n.t("homes.update.success", scope: "decidim.homes.admin")

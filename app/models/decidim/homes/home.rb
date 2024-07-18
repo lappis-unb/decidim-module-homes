@@ -21,7 +21,7 @@ module Decidim
       attribute :news, :boolean, default: false
       attribute :news_id, :integer
       attribute :meetings_map, :boolean, default: false
-      attribute :orders, :jsonb, default: []
+      attribute :field_orders, :jsonb, default: []
       attribute :news_posts, :jsonb, default: []
       attribute :header_title, :string
       attribute :header_subtitle, :string

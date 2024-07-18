@@ -53,7 +53,8 @@ module Decidim
             emphasis_button_text: @form.emphasis_button_text,
             participation_title: @form.participation_title,
             participation_subtitle: @form.participation_subtitle,
-            map_able: @form.map_able
+            map_able: @form.map_able,
+            field_orders: @form.field_orders
           )
         end
 
