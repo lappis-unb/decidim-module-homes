@@ -17,6 +17,7 @@ module Decidim
         @supporters = supporters
         @organizers = organizers
         @latest_posts = latest_posts
+        @steps = steps
       end
 
       private
@@ -37,6 +38,10 @@ module Decidim
         Rails.cache.fetch("decidim_homes_home_#{@home.id}_blogs_#{@home.news_id}_latest_3_posts", expires_in: 2.minutes) do
           @home.news_section_enabled? ? Decidim::Blogs::Post.where(component: @home.news_id).order(created_at: :desc).limit(3) : []
         end
+      end
+
+      def steps
+        participatory_space.try(:steps) || []
       end
     end
   end
