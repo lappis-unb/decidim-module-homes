@@ -14,11 +14,16 @@ module Decidim
         def update
           enforce_permission_to :update, :home
 
-          @form = form(Admin::HomeForm).from_params(params)
+          # Clona os parâmetros para não modificar o original
+          modified_params = params.deep_dup
 
-          if params[:home][:field_orders].is_a?(String)
-            @form.field_orders = params[:home][:field_orders].split(',')
+          # Verifica se `field_orders` existe e é uma string
+          if modified_params[:home][:field_orders].is_a?(String)
+            # Divide a string por vírgulas e atualiza os parâmetros modificados
+            modified_params[:home][:field_orders] = modified_params[:home][:field_orders].split(',')
           end
+
+          @form = form(Admin::HomeForm).from_params(modified_params)
 
           Admin::UpdateHome.call(@form, home) do
             on(:ok) do

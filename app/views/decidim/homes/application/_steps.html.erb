@@ -1,17 +1,14 @@
-<% steps_text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at congue nunc. Nulla facilisi. Nullam aliquet, lacus et ullamcorper lacinia, mi augue facilisis tortor, quis interdum erat nisi non ipsum. Phasellus lobortis, velit sed porttitor tincidunt, dolor justo euismod ex, et commodo eros sem eu orci. Morbi tempor viverra metus, sed pharetra quam rhoncus eu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Quisque cursus ante eget auctor fringilla. Maecenas aliquet nulla ut varius volutpat.'%>
 <% before_active = true %>
 <% circle_class = '' %>
 <% text_info_class = '' %>
-
 <div class="steps-section-background">
   <div class="home_steps-container br-container-lg">
     <div class="steps_main-container">
-      <h2 class="steps_title">Etapas da Conferência</h2>
-      <p class="steps_main_text"><%= steps_text %></p>
+      <h2 class="steps_title"><%= @home.steps_title %></h2>
+      <p class="steps_main_text"><%= @home.steps_subtitle %></p>
     </div>
-
     <div class="steps_side-container">
-      <h2 class="steps_title">Etapas da Conferência</h2>
+      <h2 class="steps_title"><%= @home.steps_title %></h2>
       <% @steps.each_with_index do |step, index| %>
         <% if step.active %>
           <% before_active = false %>
@@ -22,7 +19,6 @@
           <% before_active ? circle_class = 'gray-index' : circle_class = 'write-index'%>
           <% before_active ? text_info_class = 'gray-step' : text_info_class = 'write-step'%>
         <% end %>
-
         <div class="step_info-container <%= background_step_class %>">
           <div class="step_index">
             <% unless index == 0 %>
@@ -30,18 +26,15 @@
             <% else %>
               <div class="hollow-index-line"></div>
             <% end %>
-
             <div class="step_index-circle <%= circle_class %>">
               <%= index + 1 %>
             </div>
-
             <% unless index == (@steps.size - 1) %>
               <div class="index-line"></div>
             <% else %>
               <div class="hollow-index-line"></div>
             <% end %>
           </div>
-
           <div class="step_info-text <%= text_info_class%>">
             <h2><%= translated_attribute step.title %></h2>
             <%== translated_attribute step.description %>

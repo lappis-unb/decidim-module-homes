@@ -1,16 +1,19 @@
-<%= @home.field_orders[1] %>
-<%= render partial: 'header' %>
-<%= render partial: 'brazil_map', locals: {
-  has_map: @home.meetings_map,
-  main_app: main_app,
-  current_participatory_space: current_participatory_space
-} %>
-<%= render partial: 'steps' %>
-<%= render partial: 'carrosel'%>
-<%= render partial: 'participatory-cards' %>
-<%= render partial: 'logos_section', locals: {
-  organizers: @organizers,
-  supporters: @supporters
-} %>
-<%= render partial: 'featured_news' %>
-<%= render partial: 'basic_logos_section' %>
+<% @home.try(:field_orders)&.each do |field| %>
+  <% begin %>
+    <% if field == 'brazil_map' %>
+      <%= render partial: 'brazil_map', locals: {
+        has_map: @home.meetings_map,
+        main_app: main_app,
+        current_participatory_space: current_participatory_space
+      } %>
+    <% elsif field == 'logos_section' %>
+      <%= render partial: 'logos_section', locals: {
+        organizers: @organizers,
+        supporters: @supporters
+      } %>
+    <% else %>
+      <%= render partial: "#{field}" %>
+    <% end %>
+    <% rescue ActionView::MissingTemplate %>
+  <% end %>
+<% end %>
