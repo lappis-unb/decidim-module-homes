@@ -64,6 +64,7 @@
     <%= form.number_field :news_id, label: t("models.components.news_id", scope: "decidim.homes.admin") %>
     <div id="news-id-field" style="<%= 'display: none;' unless @home.news %>">
       <%= form.check_box :meetings_map %>
+      <%= form.check_box :meetings_map, label: t("models.components.meetings_map", scope: "decidim.homes.admin")%>
     </div>
   </div>
   <div class="card-divider">

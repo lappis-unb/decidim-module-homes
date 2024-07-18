@@ -35,6 +35,7 @@ module Decidim
       attribute :participation_title, :string
       attribute :participation_subtitle, :string
       attribute :map_able, :boolean, default: false
+      attribute :meetings_map, :boolean, default: false
 
       mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
       mount_uploaders :organizers, Decidim::Homes::ImageUploader, default: ''

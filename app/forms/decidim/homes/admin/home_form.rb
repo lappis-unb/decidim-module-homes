@@ -29,6 +29,7 @@ module Decidim
         attribute :banner, ImageUploader, default: ''
         attribute :organizers, ImageUploader, default: []
         attribute :supporters, ImageUploader, default: []
+        attribute :meetings_map, Boolean, default: false
       end
     end
   end

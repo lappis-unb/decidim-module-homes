@@ -26,7 +26,8 @@ module Decidim
               news: home.news,
               news_id: home.news_id,
               organizers: home.organizers,
-              supporters: home.supporters
+              supporters: home.supporters,
+              meetings_map: home.meetings_map
             )
           end
         end
