@@ -3,48 +3,51 @@
 <% circle_class = '' %>
 <% text_info_class = '' %>
 
-<div class="home_steps-container">
-  <div class="steps_main-container">
-    <h2 class="steps_title">Etapas da Conferência</h2>
-    <p class="steps_main_text"><%= steps_text %></p>
-  </div>
+<div class="steps-section-background">
+  <div class="home_steps-container br-container-lg">
+    <div class="steps_main-container">
+      <h2 class="steps_title">Etapas da Conferência</h2>
+      <p class="steps_main_text"><%= steps_text %></p>
+    </div>
 
-  <div class="steps_side-container">
-    <h2 class="steps_title">Etapas da Conferência</h2>
-    <% @steps.each_with_index do |step, index| %>
-      <% if step.active %>
-        <% before_active = false %>
-        <% circle_class = 'blue-index'%>
-        <% text_info_class = 'blue-step'%>
-      <% else %>
-        <% before_active ? circle_class = 'gray-index' : circle_class = 'write-index'%>
-        <% before_active ? text_info_class = 'gray-step' : text_info_class = 'write-step'%>
-      <% end %>
+    <div class="steps_side-container">
+      <h2 class="steps_title">Etapas da Conferência</h2>
+      <% @steps.each_with_index do |step, index| %>
+        <% if step.active %>
+          <% before_active = false %>
+          <% circle_class = 'blue-index'%>
+          <% text_info_class = 'blue-step'%>
+          <% background_step_class = 'blue-step-container'%>
+        <% else %>
+          <% before_active ? circle_class = 'gray-index' : circle_class = 'write-index'%>
+          <% before_active ? text_info_class = 'gray-step' : text_info_class = 'write-step'%>
+        <% end %>
 
-      <div class="step_info-container">
-        <div class="step_index">
-          <% unless index == 0 %>
-            <div class="index-line"></div>
-          <% else %>
-            <div class="hollow-index-line"></div>
-          <% end %>
+        <div class="step_info-container <%= background_step_class %>">
+          <div class="step_index">
+            <% unless index == 0 %>
+              <div class="index-line"></div>
+            <% else %>
+              <div class="hollow-index-line"></div>
+            <% end %>
 
-          <div class="step_index-circle <%= circle_class %>">
-            <%= index + 1 %>
+            <div class="step_index-circle <%= circle_class %>">
+              <%= index + 1 %>
+            </div>
+
+            <% unless index == (@steps.size - 1) %>
+              <div class="index-line"></div>
+            <% else %>
+              <div class="hollow-index-line"></div>
+            <% end %>
           </div>
 
-          <% unless index == (@steps.size - 1) %>
-            <div class="index-line"></div>
-          <% else %>
-            <div class="hollow-index-line"></div>
-          <% end %>
+          <div class="step_info-text <%= text_info_class%>">
+            <h2><%= translated_attribute step.title %></h2>
+            <%== translated_attribute step.description %>
+          </div>
         </div>
-
-        <div class="step_info-text <%= text_info_class%>">
-          <h2><%= translated_attribute step.title %></h2>
-          <%== translated_attribute step.description %>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
