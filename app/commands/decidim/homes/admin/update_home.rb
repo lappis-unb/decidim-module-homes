@@ -40,8 +40,6 @@ module Decidim
             statistics: @form.statistics,
             news: @form.news,
             news_id: @form.news_id || decidim_blogs_placeholder,
-            organizers: @form.organizers,
-            supporters: @form.supporters,
             meetings_map: @form.meetings_map,
             header_title: @form.header_title,
             header_subtitle: @form.header_subtitle,

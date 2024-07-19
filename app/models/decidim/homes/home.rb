@@ -38,8 +38,6 @@ module Decidim
       attribute :meetings_map, :boolean, default: false
 
       mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
-      mount_uploaders :organizers, Decidim::Homes::ImageUploader, default: ''
-      mount_uploaders :supporters, Decidim::Homes::ImageUploader, default: ''
 
       def self.log_presenter_class_for(_log)
         Decidim::Homes::AdminLog::HomePresenter
