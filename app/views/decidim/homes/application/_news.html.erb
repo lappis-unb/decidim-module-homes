@@ -1,0 +1,48 @@
+<% news_data = fetch_news_data(id_component, highlight_latest) %>
+
+<section id="news-home-section" class="home-sections-container">
+  <h2><%= title %></h2>
+  <div class="home-sections-content">
+    <% if news_data.present? %>
+      <% href = "/processes/#{current_participatory_space.slug}/f/#{id_component}" %>
+
+      <% if highlight_latest %>
+        <% highlighted_new = news_data.first %>
+        <% image_url = highlighted_new.photo.present? ? highlighted_new.photo.url : "" %>
+        <% highlighted_new_date = highlighted_new.created_at.strftime("%d/%m/%Y") %>
+        <a class="main-news-card" href="<%= "#{href}/posts/#{highlighted_new.id}" %>">
+          <img src="<%= image_url %>" alt="" class="main-news-img"/>
+          <div class="main-news-content">
+            <div class="main-news-header">
+              <span class="main-news-title"><%= translated_attribute(highlighted_new.title) %></span>
+              <span class="main-news-subtitle"><%= strip_tags(translated_attribute(highlighted_new.body)) %></span>
+            </div>
+          </div>
+        </a>
+      <% end %>
+
+      <div class="news-container">
+        <% news_data.each_with_index do |post, index| %>
+          <% next if index == 0 && highlight_latest %>
+          <% image_url = post.photo.present? ? post.photo.url : "" %>
+          <a href="<%= "#{href}/posts/#{post.id}" %>" class="page-news-card">
+            <img src="<%= image_url %>" alt="" class="news-img"/>
+            <div class="page-news-card-content">
+              <span class="news-title"><%= translated_attribute(post.title) %></span>
+            </div>
+          </a>
+        <% end %>
+      </div>
+
+      <div class="centered-content">
+        <a href="<%= href %>" class="br-button secondary"><%= desc_button %></a>
+      </div>
+    <% else %>
+      <div class="page-news-error">
+        <div class="news-container">
+          <span class="news-title">Nenhuma notícia encontrada</span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

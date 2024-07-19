@@ -6,6 +6,14 @@
   current_participatory_space: current_participatory_space
 } %>
 
+<%= render partial: 'news', locals: { 
+  title: "noticias", 
+  desc_button: "Ver todas as noticias",
+  highlight_latest: true,
+  id_component: 34,
+} %>
+
+
 <%= render partial: 'steps' %>
 
 <%= render partial: 'carrosel'%>
