@@ -5,6 +5,10 @@
   padding: 4rem 0;
 }
 
+.call_to_action-container.reversed {
+  flex-direction: row-reverse;
+}
+
 .action_img-container {
   min-height: 250px;
   background-size: cover;
