@@ -6,6 +6,10 @@
 }
 
 .action_img-container {
+  min-height: 250px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 0.5rem;
   width: 50%;
   height: auto;
