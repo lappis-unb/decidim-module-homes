@@ -172,7 +172,9 @@
     </section>
   <% end %>
 
-  <%= render partial: 'call_to_action' %>
+  <%= render partial: 'call_to_action', locals: {action_url: 'http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBEUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--712225327e551df4757a749e72cc28ed2d911404/e034c42c8a61c1265bf97a06ea069733.jpeg'}%>
+  <%= render partial: 'call_to_action', locals: {action_url: 'https://www.youtube.com/watch?v=o_-SUOpXY1c'} %>
+  <%= render partial: 'call_to_action', locals: {action_url: 'https://www.youtube.com/watch?v=o_-SUOpXY1c'} %>
 
   <section class="home-sections-container">
     <h2>Organizadores</h2>
@@ -576,3 +578,28 @@
 </div>
 
 <%= render partial: 'participatory-cards' %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let iframes = document.getElementsByClassName('home__video-iframe');
+
+    if (iframes){
+      for (let i = 0; i < iframes.length; i++) {
+        let iframe = iframes[i];
+        let video_url = iframe.getAttribute('video_url');
+        if (video_url){
+          iframe.src = getYoutubeUrl(video_url);
+        }
+      }
+    }
+    // Function to get a youtube url and transform it on iframe
+    function getYoutubeUrl(url) {
+        const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})(?:\S+)?/;
+        const match = url.match(youtubeRegex);
+        if (match && match[1]) {
+        return `https://www.youtube.com/embed/${match[1]}`;
+        }
+        return null;
+    }
+  });
+</script>
