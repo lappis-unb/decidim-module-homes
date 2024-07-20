@@ -71,6 +71,9 @@
     gap: 1.5rem;
     padding: 1.5rem 0rem;
   }
+  .call_to_action-container.reversed {
+    flex-direction: column;
+  }
   .action_img-container,
   .action_content-container,
   .action_content-container .action_link {
