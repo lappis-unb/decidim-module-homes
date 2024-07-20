@@ -21,6 +21,7 @@ module Decidim
       attribute :news, :boolean, default: false
       attribute :news_id, :integer
       attribute :news_posts, :jsonb, default: []
+      attribute :meetings_map, :boolean, default: false
 
       mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
       mount_uploaders :organizers, Decidim::Homes::ImageUploader, default: ''
