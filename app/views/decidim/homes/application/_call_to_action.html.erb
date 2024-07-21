@@ -4,8 +4,9 @@
 <% action_btn_text = 'CTA'%>
 <% primary_btn = true %>
 <% reversed = true %>
+<% action_url = '/' %>
 
-<div class="call_to_action-container <%= reversed ? 'reversed' : '' %>">
+<div class="call_to_action-container <%= reversed ? 'reversed' : '' %> br-container-lg">
   <% if action_url.include?('youtube') %>
     <div class="action_img-container">
       <iframe 
