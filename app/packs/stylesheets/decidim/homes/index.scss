@@ -2,10 +2,12 @@
 // Import here all other necessary scss files
 
 @import "news";
-@import "organizers";
+@import "logos_list";
 @import "basic_logos";
 @import "hero";
 @import "call_to_action";
+@import "steps";
+@import "carousel";
 @import "participatory_cards";
 
 .section-card-title {
@@ -87,6 +89,11 @@
   justify-content: center;
 }
 
+.home-sections-container.logos-section {
+  padding: 0;
+  gap: 1.5rem;
+}
+
 @media (min-width: 768px) {
   .participatory-items {
     display: flex;
@@ -112,6 +119,10 @@
   .participatory-items {
     flex-direction: row;
     max-width: 900px !important;
+  }
+  .home-sections-container.logos-section {
+    padding: 2rem 0;
+    gap: 2rem;
   }
 }
 
