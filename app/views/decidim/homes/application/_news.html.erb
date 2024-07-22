@@ -9,7 +9,6 @@
       <% if highlight_latest %>
         <% highlighted_new = news_data.first %>
         <% image_url = highlighted_new.photo.present? ? highlighted_new.photo.url : "" %>
-        <% highlighted_new_date = highlighted_new.created_at.strftime("%d/%m/%Y") %>
         <a class="main-news-card" href="<%= "#{href}/posts/#{highlighted_new.id}" %>">
           <img src="<%= image_url %>" alt="" class="main-news-img"/>
           <div class="main-news-content">
