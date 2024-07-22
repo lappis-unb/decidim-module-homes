@@ -1,19 +1,24 @@
-<%= render partial: 'hero' %>
-<%= render partial: 'call_to_action' %>
-<%= render partial: 'brazil_map', locals: {
-  has_map: @home.meetings_map,
-  main_app: main_app,
-  current_participatory_space: current_participatory_space
-} %>
-<%= render partial: 'steps' %>
-<%= render partial: 'carrosel'%>
-<%= render partial: 'participatory-cards' %>
-<%= render partial: 'logos_section', locals: {
-  organizers: @organizers,
-  supporters: @supporters
-} %>
-<%= render partial: 'featured_news' %>
-<%= render partial: 'basic_logos_section' %>
+<div class="br-container-lg menu-container-space">
+  <% @home.try(:field_orders)&.each do |field| %>
+    <% begin %>
+      <% if field == 'brazil_map' %>
+        <%= render partial: 'brazil_map', locals: {
+        has_map: @home.meetings_map,
+        main_app: main_app,
+        current_participatory_space: current_participatory_space
+      } %>
+      <% elsif field == 'logos_section' %>
+        <%= render partial: 'logos_section', locals: {
+        organizers: @organizers,
+        supporters: @supporters
+      } %>
+      <% else %>
+        <%= render partial: "#{field}" %>
+      <% end %>
+      <% rescue ActionView::MissingTemplate %>
+    <% end %>
+  <% end %>
+</div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     let iframes = document.getElementsByClassName('home__video-iframe');
@@ -27,7 +32,6 @@
         }
       }
     }
-    // Function to get a youtube url and transform it on iframe
     function getYoutubeUrl(url) {
         const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})(?:\S+)?/;
         const match = url.match(youtubeRegex);
