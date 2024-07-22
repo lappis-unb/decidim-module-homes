@@ -33,6 +33,25 @@ module Decidim
           }
         ]
       end
+
+      def fetch_news_data(id_component, highlight_latest = false)
+
+        highlight_latest_news_limit = 4
+        regular_news_limit = 3
+
+        component = Decidim::Component.where(id: id_component).first 
+
+        limit = highlight_latest ? highlight_latest_news_limit : regular_news_limit
+
+        return [] unless component
+    
+        Decidim::Blogs::Post
+          .where(decidim_component_id: component.id)
+          .order(created_at: :desc)
+          .limit(limit)
+        
+
+      end
     end
   end
 end
