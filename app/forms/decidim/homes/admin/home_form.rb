@@ -27,8 +27,6 @@ module Decidim
         attribute :field_orders, Array[String], default: []
         attribute :news_id, Integer
         attribute :banner, ImageUploader, default: ''
-        attribute :organizers, ImageUploader, default: []
-        attribute :supporters, ImageUploader, default: []
         attribute :meetings_map, Boolean, default: false
       end
     end

@@ -9,6 +9,8 @@ module Decidim
           enforce_permission_to :update, :home
 
           @form = form(Admin::HomeForm).from_model(home)
+
+          @form.field_orders = @form.field_orders.join(',') if @form.field_orders.is_a?(Array)
         end
 
         def update
