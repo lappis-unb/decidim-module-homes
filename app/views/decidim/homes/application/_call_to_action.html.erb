@@ -1,7 +1,26 @@
-<div class="call_to_action-container">
-  <div class="action_img-container">
-    <img class="action_img_content" id="banner-image" style="background-image: url('<%= @home.banner.url %>');"/>
-  </div>
+<% action_title = 'Título da Conferência em Destaque' %>
+<% action_text = 'Morbi cursus bibendum sagittis. Mauris in arcu cursus, placerat purus nec, ultricies elit. Praesent laoreet vehicula urna, quis iaculis metus efficitur a. Maecenas eu dolor eu erat auctor auctor. In facilisis mattis lorem ullamcorper viverra.' %>
+<% action_link = '/' %>
+<% action_btn_text = 'CTA'%>
+<% primary_btn = true %>
+<% reversed = true %>
+<% action_url = '/' %>
+<div class="call_to_action-container <%= reversed ? 'reversed' : '' %> br-container-lg">
+  <% if action_url.include?('youtube') %>
+    <div class="action_img-container">
+      <iframe 
+        class="home__video-iframe" 
+        src="" 
+        video_url="<%= action_url %>" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen
+      >
+      </iframe>
+    </div>
+  <% else %>
+    <div class="action_img-container" style="background-image: url('<%= action_url %>')"></div>
+  <% end %>
   <div class="action_content-container">
     <div class="action_content-text">
       <h2 class="action_title"><%= @home.emphasis_title %></h2>
