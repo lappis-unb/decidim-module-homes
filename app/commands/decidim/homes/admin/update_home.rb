@@ -52,7 +52,8 @@ module Decidim
             participation_title: @form.participation_title,
             participation_subtitle: @form.participation_subtitle,
             map_able: @form.map_able,
-            field_orders: @form.field_orders
+            field_orders: @form.field_orders,
+            reverse_call_to_action: @form.reverse_call_to_action
           )
         end
 

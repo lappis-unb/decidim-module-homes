@@ -12,15 +12,12 @@ module Decidim
 
       component_manifest_name "homes"
 
-      attribute :statistics, :boolean, default: false
       attribute :digital_stage, :string, default: '/'
       attribute :organize_stage, :string, default: '/'
       attribute :schedule, :string, default: '/'
       attribute :common_questions, :string, default: '/'
       attribute :support_material, :string, default: '/'
-      attribute :news, :boolean, default: false
       attribute :news_id, :integer
-      attribute :meetings_map, :boolean, default: false
       attribute :field_orders, :jsonb, default: []
       attribute :news_posts, :jsonb, default: []
       attribute :header_title, :string
@@ -34,8 +31,7 @@ module Decidim
       attribute :emphasis_link, :string
       attribute :participation_title, :string
       attribute :participation_subtitle, :string
-      attribute :map_able, :boolean, default: false
-      attribute :meetings_map, :boolean, default: false
+      attribute :reverse_call_to_action, :boolean, default: false
 
       mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
 

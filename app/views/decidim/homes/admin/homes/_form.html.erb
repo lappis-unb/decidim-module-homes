@@ -6,6 +6,8 @@
   </div>
   <div class="card-section">
     <%= form.text_field :field_orders, label: "Ordens" %>
+    <p>Ordens de campos para ordenar os campos de edição</p>
+    <p>Os possíveis valores são: header,news,brazil_map,call_to_action,carrossel,featured_news,logos_section,participatory-cards,steps</p>
   </div>
   <div class="card-divider">
     <h2 class="card-title toggle-settings">
@@ -36,6 +38,7 @@
     <%= form.text_field :emphasis_subtitle, label: "Emphasis Subtitle" %>
     <%= form.text_field :emphasis_button_text, label: "Emphasis Button Text" %>
     <%= form.text_field :emphasis_link, label: "Emphasis Link" %>
+    <%= form.check_box :reverse_call_to_action, label: "Reverse call to action" %>
   </div>
   <div class="card-divider">
     <h2 class="card-title toggle-settings">
@@ -48,24 +51,11 @@
   </div>
   <div class="card-divider">
     <h2 class="card-title toggle-settings">
-      Mapa
-    </h2>
-  </div>
-  <div class="card-section">
-    <%= form.check_box :map_able, label: "Mapa Able" %>
-  </div>
-  <div class="card-divider">
-    <h2 class="card-title toggle-settings">
       Noticia
     </h2>
   </div>
   <div class="card-section">
-    <%= form.check_box :news %>
     <%= form.number_field :news_id, label: t("models.components.news_id", scope: "decidim.homes.admin") %>
-    <div id="news-id-field" style="<%= 'display: none;' unless @home.news %>">
-      <%= form.check_box :meetings_map %>
-      <%= form.check_box :meetings_map, label: t("models.components.meetings_map", scope: "decidim.homes.admin")%>
-    </div>
   </div>
 </div>
 <script>

@@ -28,6 +28,7 @@ module Decidim
         attribute :news_id, Integer
         attribute :banner, ImageUploader, default: ''
         attribute :meetings_map, Boolean, default: false
+        attribute :reverse_call_to_action, Boolean, default: false
       end
     end
   end

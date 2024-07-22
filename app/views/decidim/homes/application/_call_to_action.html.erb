@@ -1,11 +1,5 @@
-<% action_title = 'Título da Conferência em Destaque' %>
-<% action_text = 'Morbi cursus bibendum sagittis. Mauris in arcu cursus, placerat purus nec, ultricies elit. Praesent laoreet vehicula urna, quis iaculis metus efficitur a. Maecenas eu dolor eu erat auctor auctor. In facilisis mattis lorem ullamcorper viverra.' %>
-<% action_link = '/' %>
-<% action_btn_text = 'CTA'%>
-<% primary_btn = true %>
-<% reversed = true %>
 <% action_url = '/' %>
-<div class="call_to_action-container <%= reversed ? 'reversed' : '' %> br-container-lg">
+<div class="call_to_action-container <%= @home.reverse_call_to_action ? 'reverse' : '' %>">
   <% if action_url.include?('youtube') %>
     <div class="action_img-container">
       <iframe 
