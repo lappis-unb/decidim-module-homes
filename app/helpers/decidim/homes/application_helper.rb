@@ -38,6 +38,20 @@ module Decidim
         nil
       end
 
+      def initial_page_components
+        @initial_page_components ||= [
+          OpenStruct.new(name: "header"),
+          OpenStruct.new(name: "news"),
+          OpenStruct.new(name: "brazil_map"),
+          OpenStruct.new(name: "call_to_action"),
+          OpenStruct.new(name: "carrossel"),
+          OpenStruct.new(name: "featured_news"),
+          OpenStruct.new(name: "logos_section"),
+          OpenStruct.new(name: "participatory_cards"),
+          OpenStruct.new(name: "steps")
+        ]
+      end
+
       def home_carousel
         [
           {

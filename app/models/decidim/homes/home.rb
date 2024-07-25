@@ -10,6 +10,7 @@ module Decidim
       include Decidim::Traceable
       include Decidim::Loggable
 
+      has_many :home_elements, dependent: :destroy, class_name: "Decidim::Homes::HomeElements", foreign_key: "decidim_homes_home_id"
       component_manifest_name "homes"
 
       attribute :digital_stage, :string, default: '/'
@@ -17,18 +18,7 @@ module Decidim
       attribute :schedule, :string, default: '/'
       attribute :common_questions, :string, default: '/'
       attribute :support_material, :string, default: '/'
-      attribute :news_id, :integer
       attribute :field_orders, :jsonb, default: []
-      attribute :news_posts, :jsonb, default: []
-      attribute :header_title, :string
-      attribute :header_subtitle, :string
-      attribute :steps_title, :string
-      attribute :steps_subtitle, :string
-      attribute :emphasis_title, :string
-      attribute :emphasis_subtitle, :string
-      attribute :emphasis_link, :string
-      attribute :emphasis_button_text, :string
-      attribute :emphasis_link, :string
       attribute :participation_title, :string
       attribute :participation_subtitle, :string
       attribute :reverse_call_to_action, :boolean, default: false

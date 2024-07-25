@@ -10,6 +10,24 @@ pt-BR:
       home:
         update: "%{user_name} atualizou a página %{resource_name} em %{space_name}"
     components:
+      header:
+        name: "HeaderComponent" 
+      news:
+        name: "NewsComponent"
+      brazil_map:
+        name: "BrazilMapComponent"
+      call_to_action:
+        name: "CallToActionComponent"
+      carrossel:
+        name: "CarrosselComponent"
+      featured_news:
+        name: "FeaturedNewsComponent"
+      logos_section:
+        name: "LogosSectionComponent"
+      participatory_cards:
+        name: "ParticipatoryCardsComponent"
+      steps:
+        name: "StepsComponent"
       homes:
         name: Página Inicial
         settings:
