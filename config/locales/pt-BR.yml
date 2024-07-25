@@ -35,6 +35,8 @@ pt-BR:
             announcement: Anúncio
           step:
             announcement: Anúncio
+            header_title: Título do header
+            header_subtitle: Subtítulo do header
     homes:
       admin:
         models:

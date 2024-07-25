@@ -43,7 +43,8 @@ Decidim.register_component(:homes) do |component|
   end
 
   component.settings(:step) do |settings|
-    settings.attribute :announcement, type: :text, translated: true, editor: true
+    settings.attribute :header_title, type: :string
+    settings.attribute :header_subtitle, type: :text
   end
 
   component.register_resource(:home) do |resource|
