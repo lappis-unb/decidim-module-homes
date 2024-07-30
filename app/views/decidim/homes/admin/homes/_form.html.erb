@@ -18,7 +18,7 @@
         <p class="mb-m">sdasdasddsa</p>
         <ul class="draggable-list js-connect js-list-availables">
           <% @home.home_elements.each do |element| %>
-            <%= render partial: "decidim/homes/admin/homes_elements/initial_page_elements", locals: { element: element } %>
+            <%= render partial: "decidim/homes/admin/home_elements/initial_page_elements", locals: { element: element } %>
           <% end %>
         </ul>
       </div>

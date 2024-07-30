@@ -14,7 +14,7 @@ module Decidim
         post "/", to: "homes#update", as: :home
         root to: "homes#edit"
 
-        resources :home_elements, only: [:new, :create, :edit, :update]
+        resources :home_elements, only: [:new, :edit, :update, :destroy]
       end
 
       def load_seed
