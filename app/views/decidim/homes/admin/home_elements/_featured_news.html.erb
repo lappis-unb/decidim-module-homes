@@ -1,1 +1,13 @@
-<%= f.fields_for :properties do |featured_news_form| %><% end %>
+<%= f.fields_for :properties do |featured_news_form| %>
+  <%=
+    f.number_field :news_id, 
+    label: "Id do componente notícias",
+    value: @home_element.properties['news_id'],
+  %>
+
+  <%=
+    f.text_field :url,
+    label: "Url do componente notícias",
+    value: @home_element.properties['url'],
+  %>
+<% end %>
