@@ -1,1 +1,14 @@
-<%= f.fields_for :properties do |news_form| %><% end %>
+<%= f.fields_for :properties do |news_form| %>
+  <%=
+    news_form.number_field :news_id,
+    label: "Id do componente notícias",
+    value: @home_element.properties['news_id'],
+    placeholder: "Preencha o id do componente"
+  %>
+
+  <%=
+    news_form.check_box :highlight_latest,
+    label: "Destacar últimas notícias",
+    checked: @home_element.properties['highlight_latest'].to_i == 1
+  %>
+<% end %>
