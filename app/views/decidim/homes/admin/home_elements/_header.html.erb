@@ -1,0 +1,4 @@
+<%= f.fields_for :properties do |header_form| %>
+  <%= header_form.text_field :title, label: "Título", class: "input-title" %>
+  <%= header_form.text_area :subtitle, label: "Subtítulo", class: "input-subtitle" %>
+<% end %>
