@@ -1,1 +1,41 @@
-<%= f.fields_for :properties do |cta_form| %><% end %>
+<%= f.fields_for :properties do |cta_form| %>
+  <%= 
+    cta_form.text_field :title, 
+    label: "Título", 
+    value: @home_element.properties['title'], 
+    placeholder: "Preencha o título" 
+  %>
+
+  <%=
+    cta_form.text_area :text,
+    label: "Texto",
+    value: @home_element.properties['text'],
+    placeholder: "Preencha o texto"
+  %>
+
+  <%=
+    cta_form.text_field :link,
+    label: "Link",
+    value: @home_element.properties['link'],
+    placeholder: "Adicionar link (reunião ou youtube)"
+  %>
+
+  <%=
+    cta_form.text_field :button_text,
+    label: "Texto do botão",
+    value: @home_element.properties['button_text'],
+    placeholder: "Preencha o texto do botão"
+  %>
+
+  <%=
+    cta_form.check_box :reverse,
+    label: "Inverter imagem e texto",
+    checked: @home_element.properties['reverse'].to_i == 1
+  %>
+
+  <%= 
+    cta_form.check_box :button_style,
+    label: "Estilo do botão",
+    checked: @home_element.properties['button_style'].to_i == 1
+  %>
+<% end %>
