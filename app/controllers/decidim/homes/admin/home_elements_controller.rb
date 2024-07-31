@@ -30,7 +30,7 @@ module Decidim
         def update
           home_id = params[:component_id]
           home_element_id = params[:id]
-          properties = params[:home_element]
+          properties = params[:home_elements][:properties]
 
           Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
             on(:ok) do
