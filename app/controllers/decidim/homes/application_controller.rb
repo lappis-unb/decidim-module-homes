@@ -18,6 +18,7 @@ module Decidim
         @organizers = organizers
         @latest_posts = latest_posts
         @steps = steps
+        @elements = Decidim::Homes::HomeElements.where(decidim_homes_home_id: @home.id)
       end
 
       private

@@ -5,39 +5,6 @@ module Decidim
     # Custom helpers, scoped to the homes engine.
     #
     module ApplicationHelper
-      PARTIALS_MAPPING = {
-        'brazil_map' => {
-          partial: 'brazil_map',
-          locals: lambda { |home, main_app, current_participatory_space, _organizers, _supporters|
-            { has_map: home.meetings_map, main_app: main_app, current_participatory_space: current_participatory_space }
-          }
-        },
-        'logos_section' => {
-          partial: 'logos_section',
-          locals: lambda { |_home, _main_app, _current_participatory_space, organizers, supporters|
-            { organizers: organizers, supporters: supporters }
-          }
-        },
-        'news' => {
-          partial: 'news',
-          locals: lambda { |home, _main_app, _current_participatory_space, _organizers, _supporters|
-            { title: "noticias", desc_button: "Ver todas as noticias", highlight_latest: true, id_component: home.news_id }
-          }
-        }
-      }.freeze
-
-      def render_field_partial(field, home, main_app, current_participatory_space, organizers, supporters)
-        config = PARTIALS_MAPPING[field]
-
-        if config
-          render partial: config[:partial], locals: config[:locals].call(home, main_app, current_participatory_space, organizers, supporters)
-        else
-          render partial: field
-        end
-      rescue ActionView::MissingTemplate
-        nil
-      end
-
       def initial_page_components
         @initial_page_components ||= [
           OpenStruct.new(name: "header"),
