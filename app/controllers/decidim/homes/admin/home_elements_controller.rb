@@ -28,7 +28,20 @@ module Decidim
         end
 
         def update
-          redirect_to :back
+          home_id = params[:component_id]
+          home_element_id = params[:id]
+          properties = params[:home_element]
+
+          Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
+            on(:ok) do
+              flash[:notice] = "Elemento atualizado com sucesso"
+              redirect_to request.referer
+            end
+
+            on(:invalid) do
+              flash.now[:alert] = "Erro ao atualizar o elemento"
+            end
+          end
         end
 
         def destroy

@@ -10,33 +10,40 @@ module Decidim
         #
         # form - The form from which to get the data.
         # home_element - The current instance of the home_element to be updated.
-        def initialize(form, home_element)
-          @form = form
-          @home_element = home_element
+        def initialize(params)
+          @home_element_id = params[:home_element_id]
+          @home_id = params[:home_id]
+          @properties = params[:properties]
+          @current_user = params[:current_user]
         end
 
-        # Executes the command. Broadcasts these events:
-        #
-        # - :ok when everything is valid.
-        # - :invalid if the form wasn't valid and we couldn't proceed.
-        #
-        # Returns nothing.
         def call
-          return broadcast(:invalid) if form.invalid?
-
           transaction do
             update_home_element
-            broadcast(:ok)
           end
+
+          broadcast(:ok)
+        rescue StandardError => e
+          broadcast(:invalid)
+          Rails.logger.error("Failed to update home element: #{e.message}")
         end
 
         private
 
-        attr_reader :form, :home_element
-
         def update_home_element
-          home_element.assign_attributes(form.attributes)
-          home_element.save!
+          @home = Decidim::Homes::Home.find_by(decidim_component_id: @home_id)
+          @home_element = @home.home_elements.find_by(id: @home_element_id)
+
+          @home_element.assign_attributes(
+            properties: @properties
+          )
+
+          Decidim.traceability.update!(
+            @home_element,
+            @current_user,
+            decidim_homes_home_id: @home_id,
+            home: @home
+          )
         end
       end
     end
