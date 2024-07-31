@@ -5,6 +5,7 @@
 
   <div class="card-section">
     <%= decidim_form_for(@home_element, url: home_element_path, method: :patch, html: { class: "form new_home_element" }) do |f| %>
+      <%= render partial: "#{@home_element.element_type}", locals: { f: f } %>
       <div class="button--double form-general-submit">
         <%= f.submit "Atualizar", class: "button" %>
       </div>
