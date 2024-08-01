@@ -13,75 +13,19 @@
     </h2>
   </div>
   <div class="cell small-6">
-    <div class="card">
-      <div class="card-section">
-        <p class="mb-m">sdasdasddsa</p>
-        <ul class="draggable-list js-connect js-list-availables">
-          <% @home.home_elements.each do |element| %>
-            <%= render partial: "decidim/homes/admin/home_elements/initial_page_elements", locals: { element: element } %>
-          <% end %>
-        </ul>
-      </div>
+    <div class="card-section">
+      <ul class="draggable-list js-connect js-list-availables">
+        <% @home.home_elements.each do |element| %>
+          <%= render partial: "decidim/homes/admin/home_elements/initial_page_elements", locals: { element: element } %>
+        <% end %>
+        <%= decidim_form_for(@form, url: home_path, method: :post, html: { class: "form edit_home" }) do |form| %>
+          <%= form.text_field :field_orders, value: @home.field_orders %>
+          <div class="button--double form-general-submit">
+            <%= form.submit "Atualizar" %>
+          </div>
+        <% end %>
+      </ul>
     </div>
-  </div>
-  <div class="card-divider">
-    <h2 class="card-title toggle-settings">
-      Ordens
-    </h2>
-  </div>
-  <div class="card-section">
-    <p>Ordem dos componentes</p>
-    <input id="field_orders" name="home[field_orders]" class="home-fields" />
-    <p>Ordens de campos para ordenar os campos de edição</p>
-    <p>Os possíveis valores são: header,news,brazil_map,call_to_action,carrossel,featured_news,logos_section,participatory-cards,steps</p>
-  </div>
-  <div class="card-divider">
-    <h2 class="card-title toggle-settings">
-      Header
-    </h2>
-  </div>
-  <div class="card-section">
-    <input id="field_orders" name="home[header_title]" class="home-fields" />
-    <input id="field_orders" name="home[header_subtitle]"  class="home-fields" />
-  </div>
-  <div class="card-divider">
-    <h2 class="card-title toggle-settings">
-      Etapas 1
-    </h2>
-  </div>
-  <div class="card-section">
-    <input id="field_orders" name="home[steps_subtitle]" class="home-fields" />
-    <input id="field_orders" name="home[steps_subtitle]" class="home-fields" />
-  </div>
-  <div class="card-divider">
-    <h2 class="card-title toggle-settings">
-      Destaque
-    </h2>
-  </div>
-  <div class="card-section">
-    <input id="field_orders" name="home[emphasis_title]" class="home-fields" />
-    <input id="field_orders" name="home[emphasis_subtitle]"  class="home-fields"/>
-    <input id="field_orders" name="home[emphasis_subtitle]"  class="home-fields"/>
-    <input id="field_orders" name="home[emphasis_button_text]"  class="home-fields"/>
-    <input id="field_orders" name="home[emphasis_link]"  class="home-fields" />
-    <input id="field_orders" name="home[reverse_call_to_action]" type="checkbox"  class="home-fields"/>
-  </div>
-  <div class="card-divider">
-    <h2 class="card-title toggle-settings">
-      Participação
-    </h2>
-  </div>
-  <div class="card-section">
-    <input id="field_orders" name="home[participation_title]" class="home-fields"/>
-    <input id="field_orders" name="home[participation_title]" class="home-fields" />
-  </div>
-  <div class="card-divider">
-    <h2 class="card-title toggle-settings">
-      Noticia
-    </h2>
-  </div>
-  <div class="card-section">
-    <input id="field_orders" name="home[news_id]" class="home-fields" />
   </div>
 </div>
 <script>
@@ -180,13 +124,5 @@
 
   .form h3{
     margin: 1rem;
-  }
-
-
-  .home-fields {
-  width: 100%;
-  padding: 0.875rem;
-  border: 1px solid #eee1ee;
-  border-radius: 0.25rem;
   }
 </style>

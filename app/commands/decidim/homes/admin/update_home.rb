@@ -31,29 +31,7 @@ module Decidim
           Decidim.traceability.update!(
             @home,
             @form.current_user,
-            banner: @form.banner,
-            digital_stage: @form.digital_stage,
-            organize_stage: @form.organize_stage,
-            schedule: @form.schedule,
-            common_questions: @form.common_questions,
-            support_material: @form.support_material,
-            statistics: @form.statistics,
-            news: @form.news,
-            news_id: @form.news_id || decidim_blogs_placeholder,
-            meetings_map: @form.meetings_map,
-            header_title: @form.header_title,
-            header_subtitle: @form.header_subtitle,
-            steps_title: @form.steps_title,
-            steps_subtitle: @form.steps_subtitle,
-            emphasis_title: @form.emphasis_title,
-            emphasis_subtitle: @form.emphasis_subtitle,
-            emphasis_link: @form.emphasis_link,
-            emphasis_button_text: @form.emphasis_button_text,
-            participation_title: @form.participation_title,
-            participation_subtitle: @form.participation_subtitle,
-            map_able: @form.map_able,
-            field_orders: @form.field_orders,
-            reverse_call_to_action: @form.reverse_call_to_action
+            field_orders: @form.field_orders
           )
         end
 

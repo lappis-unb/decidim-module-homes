@@ -19,11 +19,6 @@ module Decidim
       attribute :common_questions, :string, default: '/'
       attribute :support_material, :string, default: '/'
       attribute :field_orders, :jsonb, default: []
-      attribute :participation_title, :string
-      attribute :participation_subtitle, :string
-      attribute :reverse_call_to_action, :boolean, default: false
-
-      mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
 
       def self.log_presenter_class_for(_log)
         Decidim::Homes::AdminLog::HomePresenter
