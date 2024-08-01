@@ -11,7 +11,7 @@
     options_for_select(['calendario', 'arquivo'], selected: @home_element.properties["card_icon"])
   %>
 
-  <div id="dynamic__inputs-container" items="<%= @home_element.properties["items"].to_json %>"></div>
+  <div id="dynamic__inputs-container" class="card" items="<%= @home_element.properties["items"].to_json %>"></div>
   
   <button class="button" id="add-form-button"> 
     Adicionar Card
@@ -65,6 +65,7 @@
         newForm.innerHTML = `
           <div class="card-divider">
             <h2 class="card-title">Card #${index + 1}</h2>
+            <button class="remove_dynamic_form button small alert hollow">Remover</button>
           </div>
           <div class="card-section">
             <label for="items_${index}_title">
@@ -81,9 +82,23 @@
             </label>
           </div>
         `;
+
+        newForm.querySelector('.remove_dynamic_form').addEventListener('click', (event) => {
+          event.preventDefault();
+          removeForm(newForm);
+        });
+
         container.appendChild(newForm);
       });
-    }
+    };
+
+    const removeForm = (form) => {
+      form.remove();
+      container.setAttribute('items', JSON.stringify(items));
+      container.querySelectorAll('.card-title').forEach((title, index) => {
+        title.innerHTML = `Card #${index + 1}`;
+      });
+    };
 
     if(items) {
       addExistingItems(items);
