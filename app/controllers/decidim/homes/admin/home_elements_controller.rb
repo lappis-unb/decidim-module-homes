@@ -32,6 +32,13 @@ module Decidim
           home_element_id = params[:id]
           properties = params[:home_elements][:properties]
 
+          if params[:items]
+            properties[:items] = []
+            params[:items].each do |_key, value|
+              properties[:items].push({ 'title' => value['title'], 'link' => value['link'], 'icon' => value['icon'] })
+            end
+          end
+
           Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
             on(:ok) do
               flash[:notice] = "Elemento atualizado com sucesso"

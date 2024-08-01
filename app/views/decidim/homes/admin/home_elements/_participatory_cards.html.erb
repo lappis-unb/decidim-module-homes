@@ -10,4 +10,50 @@
     participatory_cards_form.select :card_icon,
     options_for_select(['calendario', 'arquivo'], selected: @home_element.properties["card_icon"])
   %>
+
+  <div id="dynamic__inputs-container"></div>
+  
+  <button class="button" id="add-form-button"> 
+    Adicionar Card
+  </button>
 <% end %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('dynamic__inputs-container');
+    const button = document.getElementById('add-form-button');
+
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      addForm();
+    });
+
+    const addForm = () => {
+      const formCount = container.childElementCount;
+      const newForm = document.createElement('div');
+      newForm.classList.add('dynamic-form');
+
+      newForm.innerHTML = `
+        <div class="card-divider">
+          <h2 class="card-title">Card #${formCount + 1}</h2>
+        </div>
+        <div class="card-section">
+          <label for="items_${formCount}_title">
+            Título
+            <input type="text" name="items[${formCount}][title]" id="items_${formCount}_title" />
+          </label>
+          <label for="items_${formCount}_link">
+            Link
+            <input type="text" name="items[${formCount}][link]" id="items_${formCount}_link" />
+          </label>
+          <label for="items_${formCount}_icon">Ícone
+            <input type="text" name="items[${formCount}][icon]" id="items_${formCount}_icon" />
+            <span class="help-text">Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file</span>
+          </label>
+        </div>
+      `;
+
+      container.appendChild(newForm);
+    };
+  });
+</script>
