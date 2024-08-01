@@ -17,7 +17,14 @@
     cta_form.text_field :link,
     label: "Link",
     value: @home_element.properties['link'],
-    placeholder: "Adicionar link (reunião ou youtube)"
+    placeholder: "Adicionar link (imagem ou youtube)"
+  %>
+
+  <%=
+    cta_form.text_field :button_link,
+    label: "Link do botão",
+    value: @home_element.properties['button_link'],
+    placeholder: "Preencha o link que o botão ira levar o usuário"
   %>
 
   <%=
@@ -29,13 +36,13 @@
 
   <%=
     cta_form.check_box :reverse,
-    label: "Inverter imagem e texto",
+    label: "Mostrar imagem a direita do texto",
     checked: @home_element.properties['reverse'].to_i == 1
   %>
 
   <%= 
     cta_form.check_box :button_style,
-    label: "Estilo do botão",
+    label: "Estilo do botão (primário ou secundário)",
     checked: @home_element.properties['button_style'].to_i == 1
   %>
 <% end %>
