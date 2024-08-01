@@ -1,5 +1,5 @@
 <div class="br-container-lg menu-container-space">
-  <%= safe_join(@home.try(:field_orders)&.map do |field|
+  <%= safe_join(@home.try(:home_elements)&.map do |field|
     render_field_partial(field, @home, main_app, current_participatory_space, @organizers, @supporters)
   end.compact) %>
 </div>

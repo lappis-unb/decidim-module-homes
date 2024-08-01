@@ -32,7 +32,7 @@ module Decidim
         if config
           render partial: config[:partial], locals: config[:locals].call(home, main_app, current_participatory_space, organizers, supporters)
         else
-          render partial: field
+          render partial: field.element_type, locals: { properties: field.properties }
         end
       rescue ActionView::MissingTemplate
         nil
