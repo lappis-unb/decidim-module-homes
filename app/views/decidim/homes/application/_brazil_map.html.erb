@@ -7,7 +7,7 @@
   </div>
   <div id="region-meetings-map-container" class="region-meetings"
         data-process="<%= current_participatory_space.slug%>"
-        data-meetings-path="<%= main_app.get_all_meetings_of_a_participatory_process_path(slug: current_participatory_space.slug, meeting_id: @home.meeting_id ) %>">
+        data-meetings-path="<%= main_app.get_all_meetings_of_a_participatory_process_path(slug: current_participatory_space.slug, meeting_id: properties['meeting_id'] ) %>">
     <div id="regions" class="regions-map">
       <div id="br_mine"></div>
     </div>

@@ -1,5 +1,5 @@
-<% action_url = '/' %>
-<div class="call_to_action-container <%= @home.reverse_call_to_action ? 'reverse' : '' %>">
+<% action_url = properties['link'] %>
+<div class="call_to_action-container <%= properties['reverse'] ? 'reverse' : '' %>">
   <% if action_url.include?('youtube') %>
     <div class="action_img-container">
       <iframe 
@@ -17,9 +17,9 @@
   <% end %>
   <div class="action_content-container">
     <div class="action_content-text">
-      <h2 class="action_title"><%= @home.emphasis_title %></h2>
-      <p class="action_text"><%= @home.emphasis_subtitle %></p>
+      <h2 class="action_title"><%= properties['title'] %></h2>
+      <p class="action_text"><%= properties['text'] %></p>
     </div>
-    <%= link_to(@home.emphasis_button_text, @home.emphasis_link, class: "br-button primary action_link") %>
+    <%= link_to(properties['button_text'], properties['link'], class: "br-button primary action_link") %>
   </div>
 </div>
