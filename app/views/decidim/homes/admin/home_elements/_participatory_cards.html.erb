@@ -1,14 +1,8 @@
 <%= f.fields_for :properties do |participatory_cards_form| %>
   <%=
-    participatory_cards_form.text_field :card_text,
-    label: "Texto do Card",
-    value: @home_element.properties["card_text"],
-    help_text: "Texto que aparece no card"
-  %>
-
-  <%= 
-    participatory_cards_form.select :card_icon,
-    options_for_select(['calendario', 'arquivo'], selected: @home_element.properties["card_icon"])
+    participatory_cards_form.text_field :title,
+    label: "Título da seção",
+    value: @home_element.properties["card_title"]
   %>
 
   <div id="dynamic__inputs-container" class="card" items="<%= @home_element.properties["items"].to_json %>"></div>
