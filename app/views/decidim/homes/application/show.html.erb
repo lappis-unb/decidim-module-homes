@@ -1,7 +1,5 @@
 <div class="br-container-lg menu-container-space">
-  <%= safe_join(@home.try(:home_elements)&.map do |field|
-    render_field_partial(field, @home, main_app, current_participatory_space, @organizers, @supporters)
-  end.compact) %>
+  <%= safe_join(@elements.all.map { |element| render partial: "#{element.element_type}", locals: { properties: element.properties } }) %>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
