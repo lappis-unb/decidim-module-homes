@@ -8,29 +8,36 @@ module Decidim
       PARTIALS_MAPPING = {
         'brazil_map' => {
           partial: 'brazil_map',
-          locals: lambda { |home, main_app, current_participatory_space, _organizers, _supporters|
-            { has_map: home.meetings_map, main_app: main_app, current_participatory_space: current_participatory_space }
+          locals: lambda { |home, main_app, current_participatory_space, _organizers, _supporters, properties|
+            { has_map: home.meetings_map, main_app: main_app, current_participatory_space: current_participatory_space, properties: properties }
           }
         },
         'logos_section' => {
           partial: 'logos_section',
-          locals: lambda { |_home, _main_app, _current_participatory_space, organizers, supporters|
+          locals: lambda { |_home, _main_app, _current_participatory_space, organizers, supporters, _properties|
             { organizers: organizers, supporters: supporters }
           }
         },
         'news' => {
           partial: 'news',
-          locals: lambda { |home, _main_app, _current_participatory_space, _organizers, _supporters|
-            { title: "noticias", desc_button: "Ver todas as noticias", highlight_latest: true, id_component: home.news_id }
+          locals: lambda { |_home, _main_app, _current_participatory_space, _organizers, _supporters, properties|
+            { title: "noticias", desc_button: "Ver todas as noticias", highlight_latest: true, properties: properties }
           }
         }
       }.freeze
 
       def render_field_partial(field, home, main_app, current_participatory_space, organizers, supporters)
-        config = PARTIALS_MAPPING[field]
+        config = PARTIALS_MAPPING[field.element_type]
 
         if config
-          render partial: config[:partial], locals: config[:locals].call(home, main_app, current_participatory_space, organizers, supporters)
+          render partial: config[:partial], locals: config[:locals].call(
+            home,
+            main_app,
+            current_participatory_space,
+            organizers,
+            supporters,
+            field.properties
+          )
         else
           render partial: field.element_type, locals: { properties: field.properties }
         end
