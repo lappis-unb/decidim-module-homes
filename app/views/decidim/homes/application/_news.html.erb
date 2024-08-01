@@ -1,10 +1,10 @@
-<% news_data = fetch_news_data(id_component, highlight_latest) %>
+<% news_data = fetch_news_data(properties["news_id"], properties["highlight_latest"]) %>
 
 <section id="news-home-section" class="home-sections-container">
   <h2><%= title %></h2>
   <div class="home-sections-content">
     <% if news_data.present? %>
-      <% href = "/processes/#{current_participatory_space.slug}/f/#{id_component}" %>
+      <% href = "/processes/#{current_participatory_space.slug}/f/#{properties["news_id"]}" %>
 
       <% if highlight_latest %>
         <% highlighted_new = news_data.first %>

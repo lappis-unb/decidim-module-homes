@@ -1,4 +1,15 @@
-<% @carousel_items = home_carousel %>
+<% @carousel_items = [] %>
+
+<% properties["links"].split(',').each_with_index do |link, index| %>
+  <% @carousel_items.push({
+    link: '',
+    image_url: link,
+    desktop_image_url: link,
+    alt_text: '',
+    step_info: '',
+    active: index == 0 ? true : false
+  })%>
+<% end %>
 
 <section class="br-container-lg br-carousel-container">
   <div class="br-col-sm-12">

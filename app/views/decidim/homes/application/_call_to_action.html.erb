@@ -5,7 +5,7 @@
       <iframe 
         class="home__video-iframe" 
         src="" 
-        video_url="<%= action_url %>" 
+        video_url="<%= properties["link"] %>" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
@@ -13,7 +13,7 @@
       </iframe>
     </div>
   <% else %>
-    <div class="action_img-container" style="background-image: url('<%= action_url %>')"></div>
+    <div class="action_img-container" style="background-image: url('<%= properties["link"] %>')"></div>
   <% end %>
   <div class="action_content-container">
     <div class="action_content-text">
