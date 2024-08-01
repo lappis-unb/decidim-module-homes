@@ -4,7 +4,7 @@
     <div class="participatory_cards-info">
       <h2 class="participatory_cards-title">Participe</h2>
       <div class="cards_info-container">
-        <% properties["items"].each do |card| %>
+        <% properties["items"].try(:each) do |card| %>
           <div class="cards_info-content">
             <div class="cards_icon-container">
               <i class="fa-solid <%= card["icon"] %>"></i>
