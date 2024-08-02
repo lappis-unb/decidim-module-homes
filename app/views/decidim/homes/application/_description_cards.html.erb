@@ -1,14 +1,16 @@
 <div class="description_cards-container">
-  <h2>Título da seção</h2>
+  <h2><%= properties["title"] %></h2>
   <div class="description_cards">
-    <div class="description_card">
-      <h4 class="desc_card_label">Eixo 1</h4>
-      <h3 class="desc_card_title">
-        Determinantes estruturais e macrodesafios para a soberania e segurança alimentar e nutricional
-      </h3>
-      <p class="desc_card_text">
-        Por um desenvolvimento socioeconômico sustentável, solidário e justo que enfrente os determinantes estruturais da(s) fome(s), promova Soberania e Segurança Alimentar e Nutricional, garanta a superação das desigualdades, dos racismos e do patriarcado, e promova justiça socioambiental, econômica, política e cultural do âmbito local ao global.
-      </p>
-    </div>
+    <% properties["items"].try(:each) do |card| %>
+      <div class="description_card">
+        <h4 class="desc_card_label"><%= card["label"] %></h4>
+        <h3 class="desc_card_title">
+          <%= card["title"] %>
+        </h3>
+        <p class="desc_card_text">
+          <%= card["description"] %>
+        </p>
+      </div>
+    <% end %>
   </div>
 </div>

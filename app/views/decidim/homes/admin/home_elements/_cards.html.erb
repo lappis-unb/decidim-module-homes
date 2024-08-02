@@ -5,6 +5,11 @@
     value: @home_element.properties["title"]
   %>
 
+  <%= 
+    participatory_cards_form.hidden_field :type, 
+    value: @home_element.element_type
+  %>
+
   <div 
     id="dynamic__inputs-container" class="card"
     type="<%= @home_element.element_type %>"
@@ -58,9 +63,72 @@
             <button class="remove_dynamic_form button small alert hollow">Remover</button>
           </div>
           <div class="card-section">
+            <label for="items_${index}_label">
+              Label
+              <input type="text" name="items[${index}][label]" id="items_${index}_label" />
+              <span class="help-text">Texto que aparecerá no topo do card com fundo azul</span>
+            </label>
             <label for="items_${index}_title">
               Título
               <input type="text" name="items[${index}][title]" id="items_${index}_title" />
+              <span class="help-text">Título do card</span>
+            </label>
+            <label for="items_${index}_description">
+              Descrição
+              <textarea name="items[${index}][description]" id="items_${index}_description"></textarea>
+              <span class="help-text">Texto que estará no corpo do card</span>
+            </label>
+          </div>
+        `;
+      }
+
+      return html;
+    }
+
+    const getExistingFormHtml = (cardType, index, item) => {
+      let html = null;
+      if (cardType === 'participatory_cards') {
+        html = `
+          <div class="card-divider">
+            <h2 class="card-title">Card #${index + 1}</h2>
+            <button class="remove_dynamic_form button small alert hollow">Remover</button>
+          </div>
+          <div class="card-section">
+            <label for="items_${index}_title">
+              Título
+              <input type="text" name="items[${index}][title]" id="items_${index}_title" value="${item["title"]}" />
+            </label>
+            <label for="items_${index}_link">
+              Link
+              <input type="text" name="items[${index}][link]" id="items_${index}_link" value="${item["link"]}" />
+            </label>
+            <label for="items_${index}_icon">Ícone
+              <input type="text" name="items[${index}][icon]" id="items_${index}_icon" value="${item["icon"]}" />
+              <span class="help-text">Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file</span>
+            </label>
+          </div>
+        `;
+      } else if (cardType === 'description_cards') {
+        html = `
+          <div class="card-divider">
+            <h2 class="card-title">Card #${index + 1}</h2>
+            <button class="remove_dynamic_form button small alert hollow">Remover</button>
+          </div>
+          <div class="card-section">
+            <label for="items_${index}_label">
+              Label
+              <input type="text" name="items[${index}][label]" id="items_${index}_label" value="${item["label"]}" />
+              <span class="help-text">Texto que aparecerá no topo do card com fundo azul</span>
+            </label>
+            <label for="items_${index}_title">
+              Título
+              <input type="text" name="items[${index}][title]" id="items_${index}_title" value="${item["title"]}" />
+              <span class="help-text">Título do card</span>
+            </label>
+            <label for="items_${index}_description">
+              Descrição
+              <textarea name="items[${index}][description]" id="items_${index}_description">${item["description"]}</textarea>
+              <span class="help-text">Texto que estará no corpo do card</span>
             </label>
           </div>
         `;
@@ -89,26 +157,7 @@
         const newForm = document.createElement('div');
         newForm.classList.add('dynamic-form');
 
-        newForm.innerHTML = `
-          <div class="card-divider">
-            <h2 class="card-title">Card #${index + 1}</h2>
-            <button class="remove_dynamic_form button small alert hollow">Remover</button>
-          </div>
-          <div class="card-section">
-            <label for="items_${index}_title">
-              Título
-              <input type="text" name="items[${index}][title]" id="items_${index}_title" value="${item["title"]}" />
-            </label>
-            <label for="items_${index}_link">
-              Link
-              <input type="text" name="items[${index}][link]" id="items_${index}_link" value="${item["link"]}" />
-            </label>
-            <label for="items_${index}_icon">Ícone
-              <input type="text" name="items[${index}][icon]" id="items_${index}_icon" value="${item["icon"]}" />
-              <span class="help-text">Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file</span>
-            </label>
-          </div>
-        `;
+        newForm.innerHTML = getExistingFormHtml(cardType, index, item);
 
         newForm.querySelector('.remove_dynamic_form').addEventListener('click', (event) => {
           event.preventDefault();
