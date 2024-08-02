@@ -14,12 +14,21 @@
   margin: 0;
 }
 
+.description_cards {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
 .description_card {
   display: flex;
   flex-direction: column;
   background-color: var(--gray-1);
   max-width: 369px;
   min-width: 280px;
+  width: auto;
   gap: 1rem;
 }
 
@@ -48,8 +57,26 @@
 .desc_card_text {
   font-size: var(--font-size-scale-base);
   font-weight: var(--font-weight-regular);
+  color: var(--pure-100);
   padding: 0 1rem;
   line-height: 19.38px;
   text-align: left;
   margin: 0;
+}
+
+@media(max-width: 768px) {
+  .description_cards-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .description_cards {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    padding-bottom: 1rem;
+  }
+
+  .description_card {
+    width: 280px;
+  }
 }
