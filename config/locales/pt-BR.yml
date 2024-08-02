@@ -11,25 +11,25 @@ pt-BR:
         update: "%{user_name} atualizou a página %{resource_name} em %{space_name}"
     components:
       header:
-        name: "HeaderComponent" 
+        name: "Header" 
       news:
-        name: "NewsComponent"
+        name: "Notícias"
       brazil_map:
-        name: "BrazilMapComponent"
+        name: "Mapa do Brasil"
       call_to_action:
-        name: "CallToActionComponent"
+        name: "Chamada a Ação"
       carrossel:
-        name: "CarrosselComponent"
+        name: "Carrossel"
       featured_news:
-        name: "FeaturedNewsComponent"
+        name: "Notícias em Destaque"
       logos_section:
-        name: "LogosSectionComponent"
+        name: "Apoiadores e Organizadores"
       participatory_cards:
-        name: "ParticipatoryCardsComponent"
+        name: "Cards Participativos"
       description_cards:
-        name: "DescriptionCardsComponent"
+        name: "Cards Descritivos"
       steps:
-        name: "StepsComponent"
+        name: "Etapas do processo"
       homes:
         name: Página Inicial
         settings:
