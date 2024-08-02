@@ -5,7 +5,11 @@
     value: @home_element.properties["title"]
   %>
 
-  <div id="dynamic__inputs-container" class="card" items="<%= @home_element.properties["items"].to_json %>"></div>
+  <div 
+    id="dynamic__inputs-container" class="card"
+    type="<%= @home_element.element_type %>"
+    items="<%= @home_element.properties["items"].to_json %>"
+  ></div>
   
   <button class="button" id="add-form-button"> 
     Adicionar Card
@@ -16,6 +20,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('dynamic__inputs-container');
     const items = JSON.parse(container.getAttribute('items'));
+    const cardType = container.getAttribute('type');
     const button = document.getElementById('add-form-button');
 
     button.addEventListener('click', (event) => {
@@ -23,30 +28,58 @@
       addForm();
     });
 
+    const getFormHtml = (cardType, index) => {
+      let html = null;
+      if (cardType === 'participatory_cards') {
+        html = `
+          <div class="card-divider">
+            <h2 class="card-title">Card #${index + 1}</h2>
+            <button class="remove_dynamic_form button small alert hollow">Remover</button>
+          </div>
+          <div class="card-section">
+            <label for="items_${index}_title">
+              Título
+              <input type="text" name="items[${index}][title]" id="items_${index}_title" />
+            </label>
+            <label for="items_${index}_link">
+              Link
+              <input type="text" name="items[${index}][link]" id="items_${index}_link" />
+            </label>
+            <label for="items_${index}_icon">Ícone
+              <input type="text" name="items[${index}][icon]" id="items_${index}_icon" />
+              <span class="help-text">Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file</span>
+            </label>
+          </div>
+        `;
+      } else if (cardType === 'description_cards') {
+        html = `
+          <div class="card-divider">
+            <h2 class="card-title">Card #${index + 1}</h2>
+            <button class="remove_dynamic_form button small alert hollow">Remover</button>
+          </div>
+          <div class="card-section">
+            <label for="items_${index}_title">
+              Título
+              <input type="text" name="items[${index}][title]" id="items_${index}_title" />
+            </label>
+          </div>
+        `;
+      }
+
+      return html;
+    }
+
     const addForm = () => {
       const formCount = container.childElementCount;
       const newForm = document.createElement('div');
       newForm.classList.add('dynamic-form');
 
-      newForm.innerHTML = `
-        <div class="card-divider">
-          <h2 class="card-title">Card #${formCount + 1}</h2>
-        </div>
-        <div class="card-section">
-          <label for="items_${formCount}_title">
-            Título
-            <input type="text" name="items[${formCount}][title]" id="items_${formCount}_title" />
-          </label>
-          <label for="items_${formCount}_link">
-            Link
-            <input type="text" name="items[${formCount}][link]" id="items_${formCount}_link" />
-          </label>
-          <label for="items_${formCount}_icon">Ícone
-            <input type="text" name="items[${formCount}][icon]" id="items_${formCount}_icon" />
-            <span class="help-text">Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file</span>
-          </label>
-        </div>
-      `;
+      newForm.innerHTML = getFormHtml(cardType, formCount);
+
+      newForm.querySelector('.remove_dynamic_form').addEventListener('click', (event) => {
+        event.preventDefault();
+        removeForm(newForm);
+      });
 
       container.appendChild(newForm);
     };
