@@ -14,7 +14,8 @@ module Decidim
           OpenStruct.new(name: "carrossel"),
           OpenStruct.new(name: "logos_section"),
           OpenStruct.new(name: "participatory_cards"),
-          OpenStruct.new(name: "steps")
+          OpenStruct.new(name: "steps"),
+          OpenStruct.new(name: "description_cards")
         ]
       end
 

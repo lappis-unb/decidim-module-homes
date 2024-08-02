@@ -26,6 +26,8 @@ pt-BR:
         name: "LogosSectionComponent"
       participatory_cards:
         name: "ParticipatoryCardsComponent"
+      description_cards:
+        name: "DescriptionCardsComponent"
       steps:
         name: "StepsComponent"
       homes:

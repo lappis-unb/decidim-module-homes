@@ -2,7 +2,7 @@
   <%=
     participatory_cards_form.text_field :title,
     label: "Título da seção",
-    value: @home_element.properties["card_title"]
+    value: @home_element.properties["title"]
   %>
 
   <div id="dynamic__inputs-container" class="card" items="<%= @home_element.properties["items"].to_json %>"></div>
