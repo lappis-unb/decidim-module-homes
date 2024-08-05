@@ -1,0 +1,15 @@
+<%= f.fields_for :properties do |featured_news_form| %>
+  <%=
+    featured_news_form.number_field :news_id,
+    label: "Id do componente notícias",
+    value: @home_element.properties["news_id"],
+    placeholder: "Preencha o id do componente"
+  %>
+
+  <%= 
+    featured_news_form.text_field :url,
+    label: "Url do componente notícias",
+    value: @home_element.properties['url'],
+    placeholder: "Preencha a url do componente"
+  %>
+<% end %>

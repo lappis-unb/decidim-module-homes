@@ -1,0 +1,8 @@
+<%= f.fields_for :properties do |logos_section_form| %>
+  <%=
+    logos_section_form.text_field :links,
+    label: "Links",
+    value: @home_element.properties["links"],
+    help_text: "Preencha com os links para as logosseparados por vírgula. Exemplo: https://www.google.com, https://www.google.com"
+  %>
+<% end %>

@@ -1,0 +1,16 @@
+<div class="description_cards-container">
+  <h2><%= properties["title"] %></h2>
+  <div class="description_cards">
+    <% properties["items"].try(:each) do |card| %>
+      <div class="description_card">
+        <h4 class="desc_card_label"><%= card["label"] %></h4>
+        <h3 class="desc_card_title">
+          <%= card["title"] %>
+        </h3>
+        <p class="desc_card_text">
+          <%= card["description"] %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>

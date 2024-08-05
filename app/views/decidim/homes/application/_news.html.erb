@@ -1,12 +1,12 @@
-<% news_data = fetch_news_data(id_component, highlight_latest) %>
+<% news_data = fetch_news_data(properties["news_id"], properties["highlight_latest"]) %>
 
 <section id="news-home-section" class="home-sections-container">
-  <h2><%= title %></h2>
+  <h2>Notícias</h2>
   <div class="home-sections-content">
     <% if news_data.present? %>
-      <% href = "/processes/#{current_participatory_space.slug}/f/#{id_component}" %>
+      <% href = "/processes/#{current_participatory_space.slug}/f/#{properties["news_id"]}" %>
 
-      <% if highlight_latest %>
+      <% if properties["highlight_latest"] %>
         <% highlighted_new = news_data.first %>
         <% image_url = highlighted_new.photo.present? ? highlighted_new.photo.url : "" %>
         <a class="main-news-card" href="<%= "#{href}/posts/#{highlighted_new.id}" %>">
@@ -22,7 +22,7 @@
 
       <div class="news-container">
         <% news_data.each_with_index do |post, index| %>
-          <% next if index == 0 && highlight_latest %>
+          <% next if index == 0 && properties["highlight_latest"] %>
           <% image_url = post.photo.present? ? post.photo.url : "" %>
           <a href="<%= "#{href}/posts/#{post.id}" %>" class="page-news-card">
             <img src="<%= image_url %>" alt="" class="news-img"/>
@@ -34,7 +34,7 @@
       </div>
 
       <div class="centered-content">
-        <a href="<%= href %>" class="br-button secondary"><%= desc_button %></a>
+        <a href="<%= href %>" class="br-button secondary">Ver mais notícias</a>
       </div>
     <% else %>
       <div class="page-news-error">

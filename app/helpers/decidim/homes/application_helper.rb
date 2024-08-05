@@ -5,6 +5,20 @@ module Decidim
     # Custom helpers, scoped to the homes engine.
     #
     module ApplicationHelper
+      def initial_page_components
+        @initial_page_components ||= [
+          OpenStruct.new(name: "header"),
+          OpenStruct.new(name: "news"),
+          OpenStruct.new(name: "brazil_map"),
+          OpenStruct.new(name: "call_to_action"),
+          OpenStruct.new(name: "carrossel"),
+          OpenStruct.new(name: "logos_section"),
+          OpenStruct.new(name: "participatory_cards"),
+          OpenStruct.new(name: "steps"),
+          OpenStruct.new(name: "description_cards")
+        ]
+      end
+
       def home_carousel
         [
           {
@@ -35,22 +49,19 @@ module Decidim
       end
 
       def fetch_news_data(id_component, highlight_latest = false)
-
         highlight_latest_news_limit = 4
         regular_news_limit = 3
 
-        component = Decidim::Component.where(id: id_component).first 
+        component = Decidim::Component.where(id: id_component).first
 
         limit = highlight_latest ? highlight_latest_news_limit : regular_news_limit
 
         return [] unless component
-    
+
         Decidim::Blogs::Post
           .where(decidim_component_id: component.id)
           .order(created_at: :desc)
           .limit(limit)
-        
-
       end
     end
   end

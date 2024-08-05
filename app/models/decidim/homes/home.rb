@@ -10,22 +10,15 @@ module Decidim
       include Decidim::Traceable
       include Decidim::Loggable
 
+      has_many :home_elements, dependent: :destroy, class_name: "Decidim::Homes::HomeElements", foreign_key: "decidim_homes_home_id"
       component_manifest_name "homes"
 
-      attribute :statistics, :boolean, default: false
       attribute :digital_stage, :string, default: '/'
       attribute :organize_stage, :string, default: '/'
       attribute :schedule, :string, default: '/'
       attribute :common_questions, :string, default: '/'
       attribute :support_material, :string, default: '/'
-      attribute :news, :boolean, default: false
-      attribute :news_id, :integer
-      attribute :news_posts, :jsonb, default: []
-      attribute :meetings_map, :boolean, default: false
-
-      mount_uploader :banner, Decidim::Homes::ImageUploader, default: ''
-      mount_uploaders :organizers, Decidim::Homes::ImageUploader, default: ''
-      mount_uploaders :supporters, Decidim::Homes::ImageUploader, default: ''
+      attribute :element_orders, :jsonb, default: []
 
       def self.log_presenter_class_for(_log)
         Decidim::Homes::AdminLog::HomePresenter

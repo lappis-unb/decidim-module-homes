@@ -13,6 +13,8 @@ module Decidim
       routes do
         post "/", to: "homes#update", as: :home
         root to: "homes#edit"
+
+        resources :home_elements, only: [:new, :edit, :update, :destroy]
       end
 
       def load_seed

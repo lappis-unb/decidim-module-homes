@@ -1,57 +1,29 @@
-<%= render partial: 'hero' %>
-
-<%= render partial: 'call_to_action' %>
-
-<%= render partial: 'brazil_map', locals: {
-  has_map: @home.meetings_map,
-  main_app: main_app,
-  current_participatory_space: current_participatory_space
-} %>
-
-<%= render partial: 'news', locals: { 
-  title: "noticias", 
-  desc_button: "Ver todas as noticias",
-  highlight_latest: true,
-  id_component: 34,
-} %>
-
-
-<%= render partial: 'steps' %>
-
-<%= render partial: 'carrosel'%>
-
-<%= render partial: 'participatory-cards' %>
-
-<%= render partial: 'logos_section', locals: {
-  organizers: @organizers,
-  supporters: @supporters
-} %>
-
-<%= render partial: 'featured_news' %>
-
-<%= render partial: 'basic_logos_section' %>
-
+<div class="br-container-lg menu-container-space">
+  <% element_orders = @home.element_orders %>
+  <% sorted_elements = @elements.all.sort_by { |element| element_orders.index(element.id.to_s) || Float::INFINITY } %>
+  <%= safe_join(sorted_elements.map { |element| render partial: "#{element.element_type}", locals: { properties: element.properties } }) %>
+</div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     let iframes = document.getElementsByClassName('home__video-iframe');
 
-    if (iframes){
+    if (iframes) {
       for (let i = 0; i < iframes.length; i++) {
         let iframe = iframes[i];
         let video_url = iframe.getAttribute('video_url');
-        if (video_url){
+        if (video_url) {
           iframe.src = getYoutubeUrl(video_url);
         }
       }
     }
-    // Function to get a youtube url and transform it on iframe
+
     function getYoutubeUrl(url) {
-        const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})(?:\S+)?/;
-        const match = url.match(youtubeRegex);
-        if (match && match[1]) {
+      const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([\w-]{11})(?:\S+)?/;
+      const match = url.match(youtubeRegex);
+      if (match && match[1]) {
         return `https://www.youtube.com/embed/${match[1]}`;
-        }
-        return null;
+      }
+      return null;
     }
   });
 </script>

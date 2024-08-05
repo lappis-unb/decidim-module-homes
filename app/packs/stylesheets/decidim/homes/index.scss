@@ -9,6 +9,7 @@
 @import "steps";
 @import "carousel";
 @import "participatory_cards";
+@import "description_cards";
 
 .section-card-title {
   color: var(--blue-warm-vivid-80);
@@ -132,4 +133,10 @@
 }
 .home-sections-container:first-child {
   padding-top: 0;
+}
+
+.menu-container-space {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }

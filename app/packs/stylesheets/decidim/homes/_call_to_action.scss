@@ -16,7 +16,7 @@
   background-repeat: no-repeat;
   border-radius: 0.5rem;
   width: 50%;
-  height: auto;
+  height: 20rem;
 }
 
 .action_img-container .home__video-iframe {
@@ -79,4 +79,17 @@
   .action_content-container .action_link {
     width: 100%;
   }
+}
+
+.action_img_content {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
 }

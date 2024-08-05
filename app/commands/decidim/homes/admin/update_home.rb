@@ -28,21 +28,12 @@ module Decidim
         private
 
         def update_home
+          element_orders = @form.element_orders.flatten.first.split(',')
+
           Decidim.traceability.update!(
             @home,
             @form.current_user,
-            banner: @form.banner,
-            digital_stage: @form.digital_stage,
-            organize_stage: @form.organize_stage,
-            schedule: @form.schedule,
-            common_questions: @form.common_questions,
-            support_material: @form.support_material,
-            statistics: @form.statistics,
-            news: @form.news,
-            news_id: @form.news_id || decidim_blogs_placeholder,
-            organizers: @form.organizers,
-            supporters: @form.supporters,
-            meetings_map: @form.meetings_map
+            element_orders: element_orders
           )
         end
 

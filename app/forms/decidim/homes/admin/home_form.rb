@@ -5,18 +5,7 @@ module Decidim
     module Admin
       # This class holds a Form to update homes from Decidim's admin panel.
       class HomeForm < Decidim::Form
-        attribute :statistics, Boolean, default: false
-        attribute :digital_stage, String, default: '/'
-        attribute :organize_stage, String, default: '/'
-        attribute :schedule, String, default: '/'
-        attribute :common_questions, String, default: '/'
-        attribute :support_material, String, default: '/'
-        attribute :news, Boolean, default: false
-        attribute :news_id, Integer
-        attribute :banner, ImageUploader, default: ''
-        attribute :organizers, ImageUploader, default: ''
-        attribute :supporters, ImageUploader, default: ''
-        attribute :meetings_map, Boolean, default: false
+        attribute :element_orders, Array[String], default: []
       end
     end
   end

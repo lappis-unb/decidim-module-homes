@@ -1,18 +1,11 @@
-<% action_title = 'Título da Conferência em Destaque' %>
-<% action_text = 'Morbi cursus bibendum sagittis. Mauris in arcu cursus, placerat purus nec, ultricies elit. Praesent laoreet vehicula urna, quis iaculis metus efficitur a. Maecenas eu dolor eu erat auctor auctor. In facilisis mattis lorem ullamcorper viverra.' %>
-<% action_link = '/' %>
-<% action_btn_text = 'CTA'%>
-<% primary_btn = true %>
-<% reversed = true %>
-<% action_url = '/' %>
-
-<div class="call_to_action-container <%= reversed ? 'reversed' : '' %> br-container-lg">
+<% action_url = properties['link'] %>
+<div class="call_to_action-container <%= properties['reverse'] ? 'reverse' : '' %>">
   <% if action_url.include?('youtube') %>
     <div class="action_img-container">
       <iframe 
         class="home__video-iframe" 
         src="" 
-        video_url="<%= action_url %>" 
+        video_url="<%= properties["link"] %>" 
         frameborder="0" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
         allowfullscreen
@@ -20,14 +13,13 @@
       </iframe>
     </div>
   <% else %>
-    <div class="action_img-container" style="background-image: url('<%= action_url %>')"></div>
+    <div class="action_img-container" style="background-image: url('<%= properties["link"] %>')"></div>
   <% end %>
-
   <div class="action_content-container">
     <div class="action_content-text">
-      <h2 class="action_title"><%= action_title %></h2>
-      <p class="action_text"><%= action_text %></p>
+      <h2 class="action_title"><%= properties['title'] %></h2>
+      <p class="action_text"><%= properties['text'] %></p>
     </div>
-    <%= link_to(action_btn_text, action_link, class: "br-button #{primary_btn ? "primary" : "secondary black-and-white-btn"} action_link") %>
+    <%= link_to(properties['button_text'], properties['link'], class: "br-button primary action_link") %>
   </div>
 </div>

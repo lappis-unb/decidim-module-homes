@@ -10,6 +10,26 @@ pt-BR:
       home:
         update: "%{user_name} atualizou a página %{resource_name} em %{space_name}"
     components:
+      header:
+        name: "Header" 
+      news:
+        name: "Notícias"
+      brazil_map:
+        name: "Mapa do Brasil"
+      call_to_action:
+        name: "Chamada a Ação"
+      carrossel:
+        name: "Carrossel"
+      featured_news:
+        name: "Notícias em Destaque"
+      logos_section:
+        name: "Apoiadores e Organizadores"
+      participatory_cards:
+        name: "Cards Participativos"
+      description_cards:
+        name: "Cards Descritivos"
+      steps:
+        name: "Etapas do processo"
       homes:
         name: Página Inicial
         settings:
@@ -17,6 +37,8 @@ pt-BR:
             announcement: Anúncio
           step:
             announcement: Anúncio
+            header_title: Título do header
+            header_subtitle: Subtítulo do header
     homes:
       admin:
         models:

@@ -1,0 +1,8 @@
+<%= f.fields_for :properties do |brazil_map_form| %>
+  <%= 
+    brazil_map_form.number_field :meeting_id,
+    label: "ID do componente eventos",
+    value: @home_element.properties['meeting_id'],
+    placeholder: "Preencha o id do componente"
+  %>
+<% end %>

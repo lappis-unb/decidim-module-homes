@@ -1,39 +1,34 @@
-<% if has_map %>
-    <div class="br-container-lg">
-        <div class="meeting-map-header">
-        <span id="meetings-map-title" class="meeting-map-title">
-            <%= t("decidim.participatory_processes.participatory_processes.region_meetings.meeting_map_title")%>
-        </span>
-        </div>
-        <div id="region-meetings-map-container" class="region-meetings"
+  
+<div>
+  <div class="meeting-map-header">
+    <span id="meetings-map-title" class="meeting-map-title">
+      <%= t("decidim.participatory_processes.participatory_processes.region_meetings.meeting_map_title")%>
+    </span>
+  </div>
+  <div id="region-meetings-map-container" class="region-meetings"
         data-process="<%= current_participatory_space.slug%>"
-        data-meetings-path="<%= main_app.get_all_meetings_of_a_participatory_process_path(slug: current_participatory_space.slug) %>">
-        <div id="regions" class="regions-map">
-            <div id="br_mine"></div>
-        </div>
-
-        <span class="meetings-map-subtitle meeting-select-title">Selecione a região onde deseja procurar reuniões</span>
-
-        <select class="region-select" id="region-select">
-            <option>Selecione...</option>
-        </select>
-
-        <div class="meetings-list-section meetings-not-visible" id="meetings-list-section">
-            <span id="meetings-list-title" class="meetings-map-subtitle"></span>
-            <div class="br-input input-highlight region-search">
-                <input type="search" class="input-group-field"
+        data-meetings-path="<%= main_app.get_all_meetings_of_a_participatory_process_path(slug: current_participatory_space.slug, meeting_id: properties['meeting_id'] ) %>">
+    <div id="regions" class="regions-map">
+      <div id="br_mine"></div>
+    </div>
+    <span class="meetings-map-subtitle meeting-select-title">Selecione a região onde deseja procurar reuniões</span>
+    <select class="region-select" id="region-select">
+      <option>Selecione...</option>
+    </select>
+    <div class="meetings-list-section meetings-not-visible" id="meetings-list-section">
+      <span id="meetings-list-title" class="meetings-map-subtitle"></span>
+      <div class="br-input input-highlight region-search">
+        <input type="search" class="input-group-field"
                     placeholder="Qual reunião você procura?"
                     aria-label="Buscar" id="searchMeetings" name="filter[search_text_cont]">
-
-                <button class="br-button" type="submit" aria-label="Buscar">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                </button>
-                </div>
-                <div id="meetings-list" class="meetings-list"></div>
-            </div>
-        </div>
-        <span id="meetings-map-subtitle" class="meetings-map-subtitle web-title">
-            <%=t("decidim.participatory_processes.participatory_processes.region_meetings.meeting_map_subtitle")%>
-        </span>
+        <button class="br-button" type="submit" aria-label="Buscar">
+          <i class="fas fa-search" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="meetings-list" class="meetings-list"></div>
     </div>
-<% end %>
+  </div>
+  <span id="meetings-map-subtitle" class="meetings-map-subtitle web-title">
+    <%=t("decidim.participatory_processes.participatory_processes.region_meetings.meeting_map_subtitle")%>
+  </span>
+</div>

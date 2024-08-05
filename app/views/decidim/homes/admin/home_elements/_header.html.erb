@@ -1,0 +1,15 @@
+<%= f.fields_for :properties do |header_form| %>
+  <%=
+    header_form.text_field :title,
+    label: "Título",
+    value: @home_element.properties['title'],
+    placeholder: "Preencha o título"
+  %>
+
+  <%=
+    header_form.text_area :subtitle,
+    label: "Subtítulo",
+    value: @home_element.properties['subtitle'],
+    placeholder: "Preencha o subtítulo"
+  %>
+<% end %>

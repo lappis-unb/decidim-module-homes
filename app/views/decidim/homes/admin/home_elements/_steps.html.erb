@@ -1,0 +1,15 @@
+<%= f.fields_for :properties do |steps_form| %>
+  <%=
+    steps_form.text_field :title,
+    label: "Título",
+    value: @home_element.properties["title"],
+    placeholder: "Preencher título"
+  %>
+
+  <%=
+    steps_form.text_area :description,
+    label: "Descrição",
+    value: @home_element.properties["description"],
+    placeholder: "Preencher descrição"
+  %>
+<% end %>
