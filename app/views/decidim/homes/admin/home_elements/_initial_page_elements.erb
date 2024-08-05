@@ -2,7 +2,8 @@
   <div class="draggable-content">
     <%= t("#{element.element_type}.name", scope: "decidim.components") %>
     <div>
-      <%= link_to edit_home_element_path(element), method: :get, class: "button tiny hollow" do %>
+      <% logos = element.element_type == "logos_section" %>
+      <%= link_to logos ? "/admin/participatory_processes/#{request.path.split('/')[3]}/partners": edit_home_element_path(element), method: :get, class: "button tiny hollow" do %>
         <%= icon "pencil", role: "img", "aria-hidden": true %>
       <% end %>
       <%= link_to home_element_path(element.id), method: :delete, class: "button tiny alert", data: { confirm: "Você realmente deseja remover este elemento?" } do %>
