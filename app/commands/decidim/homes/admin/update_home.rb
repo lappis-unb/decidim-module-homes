@@ -28,10 +28,12 @@ module Decidim
         private
 
         def update_home
+          element_orders = @form.element_orders.flatten.first.split(',')
+
           Decidim.traceability.update!(
             @home,
             @form.current_user,
-            field_orders: @form.field_orders
+            element_orders: element_orders
           )
         end
 

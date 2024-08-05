@@ -1,5 +1,7 @@
 <div class="br-container-lg menu-container-space">
-  <%= safe_join(@elements.all.map { |element| render partial: "#{element.element_type}", locals: { properties: element.properties } }) %>
+  <% element_orders = @home.element_orders %>
+  <% sorted_elements = @elements.all.sort_by { |element| element_orders.index(element.id.to_s) || Float::INFINITY } %>
+  <%= safe_join(sorted_elements.map { |element| render partial: "#{element.element_type}", locals: { properties: element.properties } }) %>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {

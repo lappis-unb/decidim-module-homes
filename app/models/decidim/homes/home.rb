@@ -18,7 +18,7 @@ module Decidim
       attribute :schedule, :string, default: '/'
       attribute :common_questions, :string, default: '/'
       attribute :support_material, :string, default: '/'
-      attribute :field_orders, :jsonb, default: []
+      attribute :element_orders, :jsonb, default: []
 
       def self.log_presenter_class_for(_log)
         Decidim::Homes::AdminLog::HomePresenter

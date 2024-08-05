@@ -15,11 +15,13 @@
   <div class="cell small-6">
     <div class="card-section">
       <ul class="draggable-list js-connect js-list-availables">
-        <% @home.home_elements.each do |element| %>
+        <% element_orders = @home.element_orders %>
+        <% sorted_elements = @home.home_elements.sort_by { |element| element_orders.index(element.id.to_s) || Float::INFINITY } %>
+        <% sorted_elements.each do |element| %>
           <%= render partial: "decidim/homes/admin/home_elements/initial_page_elements", locals: { element: element } %>
         <% end %>
         <%= decidim_form_for(@form, url: home_path, method: :post, html: { class: "form edit_home" }) do |form| %>
-          <%= form.text_field :field_orders, value: @home.field_orders %>
+          <%= form.hidden_field :element_orders, value: @home.element_orders.try(:join, ','), id: "field_orders" %>
           <div class="button--double form-general-submit">
             <%= form.submit "Atualizar" %>
           </div>
@@ -30,99 +32,41 @@
 </div>
 <script>
   $(document).ready(function() {
-    $(".settings-section").hide();
+    $(".draggable-list").sortable({
+      connectWith: ".js-connect",
+      update: function(event, ui) {
+        var field_orders = $(".draggable-list-item").map(function() {
+          return $(this).data("id");
+        }).get();
 
-    $(".toggle-settings").on("click", function() {
-      $(".settings-section").slideToggle();
-    });
+        $("#field_orders").val(field_orders.join(',')); // Atualize o campo hidden com a ordem dos elementos
 
-    // Add an event listener to toggle the visibility of the news_id field
-    $(document).on("change", "#home_news", function () {
-      var newsIdField = $("#news-id-field");
+        var form = $(".edit_home");
+        var formData = form.serialize();
 
-      // Use jQuery to toggle the visibility of the news_id field
-      newsIdField.toggle($(this).is(":checked"));
-    });
-
-    $("#home_banner").on("change", function(e) {
-      showImagePreview(e.target.files[0], $(".banner-container"));
-    });
-
-    function showImagePreview(file, container) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        console.log(e.target);
-        container.html('<img class="banner-image" src="' + e.target.result + '" alt="Imagem"/>');
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function showImagePreviews(files, container) {
-      container.html("");
-      for (var i = 0; i < files.length; i++) {
-        showImagePreview(files[i], container);
+        $.ajax({
+          url: form.attr("action"),
+          method: "POST",
+          data: formData,
+          success: function(response) {
+            alert("Atualização bem-sucedida!");
+          },
+          error: function(xhr, status, error) {
+            alert("Ocorreu um erro: " + error);
+          }
+        });
       }
-    }
-
-    // Função para exibir e armazenar imagens no campo de entrada de arquivo oculto
-    function showAndStoreImages(files, container) {
-      container.html(""); // Limpa o contêiner antes de adicionar novas imagens
-
-      var uploadedImagesInput = $("#uploaded-images-input");
-      var existingImages = uploadedImagesInput.data("existing-images") || [];
-
-      for (var i = 0; i < files.length; i++) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-          container.append('<div class="image-preview"><img src="' + e.target.result + '" alt="Imagem"/><button class="remove-image">Remover</button></div>');
-        };
-        reader.readAsDataURL(files[i]);
-
-        existingImages.push(null); // Adiciona uma entrada nula para imagens recém-adicionadas
-      }
-
-      // Atualiza os dados do campo de entrada de arquivo oculto
-      uploadedImagesInput.val("");
-      uploadedImagesInput.data("existing-images", existingImages);
-    }
-
-    // Adiciona um evento de clique para remover imagens
-    $(document).on("click", ".remove-image", function() {
-      var index = $(this).parent().index();
-      var uploadedImagesInput = $("#uploaded-images-input");
-      var existingImages = uploadedImagesInput.data("existing-images");
-
-      if (index < existingImages.length) {
-        existingImages.splice(index, 1); // Remove a entrada correspondente
-        uploadedImagesInput.data("existing-images", existingImages);
-      }
-
-      $(this).parent().remove();
     });
-
-    // Adiciona um evento de envio do formulário para atualizar o campo de entrada de arquivo
-    $("form").on("submit", function() {
-      updateUploadedImagesInput();
-    });
-
-    // Função para atualizar o campo de entrada de arquivo com as imagens existentes
-    function updateUploadedImagesInput() {
-      var uploadedImagesInput = $("#uploaded-images-input");
-      var existingImages = uploadedImagesInput.data("existing-images") || [];
-
-      // Atualiza o valor do campo de entrada de arquivo com as imagens existentes
-      uploadedImagesInput.val(existingImages.filter(Boolean).join(","));
-    }
   });
 </script>
 <style>
   .banner-container,
   .supporters-container,
-  .organizers-container{
+  .organizers-container {
     margin: 5px;
   }
 
-  .form h3{
+  .form h3 {
     margin: 1rem;
   }
 </style>
