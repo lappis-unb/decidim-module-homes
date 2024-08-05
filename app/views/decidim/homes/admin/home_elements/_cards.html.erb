@@ -10,11 +10,11 @@
     value: @home_element.element_type
   %>
 
-  <div 
-    id="dynamic__inputs-container" class="card"
+  <ul 
+    id="dynamic__inputs-container" class="card draggable-list"
     type="<%= @home_element.element_type %>"
     items="<%= @home_element.properties["items"].to_json %>"
-  ></div>
+  ></ul>
   
   <button class="button" id="add-form-button"> 
     Adicionar Card
@@ -27,6 +27,79 @@
     const items = JSON.parse(container.getAttribute('items'));
     const cardType = container.getAttribute('type');
     const button = document.getElementById('add-form-button');
+    const sortableList = document.getElementById("dynamic__inputs-container");
+    let draggedItem = null;
+
+    sortableList.addEventListener(
+      "dragstart",
+      (e) => {
+        draggedItem = e.target;
+        setTimeout(() => {
+          e.target.style.display =
+            "none";
+        }, 0);
+    });
+
+    sortableList.addEventListener(
+      "dragend",
+      (e) => {
+        setTimeout(() => {
+          e.target.style.display = "";
+          draggedItem = null;
+        }, 0);
+    });
+
+    sortableList.addEventListener(
+      "dragover",
+      (e) => {
+        e.preventDefault();
+        const afterElement =
+          getDragAfterElement(
+            sortableList,
+            e.clientY);
+        const currentElement =
+          document.querySelector(
+            ".dragging");
+        if (afterElement == null) {
+          sortableList.appendChild(
+            draggedItem
+          );} 
+        else {
+          sortableList.insertBefore(
+            draggedItem,
+            afterElement
+          );}
+      });
+
+    const getDragAfterElement = (
+      container, y
+    ) => {
+      const draggableElements = [
+        ...container.querySelectorAll(
+          "li:not(.dragging)"
+        ),];
+
+      return draggableElements.reduce(
+        (closest, child) => {
+          const box =
+            child.getBoundingClientRect();
+          const offset =
+            y - box.top - box.height / 2;
+          if (
+            offset < 0 &&
+            offset > closest.offset) {
+            return {
+              offset: offset,
+              element: child,
+            };} 
+          else {
+            return closest;
+          }},
+        {
+          offset: Number.NEGATIVE_INFINITY,
+        }
+      ).element;
+    };
 
     button.addEventListener('click', (event) => {
       event.preventDefault();
@@ -139,8 +212,9 @@
 
     const addForm = () => {
       const formCount = container.childElementCount;
-      const newForm = document.createElement('div');
+      const newForm = document.createElement('li');
       newForm.classList.add('dynamic-form');
+      newForm.setAttribute('draggable', 'true');
 
       newForm.innerHTML = getFormHtml(cardType, formCount);
 
@@ -154,8 +228,9 @@
 
     const addExistingItems = (items) => {
       items.forEach((item, index) => {
-        const newForm = document.createElement('div');
+        const newForm = document.createElement('li');
         newForm.classList.add('dynamic-form');
+        newForm.setAttribute('draggable', 'true');
 
         newForm.innerHTML = getExistingFormHtml(cardType, index, item);
 
