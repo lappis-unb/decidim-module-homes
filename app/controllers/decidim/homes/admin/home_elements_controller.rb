@@ -34,15 +34,16 @@ module Decidim
 
           if params[:items]
             properties[:items] = []
+            items = params[:items].to_unsafe_h.sort_by { |_key, value| value["weight"] }
 
             if properties["type"] == "participatory_cards"
-              params[:items].each do |_key, value|
+              items.each do |_key, value|
                 properties[:items].push({ 'title' => value['title'], 'link' => value['link'], 'icon' => value['icon'] })
               end
             end
 
             if properties["type"] == "description_cards"
-              params[:items].each do |_key, value|
+              items.each do |_key, value|
                 properties[:items].push({
                                           'label' => value['label'],
                                           'title' => value['title'],

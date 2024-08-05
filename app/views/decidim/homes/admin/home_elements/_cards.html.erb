@@ -47,6 +47,12 @@
           e.target.style.display = "";
           draggedItem = null;
         }, 0);
+        let items = container.childNodes;
+
+        items.forEach((item, index) => {
+          item.querySelector(".card-title").innerHTML = `Card #${index + 1}`;
+          item.querySelector(".dynamic-weight").value = index;
+        });
     });
 
     sortableList.addEventListener(
@@ -213,10 +219,17 @@
     const addForm = () => {
       const formCount = container.childElementCount;
       const newForm = document.createElement('li');
+      const weight = document.createElement('input');
+      
       newForm.classList.add('dynamic-form');
       newForm.setAttribute('draggable', 'true');
+      weight.setAttribute('type', 'hidden');
+      weight.setAttribute('name', `items[${formCount}][weight]`);
+      weight.setAttribute('value', formCount);
+      weight.classList.add('dynamic-weight');
 
       newForm.innerHTML = getFormHtml(cardType, formCount);
+      newForm.appendChild(weight)
 
       newForm.querySelector('.remove_dynamic_form').addEventListener('click', (event) => {
         event.preventDefault();
@@ -229,10 +242,17 @@
     const addExistingItems = (items) => {
       items.forEach((item, index) => {
         const newForm = document.createElement('li');
+        const weight = document.createElement('input');
+
         newForm.classList.add('dynamic-form');
         newForm.setAttribute('draggable', 'true');
+        weight.setAttribute('type', 'hidden');
+        weight.setAttribute('name', `items[${index}][weight]`);
+        weight.setAttribute('value', index);
+        weight.classList.add('dynamic-weight');
 
         newForm.innerHTML = getExistingFormHtml(cardType, index, item);
+        newForm.appendChild(weight)
 
         newForm.querySelector('.remove_dynamic_form').addEventListener('click', (event) => {
           event.preventDefault();
@@ -257,3 +277,9 @@
     
   });
 </script>
+
+<style>
+  #dynamic__inputs-container li {
+    padding: 0;
+  }
+</style>
