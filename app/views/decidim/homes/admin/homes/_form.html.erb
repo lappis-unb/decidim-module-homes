@@ -4,9 +4,9 @@
       Componente Pagina Inicial
       <button type="button" class="dropdown tiny button button--title" data-toggle="add-component-dropdown"><%= t "components.index.add", scope: "decidim.admin" %></button>
       <div class="dropdown-pane" id="add-component-dropdown" data-dropdown data-auto-focus="true" data-close-on-click="true">
-        <ul>
+        <ul style="list-style: none;">
           <% initial_page_components.each do |element| %>
-            <li><%= link_to t("#{element.name}.name", scope: "decidim.components"), new_home_element_path(type: element.name), class: element.name %></li>
+            <li class="home__elements-dropdown-item"><%= link_to t("#{element.name}.name", scope: "decidim.components"), new_home_element_path(type: element.name), class: element.name %></li>
           <% end %>
         </ul>
       </div>
