@@ -56,7 +56,7 @@ module Decidim
           Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
             on(:ok) do
               flash[:notice] = "Elemento atualizado com sucesso"
-              redirect_to request.referer
+              redirect_to request.url.split("/")[0..8].join("/")
             end
 
             on(:invalid) do
