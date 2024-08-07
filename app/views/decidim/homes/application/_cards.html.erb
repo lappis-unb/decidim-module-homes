@@ -1,0 +1,7 @@
+<% if properties["card_type"] == "participatory" %>
+  <%= render 'participatory_cards', properties: properties %>
+<% end %>
+
+<% if properties["card_type"] == "description" %>
+  <%= render 'description_cards', properties: properties %>
+<% end %>
