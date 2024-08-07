@@ -29,10 +29,6 @@ pt-BR:
         type:
           participatory: Cards Participativos
           description: Cards Descritivos
-      participatory_cards:
-        name: "Cards Participativos"
-      description_cards:
-        name: "Cards Descritivos"
       steps:
         name: "Etapas do processo"
       homes:
