@@ -1,15 +1,40 @@
 <li draggable="true" data-content-block-manifest-name="<%= element.element_type %>" class="draggable-list-item" data-id="<%= element.id %>">
   <div class="draggable-content">
     <%= t("#{element.element_type}.name", scope: "decidim.components") %>
-    <div>
+    <div class="home__elements-actions">
       <% logos = element.element_type == "logos_section" %>
-      <%= link_to logos ? "/admin/participatory_processes/#{request.path.split('/')[3]}/partners": edit_home_element_path(element), method: :get, class: "button tiny hollow" do %>
+      <%= link_to logos ? "/admin/participatory_processes/#{request.path.split('/')[3]}/partners": edit_home_element_path(element), method: :get, class: "button hollow" do %>
         <%= icon "pencil", role: "img", "aria-hidden": true %>
       <% end %>
-      <%= link_to home_element_path(element.id), method: :delete, class: "button tiny alert", data: { confirm: "Você realmente deseja remover este elemento?" } do %>
+      <%= link_to home_element_path(element.id), method: :delete, class: "button alert", data: { confirm: "Você realmente deseja remover este elemento?" } do %>
         <%= icon "trash", role: "img", "aria-hidden": true %>
       <% end %>
       <%= icon "menu", role: "img", "aria-hidden": true %>
     </div>
   </div>
 </li>
+
+<style>
+  .home__elements-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0.25rem;
+    }
+    a > svg {
+      margin: 0;
+      height: 1rem;
+      width: 1rem;
+    }
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+</style>

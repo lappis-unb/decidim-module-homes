@@ -22,9 +22,11 @@
     items="<%= @home_element.properties["items"].to_json %>"
   ></ul>
   
-  <button class="button" id="add-form-button"> 
-    Adicionar Card
-  </button>
+  <div class="add-form-button-container">
+    <button class="button" id="add-form-button"> 
+      Adicionar Card
+    </button>
+  </div>
 <% end %>
 
 <script>
@@ -302,5 +304,10 @@
 <style>
   #dynamic__inputs-container li {
     padding: 0;
+  }
+  .add-form-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
   }
 </style>
