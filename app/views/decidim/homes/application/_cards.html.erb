@@ -1,7 +1,3 @@
-<% if properties["card_type"] == "participatory" %>
-  <%= render 'participatory_cards', properties: properties %>
-<% end %>
-
-<% if properties["card_type"] == "description" %>
-  <%= render 'description_cards', properties: properties %>
-<% end %>
+<%= render partial: get_card_partial(properties["card_type"]), 
+    locals: { properties: properties } 
+%>

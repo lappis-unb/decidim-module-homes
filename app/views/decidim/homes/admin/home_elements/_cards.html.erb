@@ -39,6 +39,14 @@
 
     cardTypeSelect.addEventListener('change', (event) => {
       cardType = event.target.value;
+      let cards = document.getElementsByClassName('dynamic-form');
+      cards = Array.from(cards);
+
+      cards.forEach(card => {
+        if (card.getAttribute('card-type') !== cardType) {
+          card.parentNode.removeChild(card);
+        }
+      });
     });
 
     sortableList.addEventListener(
@@ -234,6 +242,7 @@
       
       newForm.classList.add('dynamic-form');
       newForm.setAttribute('draggable', 'true');
+      newForm.setAttribute('card-type', cardType);
       weight.setAttribute('type', 'hidden');
       weight.setAttribute('name', `items[${formCount}][weight]`);
       weight.setAttribute('value', formCount);
@@ -257,6 +266,7 @@
 
         newForm.classList.add('dynamic-form');
         newForm.setAttribute('draggable', 'true');
+        newForm.setAttribute('data-type', cardType);
         weight.setAttribute('type', 'hidden');
         weight.setAttribute('name', `items[${index}][weight]`);
         weight.setAttribute('value', index);

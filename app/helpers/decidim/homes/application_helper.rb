@@ -20,6 +20,15 @@ module Decidim
         ]
       end
 
+      def get_card_partial(card_type)
+        partials = {
+          "participatory" => "participatory_cards",
+          "description" => "description_cards"
+        }
+
+        partials[card_type]
+      end
+
       def home_carousel
         [
           {
