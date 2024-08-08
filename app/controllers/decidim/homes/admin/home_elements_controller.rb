@@ -91,6 +91,16 @@ module Decidim
             end
           end
 
+          if card_type == "step"
+            items.each do |_key, value|
+              arr.push({ 'icon' => value['icon'],
+                         'step' => value['step'],
+                         'date' => value['date'],
+                         'title' => value['title'],
+                         'description' => value['description'] })
+            end
+          end
+
           arr
         end
       end

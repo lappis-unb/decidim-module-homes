@@ -173,8 +173,25 @@
             </label>
           </div>
         `;
+      } else if (cardType === 'step') {
+        html = `
+          <div class="card-divider">
+            <h2 class="card-title">Card #${index + 1}</h2>
+            <button class="remove_dynamic_form button small alert hollow">Remover</button>
+          </div>
+          <div class="card-section">
+            ${createInput('Ícone', 'text', `items[${index}][icon]`, `items_${index}_icon`, '', 'Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file')}
+            ${createInput('Etapa', 'text', `items[${index}][step]`, `items_${index}_step`, '', 'Texto abaixo do ícone')}
+            ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, '', 'Título do card')}
+            ${createInput('Data', 'date', `items[${index}][date]`, `items_${index}_date`, '')}
+            <label for="items_${index}_description">
+              Descrição
+              <textarea name="items[${index}][description]" id="items_${index}_description"></textarea>
+              <span class="help-text">Texto que estará no corpo do card</span>
+            </label>
+          </div>
+        `;
       }
-
       return html;
     }
 
@@ -201,6 +218,24 @@
           <div class="card-section">
             ${createInput('Label', 'text', `items[${index}][label]`, `items_${index}_label`, item["label"], 'Texto que aparecerá no topo do card com fundo azul')}
             ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, item["title"], 'Título do card')}
+            <label for="items_${index}_description">
+              Descrição
+              <textarea name="items[${index}][description]" id="items_${index}_description">${item["description"]}</textarea>
+              <span class="help-text">Texto que estará no corpo do card</span>
+            </label>
+          </div>
+        `;
+      } else if (cardType === 'step') {
+        html = `
+          <div class="card-divider">
+            <h2 class="card-title">Card #${index + 1}</h2>
+            <button class="remove_dynamic_form button small alert hollow">Remover</button>
+          </div>
+          <div class="card-section">
+            ${createInput('Ícone', 'text', `items[${index}][icon]`, `items_${index}_icon`, item["icon"], 'Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file')}
+            ${createInput('Etapa', 'text', `items[${index}][step]`, `items_${index}_step`, item["step"], 'Texto abaixo do ícone')}
+            ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, item["title"], 'Título do card')}
+            ${createInput('Data', 'date', `items[${index}][date]`, `items_${index}_date`, item["date"])}
             <label for="items_${index}_description">
               Descrição
               <textarea name="items[${index}][description]" id="items_${index}_description">${item["description"]}</textarea>
