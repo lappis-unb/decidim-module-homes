@@ -27,7 +27,8 @@ module Decidim
           if @home_element.element_type == "cards"
             @available_card_types ||= [
               [t("decidim.components.cards.type.participatory"), 'participatory'],
-              [t("decidim.components.cards.type.description"), 'description']
+              [t("decidim.components.cards.type.description"), 'description'],
+              [t("decidim.components.cards.type.step"), 'step']
             ]
           end
 
@@ -40,24 +41,8 @@ module Decidim
           properties = params[:home_elements][:properties]
 
           if properties["card_type"]
-            properties[:items] = []
             items = params[:items].to_unsafe_h.sort_by { |_key, value| value["weight"] }
-
-            if properties["card_type"] == "participatory"
-              items.each do |_key, value|
-                properties[:items].push({ 'title' => value['title'], 'link' => value['link'], 'icon' => value['icon'] })
-              end
-            end
-
-            if properties["card_type"] == "description"
-              items.each do |_key, value|
-                properties[:items].push({
-                                          'label' => value['label'],
-                                          'title' => value['title'],
-                                          'description' => value['description']
-                                        })
-              end
-            end
+            properties[:items] = generate_hash_to_cards(properties["card_type"], items)
           end
 
           Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
@@ -86,6 +71,27 @@ module Decidim
               flash.now[:alert] = "Erro ao remover o elemento"
             end
           end
+        end
+
+        private
+
+        def generate_hash_to_cards(card_type, items)
+          arr = []
+          if card_type == "participatory"
+            items.each do |_key, value|
+              arr.push({ 'title' => value['title'], 'link' => value['link'], 'icon' => value['icon'] })
+            end
+          end
+
+          if card_type == "description"
+            items.each do |_key, value|
+              arr.push({ 'label' => value['label'],
+                         'title' => value['title'],
+                         'description' => value['description'] })
+            end
+          end
+
+          arr
         end
       end
     end
