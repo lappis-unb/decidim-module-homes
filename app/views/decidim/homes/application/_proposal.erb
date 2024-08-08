@@ -1,0 +1,21 @@
+<div class="br-container-lg">
+  <h1>Proposals</h1>
+  <% @proposals = fetch_random_proposals(properties["proposal_id"]) %>
+  <div class="card-grid card_proposal_component">
+    <% @proposals.each do |proposal| %>
+      <%= card_for proposal %>
+    <% end %>
+  </div>
+  <%= link_to "Ver mais propostas", send(component.mounted_engine).root_path.gsub("/f/#{@proposal.first.component.id}/", "/f/#{properties["proposal_id"]}/") %>
+</div>
+<style>
+  .card_proposal_component {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+
+  .card_proposal_component div {
+    max-width: 400px;
+  }
+</style>

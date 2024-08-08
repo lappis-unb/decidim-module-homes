@@ -1,0 +1,3 @@
+<%= f.fields_for :properties do |proposal_form| %>
+  <% proposal_form.number_field :proposal_id, label: "Id da proposta", value: @home_element.properties['proposal_id'], placeholder: "Preencha o id da proposta" %>
+<% end %>

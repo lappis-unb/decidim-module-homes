@@ -14,8 +14,16 @@ module Decidim
           OpenStruct.new(name: "carrossel"),
           OpenStruct.new(name: "logos_section"),
           OpenStruct.new(name: "steps"),
-          OpenStruct.new(name: "cards")
+          OpenStruct.new(name: "cards"),
+          OpenStruct.new(name: "proposal")
         ]
+      end
+
+      def fetch_random_proposals(proposal_id)
+        Decidim::Proposals::Proposal
+          .where(decidim_component_id: proposal_id)
+          .order("RANDOM()")
+          .limit(3)
       end
 
       def get_card_partial(card_type)
