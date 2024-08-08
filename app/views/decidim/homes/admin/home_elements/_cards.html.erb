@@ -133,6 +133,16 @@
       addForm();
     });
 
+    function createInput(labelText, inputType, name, id, value = '', helpText = '') {
+      return `
+        <label for="${id}">
+          ${labelText}
+          <input type="${inputType}" name="${name}" id="${id}" value="${value}" />
+          ${helpText ? `<span class="help-text">${helpText}</span>` : ''}
+        </label>
+      `;
+    }
+
     const getFormHtml = (cardType, index) => {
       let html = null;
       if (cardType === 'participatory') {
@@ -142,18 +152,9 @@
             <button class="remove_dynamic_form button small alert hollow">Remover</button>
           </div>
           <div class="card-section">
-            <label for="items_${index}_title">
-              Título
-              <input type="text" name="items[${index}][title]" id="items_${index}_title" />
-            </label>
-            <label for="items_${index}_link">
-              Link
-              <input type="text" name="items[${index}][link]" id="items_${index}_link" />
-            </label>
-            <label for="items_${index}_icon">Ícone
-              <input type="text" name="items[${index}][icon]" id="items_${index}_icon" />
-              <span class="help-text">Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file</span>
-            </label>
+            ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`)}
+            ${createInput('Link', 'text', `items[${index}][link]`, `items_${index}_link`)}
+            ${createInput('Ícone', 'text', `items[${index}][icon]`, `items_${index}_icon`, '', 'Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file')}
           </div>
         `;
       } else if (cardType === 'description') {
@@ -163,16 +164,8 @@
             <button class="remove_dynamic_form button small alert hollow">Remover</button>
           </div>
           <div class="card-section">
-            <label for="items_${index}_label">
-              Label
-              <input type="text" name="items[${index}][label]" id="items_${index}_label" />
-              <span class="help-text">Texto que aparecerá no topo do card com fundo azul</span>
-            </label>
-            <label for="items_${index}_title">
-              Título
-              <input type="text" name="items[${index}][title]" id="items_${index}_title" />
-              <span class="help-text">Título do card</span>
-            </label>
+            ${createInput('Label', 'text', `items[${index}][label]`, `items_${index}_label`, '', 'Texto que aparecerá no topo do card com fundo azul')}
+            ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, '', 'Título do card')}
             <label for="items_${index}_description">
               Descrição
               <textarea name="items[${index}][description]" id="items_${index}_description"></textarea>
@@ -194,18 +187,9 @@
             <button class="remove_dynamic_form button small alert hollow">Remover</button>
           </div>
           <div class="card-section">
-            <label for="items_${index}_title">
-              Título
-              <input type="text" name="items[${index}][title]" id="items_${index}_title" value="${item["title"]}" />
-            </label>
-            <label for="items_${index}_link">
-              Link
-              <input type="text" name="items[${index}][link]" id="items_${index}_link" value="${item["link"]}" />
-            </label>
-            <label for="items_${index}_icon">Ícone
-              <input type="text" name="items[${index}][icon]" id="items_${index}_icon" value="${item["icon"]}" />
-              <span class="help-text">Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file</span>
-            </label>
+            ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, item["title"])}
+            ${createInput('Link', 'text', `items[${index}][link]`, `items_${index}_link`, item["link"])}
+            ${createInput('Ícone', 'text', `items[${index}][icon]`, `items_${index}_icon`, item["icon"], 'Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file')}
           </div>
         `;
       } else if (cardType === 'description') {
@@ -215,16 +199,8 @@
             <button class="remove_dynamic_form button small alert hollow">Remover</button>
           </div>
           <div class="card-section">
-            <label for="items_${index}_label">
-              Label
-              <input type="text" name="items[${index}][label]" id="items_${index}_label" value="${item["label"]}" />
-              <span class="help-text">Texto que aparecerá no topo do card com fundo azul</span>
-            </label>
-            <label for="items_${index}_title">
-              Título
-              <input type="text" name="items[${index}][title]" id="items_${index}_title" value="${item["title"]}" />
-              <span class="help-text">Título do card</span>
-            </label>
+            ${createInput('Label', 'text', `items[${index}][label]`, `items_${index}_label`, item["label"], 'Texto que aparecerá no topo do card com fundo azul')}
+            ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, item["title"], 'Título do card')}
             <label for="items_${index}_description">
               Descrição
               <textarea name="items[${index}][description]" id="items_${index}_description">${item["description"]}</textarea>
