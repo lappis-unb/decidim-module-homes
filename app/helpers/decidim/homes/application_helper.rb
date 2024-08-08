@@ -21,7 +21,8 @@ module Decidim
       def get_card_partial(card_type)
         partials = {
           "participatory" => "participatory_cards",
-          "description" => "description_cards"
+          "description" => "description_cards",
+          "step" => "step_cards"
         }
 
         partials[card_type]

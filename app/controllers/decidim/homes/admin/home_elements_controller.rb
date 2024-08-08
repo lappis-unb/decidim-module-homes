@@ -40,7 +40,7 @@ module Decidim
           home_element_id = params[:id]
           properties = params[:home_elements][:properties]
 
-          if properties["card_type"]
+          unless params[:items].nil?
             items = params[:items].to_unsafe_h.sort_by { |_key, value| value["weight"] }
             properties[:items] = generate_hash_to_cards(properties["card_type"], items)
           end

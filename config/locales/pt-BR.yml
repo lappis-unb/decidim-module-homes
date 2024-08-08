@@ -29,6 +29,7 @@ pt-BR:
         type:
           participatory: Cards Participativos
           description: Cards Descritivos
+          step: Cards de Etapa
       steps:
         name: "Etapas do processo"
       homes:
