@@ -6,7 +6,7 @@
       <%= card_for proposal %>
     <% end %>
   </div>
-  <%= link_to "Ver mais propostas", send(component.mounted_engine).root_path.gsub("/f/#{@proposal.first.component.id}/", "/f/#{properties["proposal_id"]}/") %>
+  <%= link_to "Ver mais propostas", main_component_path(@proposals.first.component), class: "button" %>
 </div>
 <style>
   .card_proposal_component {
