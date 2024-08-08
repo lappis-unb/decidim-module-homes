@@ -1,0 +1,13 @@
+<%= f.fields_for :properties do |ej_form| %>
+  <%= 
+    ej_form.text_field :title, 
+    label: "Título da seção", 
+    value: @home_element.properties["title"] 
+  %>
+
+  <%= 
+    ej_form.text_area :description, 
+    label: "Descrição da seção", 
+    value: @home_element.properties["description"] 
+  %>
+<% end %>
