@@ -24,10 +24,11 @@ pt-BR:
         name: "Notícias em Destaque"
       logos_section:
         name: "Apoiadores e Organizadores"
-      participatory_cards:
-        name: "Cards Participativos"
-      description_cards:
-        name: "Cards Descritivos"
+      cards:
+        name: "Cards"
+        type:
+          participatory: Cards Participativos
+          description: Cards Descritivos
       steps:
         name: "Etapas do processo"
       homes:

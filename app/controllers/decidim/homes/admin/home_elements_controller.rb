@@ -24,6 +24,13 @@ module Decidim
 
           @home_element = home_element.home_elements.find_by(id: params[:id])
 
+          if @home_element.element_type == "cards"
+            @available_card_types ||= [
+              [t("decidim.components.cards.type.participatory"), 'participatory'],
+              [t("decidim.components.cards.type.description"), 'description']
+            ]
+          end
+
           render :edit
         end
 
@@ -32,17 +39,17 @@ module Decidim
           home_element_id = params[:id]
           properties = params[:home_elements][:properties]
 
-          if params[:items]
+          if properties["card_type"]
             properties[:items] = []
             items = params[:items].to_unsafe_h.sort_by { |_key, value| value["weight"] }
 
-            if properties["type"] == "participatory_cards"
+            if properties["card_type"] == "participatory"
               items.each do |_key, value|
                 properties[:items].push({ 'title' => value['title'], 'link' => value['link'], 'icon' => value['icon'] })
               end
             end
 
-            if properties["type"] == "description_cards"
+            if properties["card_type"] == "description"
               items.each do |_key, value|
                 properties[:items].push({
                                           'label' => value['label'],
@@ -56,7 +63,7 @@ module Decidim
           Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
             on(:ok) do
               flash[:notice] = "Elemento atualizado com sucesso"
-              redirect_to request.referer
+              redirect_to request.url.split("/")[0..8].join("/")
             end
 
             on(:invalid) do

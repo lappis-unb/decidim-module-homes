@@ -5,9 +5,15 @@
     value: @home_element.properties["title"]
   %>
 
+  <% card_type = @home_element.properties.try(:[], "card_type") %>
   <%= 
-    participatory_cards_form.hidden_field :type, 
-    value: @home_element.element_type
+    participatory_cards_form.select :card_type,
+    options_for_select(
+      @available_card_types,
+      card_type == nil ? @available_card_types.first : card_type
+    ),
+    label: "Tipo de Card",
+    help_text: "Ao selecionar o tipo de card, todos os cards diferentes serão removidos"
   %>
 
   <ul 
@@ -16,19 +22,34 @@
     items="<%= @home_element.properties["items"].to_json %>"
   ></ul>
   
-  <button class="button" id="add-form-button"> 
-    Adicionar Card
-  </button>
+  <div class="add-form-button-container">
+    <button class="button" id="add-form-button"> 
+      Adicionar Card
+    </button>
+  </div>
 <% end %>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('dynamic__inputs-container');
     const items = JSON.parse(container.getAttribute('items'));
-    const cardType = container.getAttribute('type');
+    const cardTypeSelect = document.getElementById('home_elements_properties_card_type');
+    let cardType = cardTypeSelect.value;
     const button = document.getElementById('add-form-button');
     const sortableList = document.getElementById("dynamic__inputs-container");
     let draggedItem = null;
+
+    cardTypeSelect.addEventListener('change', (event) => {
+      cardType = event.target.value;
+      let cards = document.getElementsByClassName('dynamic-form');
+      cards = Array.from(cards);
+
+      cards.forEach(card => {
+        if (card.getAttribute('card-type') !== cardType) {
+          card.parentNode.removeChild(card);
+        }
+      });
+    });
 
     sortableList.addEventListener(
       "dragstart",
@@ -114,7 +135,7 @@
 
     const getFormHtml = (cardType, index) => {
       let html = null;
-      if (cardType === 'participatory_cards') {
+      if (cardType === 'participatory') {
         html = `
           <div class="card-divider">
             <h2 class="card-title">Card #${index + 1}</h2>
@@ -135,7 +156,7 @@
             </label>
           </div>
         `;
-      } else if (cardType === 'description_cards') {
+      } else if (cardType === 'description') {
         html = `
           <div class="card-divider">
             <h2 class="card-title">Card #${index + 1}</h2>
@@ -166,7 +187,7 @@
 
     const getExistingFormHtml = (cardType, index, item) => {
       let html = null;
-      if (cardType === 'participatory_cards') {
+      if (cardType === 'participatory') {
         html = `
           <div class="card-divider">
             <h2 class="card-title">Card #${index + 1}</h2>
@@ -187,7 +208,7 @@
             </label>
           </div>
         `;
-      } else if (cardType === 'description_cards') {
+      } else if (cardType === 'description') {
         html = `
           <div class="card-divider">
             <h2 class="card-title">Card #${index + 1}</h2>
@@ -223,6 +244,7 @@
       
       newForm.classList.add('dynamic-form');
       newForm.setAttribute('draggable', 'true');
+      newForm.setAttribute('card-type', cardType);
       weight.setAttribute('type', 'hidden');
       weight.setAttribute('name', `items[${formCount}][weight]`);
       weight.setAttribute('value', formCount);
@@ -246,6 +268,7 @@
 
         newForm.classList.add('dynamic-form');
         newForm.setAttribute('draggable', 'true');
+        newForm.setAttribute('data-type', cardType);
         weight.setAttribute('type', 'hidden');
         weight.setAttribute('name', `items[${index}][weight]`);
         weight.setAttribute('value', index);
@@ -281,5 +304,10 @@
 <style>
   #dynamic__inputs-container li {
     padding: 0;
+  }
+  .add-form-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
   }
 </style>

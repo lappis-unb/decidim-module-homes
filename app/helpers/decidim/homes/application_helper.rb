@@ -13,10 +13,18 @@ module Decidim
           OpenStruct.new(name: "call_to_action"),
           OpenStruct.new(name: "carrossel"),
           OpenStruct.new(name: "logos_section"),
-          OpenStruct.new(name: "participatory_cards"),
           OpenStruct.new(name: "steps"),
-          OpenStruct.new(name: "description_cards")
+          OpenStruct.new(name: "cards")
         ]
+      end
+
+      def get_card_partial(card_type)
+        partials = {
+          "participatory" => "participatory_cards",
+          "description" => "description_cards"
+        }
+
+        partials[card_type]
       end
 
       def home_carousel
