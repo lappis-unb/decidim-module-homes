@@ -6,10 +6,8 @@
       <div class="step_cards-content">
         <% properties["items"].try(:each) do |card| %>
           <div class="step_card">
-            <div class="step_info-container">
-              <div class="step_icon-container">
-                <%= card["icon"] %>
-              </div>
+            <div class="step_card_info-container">
+              <div class="step_icon-container fa-solid <%= card["icon"] %>"></div>
               <div class="step_info-text">
                 <p><%= card["step"] %></p>
                 <h3><%= card["title"] %></h3>
