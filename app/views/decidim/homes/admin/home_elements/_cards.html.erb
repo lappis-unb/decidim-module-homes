@@ -1,13 +1,19 @@
-<%= f.fields_for :properties do |participatory_cards_form| %>
+<%= f.fields_for :properties do |cards_form| %>
   <%=
-    participatory_cards_form.text_field :title,
+    cards_form.text_field :title,
     label: "Título da seção",
     value: @home_element.properties["title"]
   %>
 
+  <%=
+    cards_form.text_field :subtitle,
+    label: "Subtítulo da seção",
+    value: @home_element.properties["subtitle"]
+  %>
+
   <% card_type = @home_element.properties.try(:[], "card_type") %>
   <%= 
-    participatory_cards_form.select :card_type,
+    cards_form.select :card_type,
     options_for_select(
       @available_card_types,
       card_type == nil ? @available_card_types.first : card_type
