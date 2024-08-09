@@ -1,0 +1,158 @@
+<p>
+  <% api_client ||= Decidim::Ej::Connector::Client.new(properties["host"], current_user) %>
+  <%= @conversation = api_client.fetch_conversation(properties["conversation_id"]) %>
+  <%= @comment = api_client.fetch_next_comment(properties["conversation_id"]) %>
+</p>
+<p><%= properties %></p>
+<p><%= current_user %></p>
+
+<%= stylesheet_pack_tag "decidim_ej", media: "all" %>
+
+<div id="ej-conversation" class="ej-component-container br-container-lg">
+  <div class="ej-conversation-header">
+    <h1 class="ej-conversation-header__title">
+      <%= @conversation['text'] %>
+    </h1>
+    <p class="ej-conversation-header__subtitle">
+      Posicione-se a respeito dos comentários feitos nesta enquete e contribua com a formação da opinião popular.
+    </p>
+  </div>
+
+  <% if @conversation['participants_can_add_comments'] %>
+    <button id="add-new-comment-ej" class="br-button secondary black-and-white-btn" onclick="toggleCommentForm()">
+      <i class="fa fa-plus"></i>
+      <span>Adicionar comentário à enquete</span>
+    </button>
+  <% end %>
+
+  <div class="ej-conversation-container">
+    <% if @conversation['user_stats'] %>
+      <div class="percentage-container">
+        <h4 class="percentage-title">Você respondeu <%= number_to_percentage(@user_participation_ratio, precision: 2) %> desta enquete</h4>
+        <div style="background: var(--pure-0);">
+          <div class="percentage-bar" style="width: <%= @user_participation_ratio %>%;"></div>
+        </div>
+      </div>
+    <% end %>
+    <div class="ej-conversation-card">
+      <% if @comment['content'].present? %>
+        <span>
+          <% if @conversation['user_stats'] %>
+            <div class="ej-conversation-card__comments">
+              Comentário <%= @conversation['user_stats']['comments'] %> de <%= @conversation['user_stats']['total_comments'] %>
+            </div>
+          <% end %>
+          <h3 id="comment-content" class="ej-conversation-card__comment">
+            <%= @comment['content'] %>
+          </h3>
+        </span>
+        <div class="ej-conversation-card__votes">
+          <button class="br-button primary" onclick="saveVote('agree', <%=  @comment['links']['self'].split('/')[-1]%>)" id="agree">
+            <span id="agree-text">
+              Concordo
+            </span>
+            <i class="fa fa-thumbs-up"></i>
+            <span id="agree-loader" class="loader"></span>
+          </button>
+          <button class="br-button primary" onclick="saveVote('disagree', <%=  @comment['links']['self'].split('/')[-1]%>)" id="disagree">
+            <span id="disagree-text">
+              Discordo
+            </span>
+            <i class="fa fa-thumbs-down"></i>
+            <span id="disagree-loader" class="loader"></span>
+          </button>
+          <button class="br-button secondary" onclick="saveVote('skip', <%=  @comment['links']['self'].split('/')[-1]%>)" id="skip">
+            <span id="skip-text">pular</span>
+            <span id="skip-loader" class="loader"></span>
+          </button>
+        </div>
+      <% else %>
+        <h3 class="ej-conversation-card__comment">
+          Parabéns! Você concluiu seus votos nesta enquete.
+        </h3>
+        <p>Acesse a lista de enquetes para votar em outros comentários ou sorteie uma enquete aleatória.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <% if !defined?(has_no_stats) %>
+    <span class="br-divider" style="width: 100%"></span>
+
+    <div class="ej-conversation__general-stats">
+      <div class="ej-conversation-stats__card">
+        <i class="fa fa-users fa-2x"></i>
+        <div class="ej-conversation-stats__card-content">
+          <span class="ej-stats__number">
+            <%= @conversation['statistics']['comments']['approved'] %>
+          </span>
+          <span class="ej-stats__description">
+            pessoas estão participando desta enquete
+          </span>
+        </div>
+      </div>
+      <div class="ej-conversation-stats__card">
+        <i class="fa fa-vote-yea fa-2x"></i>
+        <div class="ej-conversation-stats__card-content">
+          <span class="ej-stats__number">
+            <%= @conversation['statistics']['votes']['total'] %>
+          </span>
+          <span class="ej-stats__description">
+            votos foram efetuados nesta enquete
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="share-ej-container">
+      <%= render partial: "decidim/shared/share_modal", locals: {
+          button_name: 'Compartilhar enquete',
+          title_name: 'Compartilhe essa enquete',
+          translation_component: '',
+          resource_name: 'resource_title(@meeting)',
+          component_name: 'resource_title(current_participatory_space)'
+        }
+      %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+(function() {
+  const saveVote = (choice, comment_id) => {
+    $.ajax({
+      method: "POST",
+      url: '<%= decidim_ej.post_vote_ej_path(properties["conversation_id"]) %>',
+      data: {"choice": choice, "comment_id": comment_id},
+
+      beforeSend: function() {
+        $(`#${choice}-text`).hide();
+        $(`#${choice}-loader`).css("display", "block");
+      },
+      success: function(response) {
+        $(`#${choice}-text`).show();
+        $(`#${choice}-loader`).hide();
+        $("#ej-conversation").replaceWith(response);
+      }
+    });
+  };
+  window.saveVote = saveVote;
+
+  const toggleCommentForm = () => {
+    $("#comment-div-form").toggle(200, function() {
+      const button = $("#add-new-comment-ej");
+      const icon = button.find("i");
+      const span = button.find("span");
+
+      if ($("#comment-div-form").is(":visible")) {
+        icon.removeClass("fa-plus").addClass("fa-minus");
+        span.text("Cancelar comentário à enquete");
+      } else {
+        icon.removeClass("fa-minus").addClass("fa-plus");
+        span.text("Adicionar comentário à enquete");
+      }
+    });
+  };
+  window.toggleCommentForm = toggleCommentForm;
+})();
+
+</script>
