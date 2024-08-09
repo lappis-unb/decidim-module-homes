@@ -76,8 +76,38 @@
   }
 }
 
+.step_card.active {
+  border: 1px solid var(--blue-warm-vivid-70);
+
+  .step_icon-container {
+    color: var(--blue-warm-vivid-80);
+  }
+
+  .step_info-text {
+    p, h3 {
+      color: var(--blue-warm-vivid-80);
+    }
+  }
+}
+
 .step_card-description {
   font-size: var(--font-size-scale-up-01) !important;
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-regular);
   text-align: center;
+  margin: 0;
+}
+
+.step_card-date {
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--blue-warm-vivid-5);
+  gap: 0.5rem;
+
+  p {
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-regular);
+    text-align: center;
+    margin: 0;
+  }
 }

@@ -5,7 +5,7 @@
       <h2 class="step_cards-title"><%= properties["title"] %></h2>
       <div class="step_cards-content">
         <% properties["items"].try(:each) do |card| %>
-          <div class="step_card">
+          <div class="step_card <%= card["active"] ? "active" : "" %>">
             <div class="step_card_info-container">
               <div class="step_icon-container fa-solid <%= card["icon"] %>"></div>
               <div class="step_info-text">
@@ -15,7 +15,15 @@
             </div>
 
             <div class="step_card-date">
-              <%= card["date"] %>
+              <i class="fa-solid fa-calendar" style="font-size: 1rem; color: #0c326f;"></i>
+              <p>
+                <% if get_month(card["start_date"]) == get_month(card["end_date"]) && card["start_date"].split("/")[2] == card["end_date"].split("/")[2] %>
+                  <%= get_month(card["start_date"]) %> de <%= card["start_date"].split("/")[2] %>
+                <% end %>
+                <% if get_month(card["start_date"]) != get_month(card["end_date"]) %>
+                  <%= get_month(card["start_date"]) %> e <%= get_month(card["end_date"]) %> de <%= card["start_date"].split("/")[2] %>
+                <% end %>
+              </p>
             </div>
 
             <p class="step_card-description">

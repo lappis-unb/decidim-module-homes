@@ -72,6 +72,12 @@ module Decidim
           .order(created_at: :desc)
           .limit(limit)
       end
+
+      def get_month(date)
+        months = %w(Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro)
+        date = Date.try(:parse, date)
+        months[date.month - 1] unless date.nil?
+      end
     end
   end
 end

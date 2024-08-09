@@ -133,11 +133,11 @@
       addForm();
     });
 
-    function createInput(labelText, inputType, name, id, value = '', helpText = '') {
+    function createInput(labelText, inputType, name, id, value = '', helpText = '', placeholder = '') {
       return `
         <label for="${id}">
           ${labelText}
-          <input type="${inputType}" name="${name}" id="${id}" value="${value}" />
+          <input type="${inputType}" name="${name}" id="${id}" value="${value}" placeholder="${placeholder}"/>
           ${helpText ? `<span class="help-text">${helpText}</span>` : ''}
         </label>
       `;
@@ -183,11 +183,16 @@
             ${createInput('Ícone', 'text', `items[${index}][icon]`, `items_${index}_icon`, '', 'Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file')}
             ${createInput('Etapa', 'text', `items[${index}][step]`, `items_${index}_step`, '', 'Texto abaixo do ícone')}
             ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, '', 'Título do card')}
-            ${createInput('Data', 'date', `items[${index}][date]`, `items_${index}_date`, '')}
+            ${createInput('Data Início', 'text', `items[${index}][start_date]`, `items_${index}_start_date`, '', '', 'dd/mm/yyyy')}
+            ${createInput('Data Final', 'text', `items[${index}][end_date]`, `items_${index}_end_date`, '', '', 'dd/mm/yyyy')}
             <label for="items_${index}_description">
               Descrição
               <textarea name="items[${index}][description]" id="items_${index}_description"></textarea>
               <span class="help-text">Texto que estará no corpo do card</span>
+            </label>
+            <label for="items_${index}_active">
+              <input type="checkbox" name="items[${index}][active]" id="items_${index}_active">
+              Destacar card
             </label>
           </div>
         `;
@@ -235,11 +240,16 @@
             ${createInput('Ícone', 'text', `items[${index}][icon]`, `items_${index}_icon`, item["icon"], 'Insira aqui o nome do ícone font awesome. Exemplo: fa-calendar, fa-edit, fa-file')}
             ${createInput('Etapa', 'text', `items[${index}][step]`, `items_${index}_step`, item["step"], 'Texto abaixo do ícone')}
             ${createInput('Título', 'text', `items[${index}][title]`, `items_${index}_title`, item["title"], 'Título do card')}
-            ${createInput('Data', 'date', `items[${index}][date]`, `items_${index}_date`, item["date"])}
+            ${createInput('Data Início', 'text', `items[${index}][start_date]`, `items_${index}_start_date`, item["start_date"], '', 'dd/mm/yyyy')}
+            ${createInput('Data Final', 'text', `items[${index}][end_date]`, `items_${index}_end_date`, item["end_date"], '','dd/mm/yyyy')}
             <label for="items_${index}_description">
               Descrição
               <textarea name="items[${index}][description]" id="items_${index}_description">${item["description"]}</textarea>
               <span class="help-text">Texto que estará no corpo do card</span>
+            </label>
+            <label for="items_${index}_active">
+              <input type="checkbox" name="items[${index}][active]" id="items_${index}_active" ${item["active"] ? 'checked' : ''}>
+              Destacar card
             </label>
           </div>
         `;

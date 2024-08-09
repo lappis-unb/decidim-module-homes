@@ -95,9 +95,11 @@ module Decidim
             items.each do |_key, value|
               arr.push({ 'icon' => value['icon'],
                          'step' => value['step'],
-                         'date' => value['date'],
+                         'start_date' => value['start_date'],
+                         'end_date' => value['end_date'],
                          'title' => value['title'],
-                         'description' => value['description'] })
+                         'description' => value['description'],
+                         'active' => value['active'] == 'on' })
             end
           end
 
