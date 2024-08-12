@@ -1,12 +1,3 @@
 <%= f.fields_for :properties do |ej_form| %>
-  <%=
-    ej_form.text_field :host,
-    label: "Host",
-    value: @home_element.properties["host"]
-  %>
-  <%=
-    ej_form.text_area :conversation_id,
-    label: "Conversation ID",
-    value: @home_element.properties["conversation_id"]
-  %>
+  <%= ej_form.text_field :ej_component_id, label: "ID do componente EJ", value: @home_element.properties["ej_component_id"] %>
 <% end %>

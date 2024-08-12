@@ -1,10 +1,15 @@
+<% # Remove this out of here! %>
+<% binding.pry %>
+<% ej_component = Decidim::Component.find(properties[:ej_component_id]) %>
+<% ej_component_router = Decidim::EngineRouter.main_proxy(ej_component) %>
 <p>
-  <% api_client ||= Decidim::Ej::Connector::Client.new(properties["host"], current_user) %>
-  <%= @conversation = api_client.fetch_conversation(properties["conversation_id"]) %>
-  <%= @comment = api_client.fetch_next_comment(properties["conversation_id"]) %>
+  <% api_client ||= Decidim::Ej::Connector::Client.new(ej_component.settings[:host], current_user) %>
+  <%= @conversation = api_client.fetch_conversation(ej_component.settings[:conversation_id]) %>
+  <%= @comment = api_client.fetch_next_comment(ej_component.settings[:conversation_id]) %>
 </p>
 <p><%= properties %></p>
 <p><%= current_user %></p>
+<% # -------- %>
 
 <%= stylesheet_pack_tag "decidim_ej", media: "all" %>
 
@@ -121,7 +126,7 @@
   const saveVote = (choice, comment_id) => {
     $.ajax({
       method: "POST",
-      url: '<%= decidim_ej.post_vote_ej_path(properties["conversation_id"]) %>',
+      url: '<%= ej_component_router.post_vote_ej_url(ej_component.settings[:conversation_id]) %>',
       data: {"choice": choice, "comment_id": comment_id},
 
       beforeSend: function() {
