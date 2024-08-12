@@ -32,6 +32,13 @@ module Decidim
             ]
           end
 
+          if @home_element.element_type == "official_logos"
+            @available_logos_types ||= [
+              [t("decidim.components.official_logos.type.cultura"), 'cultura'],
+              [t("decidim.components.official_logos.type.g20"), 'g20']
+            ]
+          end
+
           render :edit
         end
 

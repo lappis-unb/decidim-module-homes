@@ -13,8 +13,10 @@ module Decidim
           OpenStruct.new(name: "call_to_action"),
           OpenStruct.new(name: "carrossel"),
           OpenStruct.new(name: "logos_section"),
+          OpenStruct.new(name: "official_logos"),
           OpenStruct.new(name: "steps"),
-          OpenStruct.new(name: "cards")
+          OpenStruct.new(name: "cards"),
+          OpenStruct.new(name: "ej_survey")
         ]
       end
 
