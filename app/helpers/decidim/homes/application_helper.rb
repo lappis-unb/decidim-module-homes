@@ -19,6 +19,8 @@ module Decidim
       end
 
       def get_card_partial(card_type)
+        return "participatory_cards" unless card_type
+
         partials = {
           "participatory" => "participatory_cards",
           "description" => "description_cards",
