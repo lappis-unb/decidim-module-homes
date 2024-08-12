@@ -1,0 +1,3 @@
+<%= f.fields_for :properties do |ej_form| %>
+  <%= ej_form.text_field :ej_component_id, label: "ID do componente EJ", value: @home_element.properties["ej_component_id"] %>
+<% end %>
