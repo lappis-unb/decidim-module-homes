@@ -21,9 +21,12 @@ module Decidim
       end
 
       def get_card_partial(card_type)
+        return "participatory_cards" unless card_type
+
         partials = {
           "participatory" => "participatory_cards",
-          "description" => "description_cards"
+          "description" => "description_cards",
+          "step" => "step_cards"
         }
 
         partials[card_type]
@@ -72,6 +75,12 @@ module Decidim
           .where(decidim_component_id: component.id)
           .order(created_at: :desc)
           .limit(limit)
+      end
+
+      def get_month(date)
+        months = %w(Janeiro Fevereiro Março Abril Maio Junho Julho Agosto Setembro Outubro Novembro Dezembro)
+        date = Date.try(:parse, date)
+        months[date.month - 1] unless date.nil?
       end
     end
   end

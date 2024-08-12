@@ -2,7 +2,12 @@
   <div class="blue-bp-divider"></div>
   <div class="participatory_cards-container">
     <div class="br-container-lg participatory_cards-info">
-      <h2 class="participatory_cards-title"><%= properties["title"] %></h2>
+      <div class="cards-title-container">
+        <h2 class="participatory_cards-title"><%= properties["title"] %></h2>
+        <% if properties["subtitle"]%>
+          <h3 class="participatory_cards-subtitle"><%= properties["subtitle"] %></h3>
+        <% end %>
+      </div>
       <div class="cards_info-container">
         <% properties["items"].try(:each) do |card| %>
           <a class="cards_info-content" href="<%= card["link"] %>">

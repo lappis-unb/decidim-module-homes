@@ -1,5 +1,10 @@
 <div class="br-container-lg description_cards-container">
-  <h2><%= properties["title"] %></h2>
+  <div class="cards-title-container">
+    <h2 class="description_cards-title"><%= properties["title"] %></h2>
+    <% if properties["subtitle"]%>
+      <h3 class="description_cards-subtitle"><%= properties["subtitle"] %></h3>
+    <% end %>
+  </div>
   <div class="description_cards">
     <% properties["items"].try(:each) do |card| %>
       <div class="description_card">

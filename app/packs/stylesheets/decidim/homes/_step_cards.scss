@@ -1,0 +1,121 @@
+.step_cards-container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--blue-3);
+}
+
+.step_cards-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 0;
+  gap: 2rem;
+}
+
+.step_cards-title {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+
+.step_cards-subtitle {
+  font-size: 1.125rem;
+  color: var(--gray-90);
+  font-weight: var(--font-weight-regular);
+  text-align: center;
+  margin: 0;
+}
+
+.step_cards-content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.step_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.25rem;
+  border: 1px solid #A3B3CC;
+  background-color: var(--pure-0);
+  padding: 1.5rem 1rem;
+  gap: 1rem;
+  width: 267px;
+  min-width: 267px;
+}
+
+.step_card_info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  .step_icon-container {
+    font-size: 2rem;
+    color: var(--gray-90);
+  }
+
+  .step_info-text {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+
+    p, h3 {
+      color: var(--gray-90);
+    }
+
+    p {
+      font-size: 0.75rem !important;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: var(--font-size-scale-up-01) !important;
+      font-weight: var(--font-weight-bold);
+      text-align: center;
+      margin: 0;
+    }
+  }
+}
+
+.step_card.active {
+  border: 1px solid var(--blue-warm-vivid-70);
+
+  .step_icon-container {
+    color: var(--blue-warm-vivid-80);
+  }
+
+  .step_info-text {
+    p, h3 {
+      color: var(--blue-warm-vivid-80);
+    }
+  }
+}
+
+.step_card-description {
+  font-size: var(--font-size-scale-up-01) !important;
+  font-weight: var(--font-weight-regular);
+  text-align: center;
+  margin: 0;
+}
+
+.step_card-date {
+  display: flex;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: var(--blue-warm-vivid-5);
+  gap: 0.5rem;
+
+  p {
+    font-size: 0.875rem;
+    font-weight: var(--font-weight-regular);
+    text-align: center;
+    margin: 0;
+  }
+}
