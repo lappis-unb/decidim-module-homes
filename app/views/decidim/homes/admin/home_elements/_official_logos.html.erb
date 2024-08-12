@@ -1,0 +1,12 @@
+<%= f.fields_for :properties do |official_logos_form| %>
+  <% logos_type = @home_element.properties.try(:[], "logos_type") %>
+  <%=
+    official_logos_form.select :logos_type,
+    options_for_select(
+      @available_logos_types,
+      logos_type == nil ? @available_logos_types.first : logos_type
+    ),
+    label: "Logos",
+    help_text: "Selecione as logos do processo que você deseja exibir"
+  %>
+<% end %>

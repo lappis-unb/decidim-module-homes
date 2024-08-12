@@ -24,6 +24,11 @@ pt-BR:
         name: "Notícias em Destaque"
       logos_section:
         name: "Apoiadores e Organizadores"
+      official_logos:
+        name: "Logos Oficiais"
+        type:
+          cultura: Cultura
+          g20: G20
       cards:
         name: "Cards"
         type:
