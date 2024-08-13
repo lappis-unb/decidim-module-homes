@@ -48,6 +48,10 @@ pt-BR:
             announcement: Anúncio
             header_title: Título do header
             header_subtitle: Subtítulo do header
+      background:
+        white: Branco
+        light-blue: Azul claro
+        strong-blue: Azul forte
     homes:
       admin:
         models:

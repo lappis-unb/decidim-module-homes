@@ -7,6 +7,17 @@
   <div class="card-section">
     <%= decidim_form_for(@home_element, url: home_element_path, method: :patch, html: { class: "form new_home_element" }) do |f| %>
       <%= render partial: "#{@home_element.element_type.include?("card") ? "cards" : @home_element.element_type}", locals: { f: f } %>
+
+      <%= 
+        f.select :background,
+        options_for_select(
+          @available_backgrounds,
+          @home_element.background
+        ),
+        label: "Selecione um background",
+        help_text: "Altera a cor de fundo do elemento"
+      %>
+
       <div class="button--double form-general-submit">
         <%= f.submit "Atualizar", class: "button" %>
       </div>

@@ -23,6 +23,11 @@ module Decidim
           home_element = Homes::Home.find_by(decidim_component_id: home_id)
 
           @home_element = home_element.home_elements.find_by(id: params[:id])
+          @available_backgrounds ||= [
+            [t("decidim.components.background.white"), 'white'],
+            [t("decidim.components.background.light-blue"), 'light-blue'],
+            [t("decidim.components.background.strong-blue"), 'strong-blue']
+          ]
 
           if @home_element.element_type == "cards"
             @available_card_types ||= [
@@ -46,13 +51,14 @@ module Decidim
           home_id = params[:component_id]
           home_element_id = params[:id]
           properties = params[:home_elements][:properties]
+          background = params[:home_elements][:background]
 
           unless params[:items].nil?
             items = params[:items].to_unsafe_h.sort_by { |_key, value| value["weight"] }
             properties[:items] = generate_hash_to_cards(properties["card_type"], items)
           end
 
-          Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
+          Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, background: background, current_user: current_user) do
             on(:ok) do
               flash[:notice] = "Elemento atualizado com sucesso"
               redirect_to request.url.split("/")[0..8].join("/")
