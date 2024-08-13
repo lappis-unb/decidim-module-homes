@@ -35,17 +35,18 @@
 }
 
 .action_content-container .action_link {
-  width: fit-content;
+  width: inherit;
   color: var(--pure-0);
   font-size: var(--font-size-scale-up-01) !important;
   font-weight: var(--font-weight-semi-bold);
   text-align: center;
+  align-self: end;
 }
 
 .action_content-text {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .action_title {
@@ -59,7 +60,7 @@
 .action_text {
   text-align: justify;
   color: var(--gray-60);
-  font-size: var(--font-size-scale-up-02) !important;
+  font-size: 18px !important;
   font-weight: var(--font-weight-regular);
   margin: 0;
 }
@@ -92,4 +93,9 @@
   -moz-border-radius: 0.5rem;
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
+}
+
+.ej-survey-background {
+  background: var(--gray-2);
+  padding: 16px 0;
 }

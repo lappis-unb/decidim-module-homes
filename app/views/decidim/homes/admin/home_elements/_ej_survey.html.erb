@@ -1,3 +1,6 @@
 <%= f.fields_for :properties do |ej_form| %>
   <%= ej_form.text_field :ej_component_id, label: "ID do componente EJ", value: @home_element.properties["ej_component_id"] %>
+  <%= ej_form.text_field :text, label: "Pergunta inicial da enquete", value: @home_element.properties["text"] %>
+  <%= ej_form.text_field :first_comment, label: "Primeiro comentário", value: @home_element.properties["first_comment"] %>
+  <%= ej_form.text_field :comments_number, label: "Quantidade de comentários", value: @home_element.properties["comments_number"] %>
 <% end %>

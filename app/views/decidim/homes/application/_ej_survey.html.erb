@@ -1,90 +1,174 @@
 <% # TODO Remove this out of here! %>
-<% ej_component = Decidim::Component.find(properties[:ej_component_id]) %>
-<% ej_component_router = Decidim::EngineRouter.main_proxy(ej_component) %>
-<% api_client ||= Decidim::Ej::Connector::Client.new(ej_component.settings[:host], current_user) %>
-<% @conversation = api_client.fetch_conversation(ej_component.settings[:conversation_id]) %>
-<% @comment = api_client.fetch_next_comment(ej_component.settings[:conversation_id]) %>
-<% @user_participation_ratio = @conversation[:user_stats][:participation_ratio].to_f * 100.0 %>
+<% begin %>
+  <% ej_component = Decidim::Component.find(properties[:ej_component_id]) %>
+  <% ej_component_router = Decidim::EngineRouter.main_proxy(ej_component) %>
+  <% api_client ||= Decidim::Ej::Connector::Client.new(ej_component.settings[:host], current_user) %>
+  <% @conversation = api_client.fetch_conversation(ej_component.settings[:conversation_id]) %>
+  <% @comment = api_client.fetch_next_comment(ej_component.settings[:conversation_id]) %>
+  <% @user_participation_ratio = @conversation[:user_stats][:participation_ratio].to_f * 100.0 %>
+<% rescue StandardError => e %>
+  <% @conversation = nil %>
+  <% @comment = nil %>
+  <% @user_participation_ratio = 0.0 %>
+<% end %>
 <% # -------- %>
 
 <%= stylesheet_pack_tag "decidim_ej", media: "all" %>
 
-<div class="br-container-lg">
-  <div id="ej-conversation" class="ej-component-container">
-    <div class="ej-conversation-header">
-      <h1 class="ej-conversation-header__title">
-        <%= @conversation['text'] %>
-      </h1>
-      <p class="ej-conversation-header__subtitle">
-        Posicione-se a respeito dos comentários feitos nesta enquete e contribua com a formação da opinião popular.
-      </p>
-    </div>
+<div class="ej-survey-background">
+  <% if current_user.present? %>
+    <div class="br-container-lg mt-4 mb-4">
+      <div id="ej-conversation" class="ej-component-container">
+        <div class="ej-conversation-header">
+          <h1 class="ej-conversation-header__title">
+            <%= @conversation['text'] %>
+          </h1>
+          <p class="ej-conversation-header__subtitle">
+            Posicione-se a respeito dos comentários feitos nesta enquete e contribua com a formação da opinião popular.
+          </p>
+        </div>
 
-    <% if false and @conversation['participants_can_add_comments'] %>
-      <button id="add-new-comment-ej" class="br-button secondary black-and-white-btn" onclick="toggleCommentForm()">
-        <i class="fa fa-plus"></i>
-        <span>Adicionar comentário à enquete</span>
-      </button>
-    <% end %>
+        <% if false and @conversation['participants_can_add_comments'] %>
+          <button id="add-new-comment-ej" class="br-button secondary black-and-white-btn" onclick="toggleCommentForm()">
+            <i class="fa fa-plus"></i>
+            <span>Adicionar comentário à enquete</span>
+          </button>
+        <% end %>
 
-    <div class="ej-conversation-container">
-      <% if @conversation['user_stats'] %>
-        <div class="percentage-container">
-          <h4 class="percentage-title">Você respondeu <%= number_to_percentage(@user_participation_ratio, precision: 2) %> desta enquete</h4>
-          <div style="background: var(--pure-0);">
-            <div class="percentage-bar" style="width: <%= @user_participation_ratio %>%;"></div>
+        <div class="ej-conversation-container">
+          <% if @conversation['user_stats'] %>
+            <div class="percentage-container">
+              <h4 class="percentage-title">Você respondeu <%= number_to_percentage(@user_participation_ratio, precision: 2) %> desta enquete</h4>
+              <div style="background: var(--pure-0);">
+                <div class="percentage-bar" style="width: <%= @user_participation_ratio %>%;"></div>
+              </div>
+            </div>
+          <% end %>
+          <div class="ej-conversation-card">
+            <% if @comment['content'].present? %>
+              <span>
+                <% if @conversation['user_stats'] %>
+                  <div class="ej-conversation-card__comments">
+                    Comentário <%= @conversation['user_stats']['comments'] %> de <%= @conversation['user_stats']['total_comments'] %>
+                  </div>
+                <% end %>
+                <h3 id="comment-content" class="ej-conversation-card__comment">
+                  <%= @comment['content'] %>
+                </h3>
+              </span>
+              <div class="ej-conversation-card__votes">
+                <button class="br-button primary" onclick="saveVote('agree', <%=  @comment['links']['self'].split('/')[-1]%>)" id="agree">
+                  <span id="agree-text">
+                    Concordo
+                  </span>
+                  <i class="fa fa-thumbs-up"></i>
+                  <span id="agree-loader" class="loader"></span>
+                </button>
+                <button class="br-button primary" onclick="saveVote('disagree', <%=  @comment['links']['self'].split('/')[-1]%>)" id="disagree">
+                  <span id="disagree-text">
+                    Discordo
+                  </span>
+                  <i class="fa fa-thumbs-down"></i>
+                  <span id="disagree-loader" class="loader"></span>
+                </button>
+                <button class="br-button secondary" onclick="saveVote('skip', <%=  @comment['links']['self'].split('/')[-1]%>)" id="skip">
+                  <span id="skip-text">pular</span>
+                  <span id="skip-loader" class="loader"></span>
+                </button>
+              </div>
+            <% else %>
+              <h3 class="ej-conversation-card__comment">
+                Parabéns! Você concluiu seus votos nesta enquete.
+              </h3>
+              <p>Acesse a lista de enquetes para votar em outros comentários ou sorteie uma enquete aleatória.</p>
+            <% end %>
           </div>
         </div>
-      <% end %>
-      <div class="ej-conversation-card">
-        <% if @comment['content'].present? %>
-          <span>
-            <% if @conversation['user_stats'] %>
-              <div class="ej-conversation-card__comments">
-                Comentário <%= @conversation['user_stats']['comments'] %> de <%= @conversation['user_stats']['total_comments'] %>
-              </div>
-            <% end %>
-            <h3 id="comment-content" class="ej-conversation-card__comment">
-              <%= @comment['content'] %>
-            </h3>
-          </span>
-          <div class="ej-conversation-card__votes">
-            <button class="br-button primary" onclick="saveVote('agree', <%=  @comment['links']['self'].split('/')[-1]%>)" id="agree">
-              <span id="agree-text">
-                Concordo
-              </span>
-              <i class="fa fa-thumbs-up"></i>
-              <span id="agree-loader" class="loader"></span>
-            </button>
-            <button class="br-button primary" onclick="saveVote('disagree', <%=  @comment['links']['self'].split('/')[-1]%>)" id="disagree">
-              <span id="disagree-text">
-                Discordo
-              </span>
-              <i class="fa fa-thumbs-down"></i>
-              <span id="disagree-loader" class="loader"></span>
-            </button>
-            <button class="br-button secondary" onclick="saveVote('skip', <%=  @comment['links']['self'].split('/')[-1]%>)" id="skip">
-              <span id="skip-text">pular</span>
-              <span id="skip-loader" class="loader"></span>
-            </button>
-          </div>
-        <% else %>
-          <h3 class="ej-conversation-card__comment">
-            Parabéns! Você concluiu seus votos nesta enquete.
-          </h3>
-          <p>Acesse a lista de enquetes para votar em outros comentários ou sorteie uma enquete aleatória.</p>
-        <% end %>
+
+        <div class="centered-content">
+          <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
+            <span class="mr-2">Acessar lista de enquetes</span>
+            <i class="fa fa-arrow-right"></i>
+          <% end %>
+        </div>
       </div>
     </div>
-
-    <div class="centered-content">
-      <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
-        <span class="mr-2">Acessar lista de enquetes</span>
-        <i class="fa fa-arrow-right"></i>
-      <% end %>
+  <% else %>
+    <div class="br-scrim-util foco" id="scrimutilexample" data-scrim="true">
+      <div class="br-modal" aria-labelledby="titulomodalexemplo">
+        <div class="br-modal-header" id="titulomodalexemplo">Login obrigatório</div>
+        <div class="br-modal-body">
+          <p>Você precisa estar logado na plataforma para participar da enquete. Clique em 'Continuar' para acessar a tela de login.</p>
+        </div>
+        <div class="br-modal-footer justify-content-center">
+          <button class="br-button secondary" id="scrimfechar" type="button" data-dismiss="true">Cancelar
+          </button>
+          <a href="/users/sign_in" class="br-button primary mt-3 mt-sm-0 ml-sm-3" type="button">Continuar
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
+    <div class="br-container-lg mt-4 mb-4">
+      <div id="ej-conversation" class="ej-component-container">
+        <div class="ej-conversation-header">
+          <h1 class="ej-conversation-header__title">
+            <%= properties['text'] %>
+          </h1>
+          <p class="ej-conversation-header__subtitle">
+            Posicione-se a respeito dos comentários feitos nesta enquete e contribua com a formação da opinião popular.
+          </p>
+        </div>
+
+        <div class="ej-conversation-container">
+          <div class="percentage-container">
+            <h4 class="percentage-title">Você respondeu 0% desta enquete</h4>
+            <div style="background: var(--pure-0);">
+              <div class="percentage-bar" style="width: 0%;"></div>
+            </div>
+          </div>
+          <div class="ej-conversation-card">
+              <span>
+                <div class="ej-conversation-card__comments">
+                  Comentário 0 de <%= properties['comments_number'] %>
+                </div>
+                <h3 id="comment-content" class="ej-conversation-card__comment">
+                  <%= properties['first_comment'] %>
+                </h3>
+              </span>
+              <div class="ej-conversation-card__votes scrimutilexemplo">
+                <button class="br-button primary" id="agree">
+                  <span id="agree-text">
+                    Concordo
+                  </span>
+                  <i class="fa fa-thumbs-up"></i>
+                  <span id="agree-loader" class="loader"></span>
+                </button>
+                <button class="br-button primary" id="disagree">
+                  <span id="disagree-text">
+                    Discordo
+                  </span>
+                  <i class="fa fa-thumbs-down"></i>
+                  <span id="disagree-loader" class="loader"></span>
+                </button>
+                <button class="br-button secondary" id="skip">
+                  <span id="skip-text">Pular</span>
+                  <span id="skip-loader" class="loader"></span>
+                </button>
+              </div>
+          </div>
+        </div>
+
+        <div class="centered-content">
+          <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
+            <span class="mr-2">Acessar lista de enquetes</span>
+            <i class="fa fa-arrow-right"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
+
 
 <script>
 (function() {
