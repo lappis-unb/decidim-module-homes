@@ -27,7 +27,15 @@ module Decidim
           if @home_element.element_type == "cards"
             @available_card_types ||= [
               [t("decidim.components.cards.type.participatory"), 'participatory'],
-              [t("decidim.components.cards.type.description"), 'description']
+              [t("decidim.components.cards.type.description"), 'description'],
+              [t("decidim.components.cards.type.step"), 'step']
+            ]
+          end
+
+          if @home_element.element_type == "official_logos"
+            @available_logos_types ||= [
+              [t("decidim.components.official_logos.type.cultura"), 'cultura'],
+              [t("decidim.components.official_logos.type.g20"), 'g20']
             ]
           end
 
@@ -39,25 +47,9 @@ module Decidim
           home_element_id = params[:id]
           properties = params[:home_elements][:properties]
 
-          if properties["card_type"]
-            properties[:items] = []
+          unless params[:items].nil?
             items = params[:items].to_unsafe_h.sort_by { |_key, value| value["weight"] }
-
-            if properties["card_type"] == "participatory"
-              items.each do |_key, value|
-                properties[:items].push({ 'title' => value['title'], 'link' => value['link'], 'icon' => value['icon'] })
-              end
-            end
-
-            if properties["card_type"] == "description"
-              items.each do |_key, value|
-                properties[:items].push({
-                                          'label' => value['label'],
-                                          'title' => value['title'],
-                                          'description' => value['description']
-                                        })
-              end
-            end
+            properties[:items] = generate_hash_to_cards(properties["card_type"], items)
           end
 
           Decidim::HomesElements::Admin::UpdateHomeElement.call(home_element_id: home_element_id, home_id: home_id, properties: properties, current_user: current_user) do
@@ -86,6 +78,39 @@ module Decidim
               flash.now[:alert] = "Erro ao remover o elemento"
             end
           end
+        end
+
+        private
+
+        def generate_hash_to_cards(card_type, items)
+          arr = []
+          if card_type == "participatory"
+            items.each do |_key, value|
+              arr.push({ 'title' => value['title'], 'link' => value['link'], 'icon' => value['icon'] })
+            end
+          end
+
+          if card_type == "description"
+            items.each do |_key, value|
+              arr.push({ 'label' => value['label'],
+                         'title' => value['title'],
+                         'description' => value['description'] })
+            end
+          end
+
+          if card_type == "step"
+            items.each do |_key, value|
+              arr.push({ 'icon' => value['icon'],
+                         'step' => value['step'],
+                         'start_date' => value['start_date'],
+                         'end_date' => value['end_date'],
+                         'title' => value['title'],
+                         'description' => value['description'],
+                         'active' => value['active'] == 'on' })
+            end
+          end
+
+          arr
         end
       end
     end

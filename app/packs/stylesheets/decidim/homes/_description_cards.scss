@@ -5,12 +5,20 @@
   padding: 4rem 0;
 }
 
-.description_cards-container h2 {
+.description_cards-title {
   font-size: 2rem;
   font-weight: var(--font-weight-bold);
   color: var(--blue-warm-vivid-80);
   text-align: center;
   padding: 0;
+  margin: 0;
+}
+
+.description_cards-subtitle {
+  font-size: 1.125rem;
+  color: var(--blue-warm-vivid-80);
+  font-weight: var(--font-weight-regular);
+  text-align: center;
   margin: 0;
 }
 
