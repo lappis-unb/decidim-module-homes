@@ -1,21 +1,49 @@
 <div class="br-container-lg">
-  <h1>Proposals</h1>
   <% @proposals = fetch_random_proposals(properties["proposal_id"]) %>
-  <div class="card-grid card_proposal_component">
-    <% @proposals.each do |proposal| %>
-      <%= card_for proposal %>
-    <% end %>
+  <div class="br_card_proposal_container">
+    <h1><%= resource_title(@proposals.first.component) %></h1>
+    <p>Um texto bacana explicando sucintamente o que são as metas e como participar.</p>
+    <div class="card-grid card_proposal_component">
+      <% @proposals.each do |proposal| %>
+        <%= card_for proposal %>
+      <% end %>
+    </div>
+    <%= link_to "Acessar todas as #{resource_title(@proposals.first.component)}", main_component_path(@proposals.first.component), class: "button button_proposal_component" %>
   </div>
-  <%= link_to "Ver mais propostas", main_component_path(@proposals.first.component), class: "button" %>
 </div>
 <style>
   .card_proposal_component {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    width: 100%;
+    gap: 1.5rem;
   }
 
   .card_proposal_component div {
     max-width: 400px;
+    border-radius: 0.5rem;
+  }
+
+  .button_proposal_component {
+    background-color: var(--blue-warm-vivid-80);
+  }
+
+  .br_card_proposal_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+      color: var(--gray-90);
+    }
+    p {
+      font-size: 1.2rem;
+      color: var(--gray-60);
+    }
   }
 </style>
