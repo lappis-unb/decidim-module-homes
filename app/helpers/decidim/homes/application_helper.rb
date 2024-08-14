@@ -17,7 +17,7 @@ module Decidim
           OpenStruct.new(name: "steps"),
           OpenStruct.new(name: "cards"),
           OpenStruct.new(name: "proposal"),
-          OpenStruct.new(name: "ej_survey")
+          OpenStruct.new(name: "ej_survey"),
         ]
       end
 
