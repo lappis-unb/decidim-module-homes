@@ -18,7 +18,6 @@
 </div>
 <style>
   .proposal-container-component{
-    background-color: var(--gray-2);
     padding: 2rem 0;
   }
 
@@ -26,21 +25,32 @@
     display: flex;
     flex-direction: column;
     align-self: self-start;
-    margin-left: 5rem;
+    margin-left: 1.5rem;
     gap: 1rem;
   }
 
   .card_proposal_component {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
     width: 100%;
-    gap: 1.5rem;
+    gap: 2rem;
   }
 
-  .card_proposal_component div {
-    max-width: 400px;
+  .card_proposal_component .card--component {
+    max-width: none;
+    width: 30%;
     border-radius: 0.5rem;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1048px) {
+    .card_proposal_component {
+      flex-direction: column;
+      align-items: center;
+    }
+    .card_proposal_component .card--component{
+      width: 60%;
+    }
   }
 
   .button_proposal_component {
