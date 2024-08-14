@@ -1,8 +1,10 @@
 <div class="br-container-lg proposal-container-component">
   <% @proposals = fetch_random_proposals(properties["proposal_id"]) %>
   <div class="br_card_proposal_container">
-    <h1><%= properties["title"] =%></h1>
-    <p><%= properties["description"] =%></p>
+    <div class="br_card_proposal_header">
+      <h1><%= properties["title"] =%></h1>
+      <p><%= properties["description"] =%></p>
+    </div>
     <div class="card-grid card_proposal_component">
       <% @proposals.each do |proposal| %>
         <%= card_for proposal %>
@@ -14,7 +16,15 @@
 <style>
   .proposal-container-component{
     background-color: var(--gray-2);
-    padding-bottom: 2rem;
+    padding: 2rem 0;
+  }
+
+  .br_card_proposal_header{
+    display: flex;
+    flex-direction: column;
+    align-self: self-start;
+    margin-left: 5rem;
+    gap: 1rem;
   }
 
   .card_proposal_component {
