@@ -1,8 +1,8 @@
 <div class="br-container-lg">
   <% @proposals = fetch_random_proposals(properties["proposal_id"]) %>
   <div class="br_card_proposal_container">
-    <h1><%= resource_title(@proposals.first.component) %></h1>
-    <p>Um texto bacana explicando sucintamente o que são as metas e como participar.</p>
+    <h1><%= properties["title"] =%></h1>
+    <p><%= properties["description"] =%></p>
     <div class="card-grid card_proposal_component">
       <% @proposals.each do |proposal| %>
         <%= card_for proposal %>
