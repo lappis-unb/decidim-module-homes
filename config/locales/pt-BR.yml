@@ -24,6 +24,8 @@ pt-BR:
         name: "Notícias em Destaque"
       logos_section:
         name: "Apoiadores e Organizadores"
+      proposal:
+        name: "Proposta"
       official_logos:
         name: "Logos Oficiais"
         type:
