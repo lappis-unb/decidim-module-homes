@@ -1,2 +1,4 @@
-<%= render partial: 'logos_list', locals: { list: organizers, title: 'Organizadores' } %>
-<%= render partial: 'logos_list', locals: { list: supporters, title: 'Apoiadores' } %>
+<div class="home__element-container <%= background %>">
+  <%= render partial: 'logos_list', locals: { list: organizers, title: 'Organizadores' } %>
+  <%= render partial: 'logos_list', locals: { list: supporters, title: 'Apoiadores' } %>
+</div>
