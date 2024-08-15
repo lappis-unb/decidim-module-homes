@@ -2,7 +2,6 @@
   <div class="draggable-content">
     <%= t("#{element.element_type}.name", scope: "decidim.components") %>
     <div class="home__elements-actions">
-      <% logos = element.element_type == "logos_section" %>
       <%= link_to edit_home_element_path(element), method: :get, class: "button hollow" do %>
         <%= icon "pencil", role: "img", "aria-hidden": true %>
       <% end %>
