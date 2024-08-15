@@ -33,11 +33,9 @@
 .description_card {
   display: flex;
   flex-direction: column;
-  background-color: var(--gray-1);
   max-width: 369px;
   min-width: 280px;
   width: auto;
-  gap: 1rem;
 }
 
 .desc_card_label {
@@ -55,7 +53,6 @@
 .desc_card_title {
   font-size: var(--font-size-scale-up-02);
   color: var(--blue-warm-vivid-80);
-  padding: 0 1rem;
   font-weight: 600;
   line-height: 27.81px;
   text-align: left;
@@ -66,7 +63,6 @@
   font-size: var(--font-size-scale-base);
   font-weight: var(--font-weight-regular);
   color: var(--pure-100);
-  padding: 0 1rem;
   line-height: 19.38px;
   text-align: left;
   margin: 0;
@@ -87,4 +83,13 @@
   .description_card {
     width: 280px;
   }
+}
+
+.desc_card_content {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--gray-1);
+  border-radius: 0 0 4px 4px;
+  padding: 1rem;
+  gap: 1rem;
 }

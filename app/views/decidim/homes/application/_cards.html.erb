@@ -1,3 +1,5 @@
-<%= render partial: get_card_partial(properties["card_type"]), 
-    locals: { properties: properties } 
-%>
+<% if properties.try(:[], "card_type") %>
+  <%= render partial: get_card_partial(properties["card_type"]), 
+      locals: { properties: properties, background: background }
+  %>
+<% end %>

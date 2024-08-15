@@ -99,3 +99,18 @@
   background: var(--gray-2);
   padding: 16px 0;
 }
+
+.bg-light-blue {
+  .action_text {
+    color: var(--gray-90);
+  }
+}
+
+.bg-strong-blue {
+  .action_title {
+    color: var(--pure-0);
+  }
+  .action_text {
+    color: var(--gray-1);
+  }
+}

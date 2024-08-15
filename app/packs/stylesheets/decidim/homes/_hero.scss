@@ -28,3 +28,21 @@
     font-size: var(--font-size-scale-up-02) !important;
   }
 }
+
+.bg-light-blue {
+  .hero-title-br {
+    color: var(--blue-warm-vivid-80);
+  }
+  .hero-text-br {
+    color: var(--gray-90);
+  }
+}
+
+.bg-strong-blue {
+  .hero-title-br {
+    color: var(--pure-0);
+  }
+  .hero-text-br {
+    color: var(--gray-1);
+  }
+}

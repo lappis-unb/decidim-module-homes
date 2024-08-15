@@ -119,3 +119,9 @@
     margin: 0;
   }
 }
+
+.bg-strong-blue .cards-title-container {
+  h2, h3 {
+    color: var(--pure-0);
+  }
+}

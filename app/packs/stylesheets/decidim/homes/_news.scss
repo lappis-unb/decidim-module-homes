@@ -92,3 +92,17 @@
     padding: 2rem;
   }
 }
+
+.bg-light-blue #news-home-section {
+  background-color: var(--blue-3);
+  h2 {
+    color: var(--blue-warm-vivid-80);
+  }
+}
+
+.bg-strong-blue #news-home-section {
+  background-color: var(--blue-warm-60);
+  h2 {
+    color: var(--pure-0);
+  }
+}
