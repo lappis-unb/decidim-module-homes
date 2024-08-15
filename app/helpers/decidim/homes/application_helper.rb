@@ -82,6 +82,17 @@ module Decidim
         date = Date.try(:parse, date)
         months[date.month - 1] unless date.nil?
       end
+
+      def get_background_class(background)
+        case background
+        when "white"
+          "bg-white"
+        when "light-blue"
+          "bg-light-blue"
+        when "strong-blue"
+          "bg-strong-blue"
+        end
+      end
     end
   end
 end

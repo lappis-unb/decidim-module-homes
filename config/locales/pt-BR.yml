@@ -51,7 +51,7 @@ pt-BR:
       background:
         white: Branco
         light-blue: Azul claro
-        strong-blue: Azul forte
+        strong-blue: Azul escuro
     homes:
       admin:
         models:
