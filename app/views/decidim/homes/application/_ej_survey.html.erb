@@ -85,12 +85,14 @@
           </div>
         </div>
 
-        <div class="centered-content">
-          <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
-            <span class="mr-2">Acessar lista de enquetes</span>
-            <i class="fa fa-arrow-right"></i>
-          <% end %>
-        </div>
+        <% if properties['has_surveys_list_button'] == "1" %>
+          <div class="centered-content">
+            <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
+              <span class="mr-2">Acessar lista de enquetes</span>
+              <i class="fa fa-arrow-right"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% else %>
@@ -158,12 +160,14 @@
           </div>
         </div>
 
-        <div class="centered-content">
-          <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
-            <span class="mr-2">Acessar lista de enquetes</span>
-            <i class="fa fa-arrow-right"></i>
-          <% end %>
-        </div>
+        <% if properties['has_surveys_list_button'] == "1" %>
+          <div class="centered-content">
+            <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
+              <span class="mr-2">Acessar lista de enquetes</span>
+              <i class="fa fa-arrow-right"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
