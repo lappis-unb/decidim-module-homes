@@ -178,7 +178,7 @@
 (function() {
   const saveVote = (choice, comment_id) => {
     const url_formatted = "<%= ej_component_router.post_vote_ej_url(ej_component.settings[:conversation_id]) %>";
-    const new_url = url_formatted.replace('http://','http://');
+    const new_url = url_formatted.replace('http://','https://');
 
     $.ajax({
       method: "POST",
