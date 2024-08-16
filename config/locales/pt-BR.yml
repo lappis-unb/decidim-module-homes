@@ -25,6 +25,8 @@ pt-BR:
       logos_section:
         name: "Apoiadores e Organizadores"
         edit: "Editar Logos"
+      proposal:
+        name: "Proposta"
       official_logos:
         name: "Logos Oficiais"
         type:

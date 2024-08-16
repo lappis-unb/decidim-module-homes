@@ -1,0 +1,81 @@
+<div class="br-container-lg proposal-container-component">
+  <% @proposals = fetch_random_proposals(properties["proposal_id"]) %>
+  <div class="br_card_proposal_container">
+    <div class="br_card_proposal_header">
+      <h1><%= properties["title"] =%></h1>
+      <p><%= properties["description"] =%></p>
+    </div>
+    <div class="card-grid card_proposal_component">
+      <% @proposals.each do |proposal| %>
+        <%= card_for proposal %>
+      <% end %>
+    </div>
+    <%= link_to main_component_path(@proposals.first.component), class: "button button_proposal_component" do %>
+      Acessar todas as <%= resource_title(@proposals.first.component) %>
+      <i class="fa-solid fa-arrow-right"></i>
+    <% end %>
+  </div>
+</div>
+<style>
+  .proposal-container-component{
+    padding: 2rem 0;
+  }
+
+  .br_card_proposal_header{
+    display: flex;
+    flex-direction: column;
+    align-self: self-start;
+    margin-left: 1.5rem;
+    gap: 1rem;
+  }
+
+  .card_proposal_component {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .card_proposal_component .card--component {
+    max-width: none;
+    width: 30%;
+    border-radius: 0.5rem;
+    height: auto;
+  }
+
+  @media screen and (max-width: 1048px) {
+    .card_proposal_component {
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .card_proposal_component .card--component{
+      width: 60%;
+    }
+  }
+
+  .button_proposal_component {
+    background-color: var(--gray-90);
+    padding: 1rem 2rem;
+  }
+  .button_proposal_component:hover {
+    background-color: var(--gray-80);
+  }
+
+  .br_card_proposal_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin: 0;
+      color: var(--gray-90);
+    }
+    p {
+      font-size: 1.2rem;
+      color: var(--gray-60);
+    }
+  }
+</style>

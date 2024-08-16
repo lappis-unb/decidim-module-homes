@@ -10,7 +10,6 @@ module Decidim
     class ApplicationController < Decidim::Components::BaseController
       helper_method :organizers
       helper_method :supporters
-      helper_method :latest_posts
 
       def show
         @home = Home.find_by(component: current_component)

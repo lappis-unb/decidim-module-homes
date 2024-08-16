@@ -85,12 +85,14 @@
           </div>
         </div>
 
-        <div class="centered-content">
-          <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
-            <span class="mr-2">Acessar lista de enquetes</span>
-            <i class="fa fa-arrow-right"></i>
-          <% end %>
-        </div>
+        <% if properties['has_surveys_list_button'] == "1" %>
+          <div class="centered-content">
+            <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
+              <span class="mr-2">Acessar lista de enquetes</span>
+              <i class="fa fa-arrow-right"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% else %>
@@ -158,12 +160,14 @@
           </div>
         </div>
 
-        <div class="centered-content">
-          <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
-            <span class="mr-2">Acessar lista de enquetes</span>
-            <i class="fa fa-arrow-right"></i>
-          <% end %>
-        </div>
+        <% if properties['has_surveys_list_button'] == "1" %>
+          <div class="centered-content">
+            <%= link_to ej_component_router.ej_index_path, class: "br-button primary" do %>
+              <span class="mr-2">Acessar lista de enquetes</span>
+              <i class="fa fa-arrow-right"></i>
+            <% end %>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
@@ -173,9 +177,12 @@
 <script>
 (function() {
   const saveVote = (choice, comment_id) => {
+    const url_formatted = "<%= ej_component_router.post_vote_ej_url(ej_component.settings[:conversation_id]) %>";
+    const new_url = url_formatted.replace('http://','https://');
+
     $.ajax({
       method: "POST",
-      url: '<%= ej_component_router.post_vote_ej_url(ej_component.settings[:conversation_id]) %>',
+      url: new_url,
       data: {"choice": choice, "comment_id": comment_id},
 
       beforeSend: function() {
