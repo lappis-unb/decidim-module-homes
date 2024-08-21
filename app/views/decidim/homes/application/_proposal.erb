@@ -2,17 +2,19 @@
   <% @proposals = fetch_random_proposals(properties["proposal_id"]) %>
   <div class="br_card_proposal_container">
     <div class="br_card_proposal_header">
-      <h1><%= properties["title"] =%></h1>
-      <p><%= properties["description"] =%></p>
+      <h1><%= properties["title"] %></h1>
+      <p><%= properties["description"] %></p>
     </div>
     <div class="card-grid card_proposal_component">
       <% @proposals.each do |proposal| %>
         <%= card_for proposal %>
       <% end %>
     </div>
-    <%= link_to main_component_path(@proposals.first.component), class: "button button_proposal_component" do %>
-      Acessar todas as <%= resource_title(@proposals.first.component) %>
-      <i class="fa-solid fa-arrow-right"></i>
+    <% if @proposals.any? %>
+      <%= link_to main_component_path(@proposals.first.component), class: "button button_proposal_component" do %>
+        Acessar todas as <%= resource_title(@proposals.first.component) %>
+        <i class="fa-solid fa-arrow-right"></i>
+      <% end %>
     <% end %>
   </div>
 </div>
