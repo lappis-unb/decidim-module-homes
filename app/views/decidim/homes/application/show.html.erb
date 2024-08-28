@@ -1,7 +1,7 @@
 <div class="menu-container-space">
   <% element_orders = @home.element_orders %>
   <% sorted_elements = @elements.all.sort_by { |element| element_orders.index(element.id.to_s) || Float::INFINITY } %>
-  <%= safe_join(sorted_elements.map { |element| render partial: "#{element.element_type}", locals: { properties: element.properties.try(:with_indifferent_access), background: get_background_class(element.background) } }) %>
+  <%= safe_join(sorted_elements.map { |element| render partial: "#{element.element_type}", locals: { properties: element.properties.try(:with_indifferent_access) || {}, background: get_background_class(element.background) } }) %>
 </div>
 <script>
   document.addEventListener("DOMContentLoaded", function() {

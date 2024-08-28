@@ -6,7 +6,7 @@
         <iframe 
           class="home__video-iframe" 
           src="" 
-          video_url="<%= properties["link"] %>" 
+          video_url="<%= action_url %>" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen
@@ -14,14 +14,16 @@
         </iframe>
       </div>
     <% else %>
-      <div class="action_img-container" style="background-image: url('<%= properties["link"] %>')"></div>
+      <div class="action_img-container" style="background-image: url('<%= action_url %>')"></div>
     <% end %>
     <div class="action_content-container">
       <div class="action_content-text">
         <h2 class="action_title"><%= properties['title'] %></h2>
         <p class="action_text"><%= properties['text'] %></p>
       </div>
-      <%= link_to(properties['button_text'], properties['link'], class: "br-button primary action_link") %>
+      <%= link_to(properties['button_text'], action_url, class: "br-button primary action_link") %>
     </div>
   </div>
 </div>
+<% else %>
+<% end %>
