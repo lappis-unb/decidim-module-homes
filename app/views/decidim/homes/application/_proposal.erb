@@ -1,5 +1,5 @@
 <div class="br-container-lg proposal-container-component">
-  <% @proposals = fetch_random_proposals(properties["proposal_id"]) %>
+  <% @proposals = Decidim::Proposals::Proposal.where(decidim_component_id: properties["proposal_id"]).order("RANDOM()").limit(3) %>
   <div class="br_card_proposal_container">
     <div class="br_card_proposal_header">
       <h1><%= properties["title"] %></h1>

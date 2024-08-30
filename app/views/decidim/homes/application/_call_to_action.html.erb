@@ -22,6 +22,7 @@
         <p class="action_text"><%= properties['text'] %></p>
       </div>
     </div>
+    <%= link_to(properties['button_text'], properties['button_link'], class: "br-button primary action_link") %>
   </div>
 <% else %>
 <% end %>
