@@ -3,9 +3,6 @@
   padding: 4rem 0;
   gap: 1.5rem;
 }
-.steps-section-background {
-  background-color: var(--gray-1);
-}
 
 .steps_main-container {
   display: flex;
@@ -158,5 +155,38 @@
   }
   .steps_side-container {
     width: 100%;
+  }
+}
+
+.bg-light-blue {
+  .steps_main_text {
+    color: var(--gray-90);
+  }
+  .hollow-index-line {
+    background-color: var(--gray-3);
+  }
+}
+
+.bg-strong-blue {
+  .steps_title {
+    color: var(--pure-0);
+  }
+  .steps_main_text {
+    color: var(--gray-1);
+  }
+  .hollow-index-line {
+    background-color: var(--blue-warm-60);
+  }
+  .index-line {
+    background-color: var(--pure-0);
+  }
+  .step_info-text.write-step,
+  .step_info-text.gray-step {
+    h2 {
+      color: var(--pure-0);
+    }
+    p {
+      color: var(--gray-1);
+    }
   }
 }

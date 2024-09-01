@@ -14,6 +14,7 @@ module Decidim
           @home_element_id = params[:home_element_id]
           @home_id = params[:home_id]
           @properties = params[:properties]
+          @background = params[:background]
           @current_user = params[:current_user]
         end
 
@@ -35,7 +36,8 @@ module Decidim
           @home_element = @home.home_elements.find_by(id: @home_element_id)
 
           @home_element.assign_attributes(
-            properties: @properties
+            properties: @properties,
+            background: @background
           )
 
           Decidim.traceability.update!(

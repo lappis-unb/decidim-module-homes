@@ -1,5 +1,6 @@
 <% action_url = properties['link'] %>
 <% if action_url.present? %>
+<div class="<%= background %>">
   <div class="br-container-lg call_to_action-container <%= properties['reverse'] ? 'reverse' : '' %>">
     <% if action_url.include?('youtube') %>
       <div class="action_img-container">
@@ -21,8 +22,10 @@
         <h2 class="action_title"><%= properties['title'] %></h2>
         <p class="action_text"><%= properties['text'] %></p>
       </div>
+      <%= link_to(properties['button_text'], properties['link'], class: "br-button primary action_link") %>
     </div>
     <%= link_to(properties['button_text'], properties['button_link'], class: "br-button primary action_link") %>
   </div>
+</div>
 <% else %>
 <% end %>

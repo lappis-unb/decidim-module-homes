@@ -7,6 +7,26 @@
   <div class="card-section">
     <%= decidim_form_for(@home_element, url: home_element_path, method: :patch, html: { class: "form new_home_element" }) do |f| %>
       <%= render partial: "#{@home_element.element_type.include?("card") ? "cards" : @home_element.element_type}", locals: { f: f } %>
+
+      <%= 
+        f.select :background,
+        options_for_select(
+          @available_backgrounds,
+          @home_element.background
+        ),
+        label: "Selecione um background",
+        help_text: "Altera a cor de fundo do elemento"
+      %>
+
+      <% if @home_element.element_type == "logos_section" %>
+        <label>
+          <%= link_to "/admin/participatory_processes/#{request.path.split('/')[3]}/partners", method: :get, class: "button small" do %>
+            <%= t("logos_section.edit", scope: "decidim.components") %>
+          <% end %>
+          <span class="help-text">Ao clicar será redirecionado para a página de organizadores/apoiadores</span>
+        </label>
+      <% end %>
+
       <div class="button--double form-general-submit">
         <%= f.submit "Atualizar", class: "button" %>
       </div>

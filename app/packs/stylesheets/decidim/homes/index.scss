@@ -97,6 +97,10 @@
   gap: 1.5rem;
 }
 
+.home__element-container {
+  padding: 1.5rem 0 1.5rem 0;
+}
+
 @media (min-width: 768px) {
   .participatory-items {
     display: flex;
@@ -126,6 +130,9 @@
   .home-sections-container.logos-section {
     padding: 2rem 0;
     gap: 2rem;
+  }
+  .home__element-container {
+    padding: 4rem 0 4rem 0;
   }
 }
 
@@ -157,4 +164,51 @@
   .logos__container {
     justify-content: space-around;
   }
+}
+
+.bg-white {
+  background-color: var(--pure-0);
+}
+
+.bg-light-blue {
+  background-color: var(--blue-3);
+  .meetings-not-found {
+    color: var(--gray-90);
+  }
+  .logos__section {
+    background-color: var(--blue-3);
+  }
+}
+
+.bg-strong-blue {
+  background-color: var(--blue-warm-60);
+  .meeting-map-title,
+  .meetings-map-subtitle {
+    color: var(--pure-0);
+  }
+  .meetings-not-found {
+    color: var(--gray-1);
+  }
+  .logos__section {
+    background-color: var(--blue-warm-60);
+  }
+}
+
+.blue-bp-divider {
+  display: flex;
+  width: 100%;
+  height: 35px;
+  background-color: unset !important;
+  background-image: url('https://brasilparticipativo.presidencia.gov.br/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcTVXIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--958ded6942dd87524d5b1852502383e4a10bbd3c/faixa-azul%20(1).png');
+  background-size: cover;
+  background-repeat: repeat;
+  filter: brightness(0) saturate(100%) invert(33%) sepia(19%) saturate(1551%) hue-rotate(175deg) brightness(98%) contrast(95%);
+}
+
+.blue-bp-divider.bg-white {
+  filter: brightness(0) invert(100%) sepia(0%) saturate(7491%) hue-rotate(270deg) brightness(104%) contrast(102%);;
+}
+
+.blue-bp-divider.bg-light-blue {
+  filter: brightness(0) invert(87%) sepia(15%) saturate(148%) hue-rotate(186deg) brightness(110%) contrast(97%);
 }

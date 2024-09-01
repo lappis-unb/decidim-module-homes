@@ -1,21 +1,25 @@
-<div class="br-container-lg description_cards-container">
-  <div class="cards-title-container">
-    <h2 class="description_cards-title"><%= properties["title"] %></h2>
-    <% if properties["subtitle"]%>
-      <h3 class="description_cards-subtitle"><%= properties["subtitle"] %></h3>
-    <% end %>
-  </div>
-  <div class="description_cards">
-    <% properties["items"].try(:each) do |card| %>
-      <div class="description_card">
-        <h4 class="desc_card_label"><%= card["label"] %></h4>
-        <h3 class="desc_card_title">
-          <%= card["title"] %>
-        </h3>
-        <p class="desc_card_text">
-          <%= card["description"] %>
-        </p>
-      </div>
-    <% end %>
+<div class="<%= background %>">
+  <div class="br-container-lg description_cards-container">
+    <div class="cards-title-container">
+      <h2 class="description_cards-title"><%= properties["title"] %></h2>
+      <% if properties["subtitle"]%>
+        <h3 class="description_cards-subtitle"><%= properties["subtitle"] %></h3>
+      <% end %>
+    </div>
+    <div class="description_cards">
+      <% properties["items"].try(:each) do |card| %>
+        <div class="description_card">
+          <h4 class="desc_card_label"><%= card["label"] %></h4>
+          <div class="desc_card_content">
+            <h3 class="desc_card_title">
+              <%= card["title"] %>
+            </h3>
+            <p class="desc_card_text">
+              <%= card["description"] %>
+            </p>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

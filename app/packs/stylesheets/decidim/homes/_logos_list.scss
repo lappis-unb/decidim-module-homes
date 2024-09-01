@@ -34,3 +34,15 @@
     align-items: center;
   }
 }
+
+.bg-light-blue .home-sections-container {
+  background-color: var(--blue-3);
+}
+
+.bg-strong-blue .home-sections-container {
+  background-color: var(--blue-warm-60);
+  h2,
+  p {
+    color: #fff;
+  }
+}
