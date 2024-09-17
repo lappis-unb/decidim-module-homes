@@ -21,7 +21,7 @@
       <div id="ej-conversation" class="ej-component-container">
         <div class="ej-conversation-header">
           <h1 class="ej-conversation-header__title">
-            <%= @conversation['text'] %>
+            <%= @conversation ? @conversation['text'] : "" %>
           </h1>
         </div>
 
@@ -33,7 +33,7 @@
         <% end %>
 
         <div class="ej-conversation-container">
-          <% if @conversation['user_stats'] %>
+          <% if @conversation and @conversation['user_stats'] %>
             <div class="percentage-container">
               <h4 class="percentage-title">Você respondeu <%= number_to_percentage(@user_participation_ratio, precision: 2) %> desta enquete</h4>
               <div style="background: var(--pure-0);">
@@ -42,9 +42,9 @@
             </div>
           <% end %>
           <div class="ej-conversation-card">
-            <% if @comment['content'].present? %>
+            <% if @coment and @comment['content'].present? %>
               <span>
-                <% if @conversation['user_stats'] %>
+                <% if @convertsation and @conversation['user_stats'] %>
                   <div class="ej-conversation-card__comments">
                     Comentário <%= @conversation['user_stats']['comments'] %> de <%= @conversation['user_stats']['total_comments'] %>
                   </div>

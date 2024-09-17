@@ -1,12 +1,19 @@
-<% news_data = fetch_news_data(properties["news_id"], properties["highlight_latest"]) %>
+<%# news_data = fetch_news_data(properties["news_id"], properties["highlight_latest"]) %>
+
+<%# solucao temporaria para quando o componente eh definido como pagina inicial do processo %>
+<% component = Decidim::Component.where(id: properties["news_id"]).first %>
+<% news_data = component ? Decidim::Blogs::Post
+          .where(decidim_component_id: component.id)
+          .order(created_at: :desc)
+          .limit(properties["highlight_latest"] == "1" ? 4 : 3) : [] %>
+<%# fim da solucao temporaria %>
 
 <section id="news-home-section" class="home-sections-container">
   <h2>Notícias</h2>
   <div class="home-sections-content">
     <% if news_data.present? %>
       <% href = "/processes/#{current_participatory_space.slug}/f/#{properties["news_id"]}" %>
-
-      <% if properties["highlight_latest"] %>
+      <% if properties["highlight_latest"] == "1" %>
         <% highlighted_new = news_data.first %>
         <% image_url = highlighted_new.photo.present? ? highlighted_new.photo.url : "" %>
         <a class="main-news-card" href="<%= "#{href}/posts/#{highlighted_new.id}" %>">
@@ -22,7 +29,7 @@
 
       <div class="news-container">
         <% news_data.each_with_index do |post, index| %>
-          <% next if index == 0 && properties["highlight_latest"] %>
+          <% next if index == 0 && properties["highlight_latest"] == "1" %>
           <% image_url = post.photo.present? ? post.photo.url : "" %>
           <a href="<%= "#{href}/posts/#{post.id}" %>" class="page-news-card">
             <img src="<%= image_url %>" alt="" class="news-img"/>

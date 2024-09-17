@@ -2,6 +2,10 @@
 <% circle_class = '' %>
 <% text_info_class = '' %>
 
+<%# solucao temporaria para quando o componente eh definido como pagina inicial do processo %>
+<% @steps = current_participatory_space.try(:steps) || [] %>
+<%# fim da solucao temporaria %>
+
 <div class="steps-section-background">
   <div class="home_steps-container br-container-lg">
     <div class="steps_main-container">
