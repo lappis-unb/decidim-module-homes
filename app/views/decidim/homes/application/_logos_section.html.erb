@@ -1,2 +1,41 @@
-<%= render partial: 'logos_list', locals: { list: organizers, title: 'Organizadores' } %>
-<%= render partial: 'logos_list', locals: { list: supporters, title: 'Apoiadores' } %>
+<%# render partial: 'logos_list', locals: { list: organizers, title: 'Organizadores' } %>
+<%# render partial: 'logos_list', locals: { list: supporters, title: 'Apoiadores' } %>
+
+<%# solucao temporaria para quando o componente eh definido como pagina inicial do processo %>
+<% organizers_list = current_participatory_space.try(:organizers) || [] %>
+<% supporters_list = current_participatory_space.try(:supporters) || [] %>
+<section class="br-container-lg home-sections-container logos-section">
+  <h2><%= 'Organizadores' %></h2>
+  <div class="home-sections-content">
+    <div class="logos__list-container">
+      <% if organizers_list.size > 0 %>
+        <% list.each do |logo| %>
+          <a class="logo-items" href="<%= logo.link %>" target="_blank">
+            <%= image_tag(logo.attached_uploader(:logo).path, alt: logo.name) if logo.logo.attached? %>
+          </a>
+        <% end %>
+      <% else %>
+        <p>Não há <%= 'Organizadores' %> registrados</p>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+<section class="br-container-lg home-sections-container logos-section">
+  <h2><%= 'Apoiadores' %></h2>
+  <div class="home-sections-content">
+    <div class="logos__list-container">
+      <% if supporters_list.size > 0 %>
+        <% list.each do |logo| %>
+          <a class="logo-items" href="<%= logo.link %>" target="_blank">
+            <%= image_tag(logo.attached_uploader(:logo).path, alt: logo.name) if logo.logo.attached? %>
+          </a>
+        <% end %>
+      <% else %>
+        <p>Não há <%= 'Apoiadores' %> registrados</p>
+      <% end %>
+    </div>
+  </div>
+</section>
+<%# fim da solucao temporaria %>
