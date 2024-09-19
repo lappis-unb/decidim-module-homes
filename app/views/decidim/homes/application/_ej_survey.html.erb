@@ -25,7 +25,7 @@
           </h1>
         </div>
 
-        <% if false and @conversation['participants_can_add_comments'] %>
+        <% if false && @conversation['participants_can_add_comments'] %>
           <button id="add-new-comment-ej" class="br-button secondary black-and-white-btn" onclick="toggleCommentForm()">
             <i class="fa fa-plus"></i>
             <span>Adicionar comentário à enquete</span>
@@ -33,7 +33,7 @@
         <% end %>
 
         <div class="ej-conversation-container">
-          <% if @conversation and @conversation['user_stats'] %>
+          <% if @conversation && @conversation['user_stats'] %>
             <div class="percentage-container">
               <h4 class="percentage-title">Você respondeu <%= number_to_percentage(@user_participation_ratio, precision: 2) %> desta enquete</h4>
               <div style="background: var(--pure-0);">
@@ -42,9 +42,9 @@
             </div>
           <% end %>
           <div class="ej-conversation-card">
-            <% if @coment and @comment['content'].present? %>
+            <% if @coment && @comment['content'].present? %>
               <span>
-                <% if @convertsation and @conversation['user_stats'] %>
+                <% if @convertsation && @conversation['user_stats'] %>
                   <div class="ej-conversation-card__comments">
                     Comentário <%= @conversation['user_stats']['comments'] %> de <%= @conversation['user_stats']['total_comments'] %>
                   </div>
