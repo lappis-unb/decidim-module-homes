@@ -9,7 +9,7 @@
   <div class="home-sections-content">
     <div class="logos__list-container">
       <% if organizers_list.size > 0 %>
-        <% list.each do |logo| %>
+        <% organizers_list.each do |logo| %>
           <a class="logo-items" href="<%= logo.link %>" target="_blank">
             <%= image_tag(logo.attached_uploader(:logo).path, alt: logo.name) if logo.logo.attached? %>
           </a>
@@ -27,7 +27,7 @@
   <div class="home-sections-content">
     <div class="logos__list-container">
       <% if supporters_list.size > 0 %>
-        <% list.each do |logo| %>
+        <% supporters_list.each do |logo| %>
           <a class="logo-items" href="<%= logo.link %>" target="_blank">
             <%= image_tag(logo.attached_uploader(:logo).path, alt: logo.name) if logo.logo.attached? %>
           </a>

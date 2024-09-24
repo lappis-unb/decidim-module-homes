@@ -21,7 +21,9 @@
         <h2 class="action_title"><%= properties['title'] %></h2>
         <p class="action_text"><%= properties['text'] %></p>
       </div>
-      <%= link_to(properties['button_text'], properties['button_link'], class: "br-button primary action_link") %>
+      <% if properties['button_text'].present? && properties['button_link'].present? %>
+        <%= link_to(properties['button_text'], properties['button_link'], class: "br-button primary action_link") %>
+      <% end %>
     </div>
   </div>
 <% else %>
