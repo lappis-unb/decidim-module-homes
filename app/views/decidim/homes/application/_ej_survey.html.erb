@@ -1,12 +1,14 @@
 <% # TODO Remove this out of here! %>
-<% ej_component = Decidim::Component.find_by(id: properties[:ej_component_id]) %>
-<% if ej_component.present? %>
-  <% ej_component_router = Decidim::EngineRouter.main_proxy(ej_component) %>
-  <% api_client ||= Decidim::Ej::Connector::Client.new(ej_component.settings[:host], current_user) %>
-  <% @conversation = api_client.fetch_conversation(ej_component.settings[:conversation_id]) %>
-  <% @comment = api_client.fetch_next_comment(ej_component.settings[:conversation_id]) %>
-  <% @user_participation_ratio = @conversation[:user_stats][:participation_ratio].to_f * 100.0 %>
-<% else %>
+<% begin %>
+  <% ej_component = Decidim::Component.find_by(id: properties[:ej_component_id]) %>
+  <% if ej_component.present? %>
+    <% ej_component_router = Decidim::EngineRouter.main_proxy(ej_component) %>
+    <% api_client ||= Decidim::Ej::Connector::Client.new(ej_component.settings[:host], current_user) %>
+    <% @conversation = api_client.fetch_conversation(ej_component.settings[:conversation_id]) %>
+    <% @comment = api_client.fetch_next_comment(ej_component.settings[:conversation_id]) %>
+    <% @user_participation_ratio = @conversation[:user_stats][:participation_ratio].to_f * 100.0 %>
+  <% end %>
+<% rescue StandardError => e %>
   <% @conversation = nil %>
   <% @comment = nil %>
   <% @user_participation_ratio = 0.0 %>
@@ -42,9 +44,9 @@
             </div>
           <% end %>
           <div class="ej-conversation-card">
-            <% if @coment && @comment['content'].present? %>
+            <% if @comment && @comment['content'].present? %>
               <span>
-                <% if @convertsation && @conversation['user_stats'] %>
+                <% if @conversation && @conversation['user_stats'] %>
                   <div class="ej-conversation-card__comments">
                     Comentário <%= @conversation['user_stats']['comments'] %> de <%= @conversation['user_stats']['total_comments'] %>
                   </div>
